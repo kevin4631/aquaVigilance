@@ -32,7 +32,7 @@
 
 <body>
     <h2>Bonjour, {{ auth()->user()->name }}, ceci est la page quand on est connecté</h2>
-    <form method="post" action="{{ route('logout') }}" style="text-align: center; margin-top: 20px;">
+    <form method="post" action="{{ route('deconnexion') }}" style="text-align: center; margin-top: 20px;">
         @csrf
         <button type="submit">Déconnexion</button>
     </form>

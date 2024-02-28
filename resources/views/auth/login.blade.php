@@ -85,8 +85,8 @@
         <h1>Connexion</h1>
         <input type="email" name="email" placeholder="Adresse mail">
         <input type="password" name="password" placeholder="Mot de passe">
-        <button type="submit" formaction="{{route('authenticate')}}">Se connecter</button>
-        <button type="submit" formaction="{{route('creation')}}">Créer un compte</button>
+        <button type="submit" formaction="{{route('authentification')}}">Se connecter</button>
+        <button type="submit" formaction="{{route('inscription')}}">Créer un compte</button>
     </form>
     </div>
  </body>   

@@ -39,6 +39,6 @@
 <body>
     <header class="@yield('header-class', '')">
         <h1 class="titre">AquaVigilance</h1>
-        <a href="{{route('login')}}" class="login-btn">Connexion</a>
+        <a href="{{route('connexion')}}" class="login-btn">Connexion</a>
     </header>
 </body>
