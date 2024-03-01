@@ -18,9 +18,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 Route::get('/', [AccueilController::class, 'accueil'])->name('accueil');
 
-Route::get('login', [AuthController::class, 'login'])->name('connexion');
-Route::post('creation', [AuthController::class, 'creation'])->name('inscription');
-Route::post('store', [AuthController::class, 'store'])->name('store');
+Route::get('connexion', [AuthController::class, 'connexion'])->name('connexion');
+Route::post('inscription_form', [AuthController::class, 'inscription_form'])->name('inscription_form');
+Route::post('inscription', [AuthController::class, 'inscription'])->name('inscription');
 Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authentification');
-Route::post('logout', [AuthController::class, 'logout'])->name('deconnexion');
+Route::post('deconnexion', [AuthController::class, 'deconnexion'])->name('deconnexion');
 Route::get('temp', [TempController::class, 'temp'])->name('temp')->middleware('auth');

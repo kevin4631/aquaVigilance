@@ -79,7 +79,7 @@
 
  <body>
     <div class="creation_div">
-        <form class="creation_form"  action="{{route('store')}}" method="post">@csrf
+        <form class="creation_form"  action="{{route('inscription')}}" method="post">@csrf
         <h1>Création de compte</h1>
         <input type="name" name="name" placeholder="nom utilisateur ">
         <input type="email" name="email" placeholder="adresse mail">

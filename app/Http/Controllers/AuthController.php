@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function connexion()
     {
         // vérifie si l'utilisateur est deja connecté
         if (auth()->check()) {
@@ -19,7 +19,7 @@ class AuthController extends Controller
         }
 
         // si il est pas connecté redirge page login
-        return view('auth.login');
+        return view('auth.connexion');
     }
 
     // Crée une session de connexion
@@ -40,19 +40,19 @@ class AuthController extends Controller
     }
 
     // Déconnexion
-    public function logout()
+    public function deconnexion()
     {
         auth()->logout();
         return redirect()->route('accueil');
     }
 
-    public function creation()
+    public function inscription_form()
     {
-        return view('auth.creation');
+        return view('auth.inscription_form');
     }
 
     // Enregistre un nouveau utilisateur
-    public function store(Request $request)
+    public function inscription(Request $request)
     {
         // Valide les données du formulaire
         $form = $request->validate([
