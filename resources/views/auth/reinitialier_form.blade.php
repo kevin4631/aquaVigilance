@@ -10,7 +10,7 @@
         background-size: cover;
     }
 
-    .login_div {
+    .creation_div {
         position:absolute;
         top: 50%;
         left: 50%;
@@ -19,14 +19,14 @@
     }
     
 
-    .login_form {
+    .creation_form {
         background-color: rgba(255, 255, 255, 0.982); 
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 20px;
         margin: 0;
         width: 330px;
-        height: 350px;
+        height: 330px;
         text-align: center;
     }
 
@@ -57,15 +57,6 @@
         margin-top: 20px;
         font-size: 16px;
     }
-    .button1{
-        padding: 5px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 78%;
-        margin-top: 10px;
-        font-size: 13px;
-    }
 
     button:hover {
         background-color: #0056b3;
@@ -80,29 +71,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de connexion</title>
-    @extends('headfoot/header')
-    @section('header-class', 'hide-button')
+    <title>Inscription</title>
+    @include('headfoot/header')
 </head>
-
 
     @foreach ($errors->all() as $error)
     {{$error}}
     @endforeach
 
  <body>
-    
-    <div class="login_div">
-        <form class="login_form" method="post">@csrf
-        <h1>Connexion</h1>
-        <input type="email" name="email" placeholder="Adresse mail">
-        <input type="password" name="password" placeholder="Mot de passe">
-        <button type="submit" formaction="{{route('authentification')}}">Se connecter</button>
-        <button class="button1" type="submit" formaction="{{ route('reinitialier_form') }}">Mot de passe oublié ?</button>
-        <button type="submit" formaction="{{route('inscription_form')}}">Créer un compte</button>
-        </form>
+    <div class="creation_div">
+        <form class="creation_form"  action="{{route('reset')}}" method="post">@csrf
+        <h1>Changement de mot de passe</h1>
+        <input type="email" name="email" placeholder="adresse mail">
+        <input type="password" name="password" placeholder=" nouveau mot de passe">
+        <button type="submit">Changer le mot de passe</button>
+    </form>
     </div>
-
  </body>   
 
  @include('headfoot/footer')
@@ -110,6 +95,3 @@
 
 
 </html>
-
-
-
