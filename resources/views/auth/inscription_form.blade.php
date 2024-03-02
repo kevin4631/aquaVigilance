@@ -6,6 +6,8 @@
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         justify-content: flex-start;
+        background-image: url('img/background.jpg'); 
+        background-size: cover;
     }
 
     .creation_div {
@@ -18,7 +20,7 @@
     
 
     .creation_form {
-        background-color: rgba(255, 255, 255, 0.8); 
+        background-color: rgba(255, 255, 255, 0.982); 
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         padding: 20px;

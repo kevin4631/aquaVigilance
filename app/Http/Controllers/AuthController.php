@@ -76,4 +76,9 @@ class AuthController extends Controller
         $request->session()->regenerate();
         return redirect()->route('temp');
     }
+
+    public function reset(){
+        
+    }
+
 }
