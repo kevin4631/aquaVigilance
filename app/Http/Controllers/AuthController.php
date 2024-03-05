@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -81,25 +82,7 @@ class AuthController extends Controller
         return view('auth.reinitialier_form');
     }
 
-    public function reset(Request $request){
-         // Valide les données du formulaire
-         $form = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-
-        // Crée un nouveau utilisateur avec le mot de passe crypté
-        User::updated([
-            'email' => $request->email,
-            'password' => Hash::make($request->password) // crypté le mdp 
-        ]);
-
-        // Tente de s'authentifier avec les nouvelles informations
-        $session = $request->only('email', 'password');
-        Auth::attempt($session);
-
-        // Régénère la session et redirige vers la page temp
-        $request->session()->regenerate();
-        return redirect()->route('temp');
+    public function reset($user){
+        $sql = DB::update("UPDATE `users` SET `password` = 'mosta' WHERE `users`.`id` = $user;");
     }
 }
