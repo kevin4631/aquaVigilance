@@ -46,33 +46,40 @@
     // --------------- AJOUT TRACES COURS D'EAUX ---------------
 
     var xhr = new XMLHttpRequest();
-    var tabNameFileTracesCoursEaux;
+    var monTableauJS;
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             // Ci-dessous on traitera la réponse quand elle arrivera
             // Parsez le JSON en un objet JavaScript
-            tabNameFileTracesCoursEaux = JSON.parse(this.responseText);
-            ajoutTracesCoursEaux();
+            monTableauJS = JSON.parse(this.responseText);
+            ajoutCoursEau();
         } else if (this.readyState == 4) {
             alert(this.status);
+            var sucess = this.responseText;
         }
     };
 
-    xhr.open('POST', 'php/getNameFileTracesCoursEaux.php', true);
+    xhr.open('POST', 'getfile.php', true);
     xhr.send();
 
-    function ajoutTracesCoursEaux() {
-        tabNameFileTracesCoursEaux.forEach(nameFile => {
-            fetch('tracesCoursEaux/' + nameFile)
+
+    function ajoutCoursEau() {
+        monTableauJS.forEach(element => {
+            //var fichier = monTableauJS[200];
+
+            fetch('traceCoursEau/' + element)
                 .then(response => response.json())
-                .then(contentFile => {
-                    var layer = L.geoJSON(contentFile).addTo(map);
-                    //layer.bindPopup('<h1>' + contentFile['features'][0]['properties']['NomEntiteHydrographique'] + '</h1>' +
-                      //  '<p>code_uri: ' + contentFile['features'][0]['properties']['CdEntiteHydrographique'] + '</p>');
+                .then(data => {
+                    // Faites quelque chose avec les données GeoJSON ici
+                    var geojsonFeature = data;
+                    var layer = L.geoJSON(geojsonFeature).addTo(map);
+                    layer.bindPopup('<p>nom: ' + geojsonFeature['features'][0]['properties']['NomEntiteHydrographique'] + '</p>' +
+                        '<p>code_uri: ' + geojsonFeature['features'][0]['properties']['CdEntiteHydrographique'] + '</p>');
 
                 })
                 .catch(error => console.error('Erreur lors du chargement du fichier GeoJSON :', error));
+
         });
     }
 </script>
