@@ -52,6 +52,7 @@
             tabDeltaCoursEau = JSON.parse(this.responseText); // Parsez le JSON en un objet JavaScript
             //console.log(tabDeltaCoursEau["L5--0180"]);
             //console.log(tabDeltaCoursEau);
+            load();
         } else if (this.readyState == 4) {
             alert(this.status);
         }
@@ -62,27 +63,30 @@
 
     // --------------- AJOUT TRACES COURS D'EAUX ---------------
 
-    var tabFileNameTraceCoursEau;
+    function load() {
+        var tabFileNameTraceCoursEau;
 
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            // Ci-dessous on traite la réponse quand elle arrive
-            tabFileNameTraceCoursEau = JSON.parse(this.responseText); // Parsez le JSON en un objet JavaScript
-            ajoutTraceCoursEau();
-        } else if (this.readyState == 4) {
-            alert(this.status);
-        }
-    };
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Ci-dessous on traite la réponse quand elle arrive
+                tabFileNameTraceCoursEau = JSON.parse(this.responseText); // Parsez le JSON en un objet JavaScript
+                ajoutTraceCoursEau();
+            } else if (this.readyState == 4) {
+                alert(this.status);
+            }
+        };
 
-    xhr.open('POST', 'php/getFileNameCoursEau.php', true);
-    xhr.send();
+        xhr.open('POST', 'php/getFileNameCoursEau.php', true);
+        xhr.send();
+    }
 
     function ajoutTraceCoursEau() {
         tabFileNameTraceCoursEau.forEach(fileName => {
             fetch('traceCoursEau/' + fileName)
                 .then(response => response.json())
                 .then(fileContent => {
+
                     var layer = L.geoJSON(fileContent, {
                         style: function(feature) {
 
@@ -106,6 +110,7 @@
 
                         }
                     }).addTo(map); // ajout pop up
+
                     layer.bindPopup('<h3>' + fileContent['features'][0]['properties']['NomEntiteHydrographique'] + '</h3>' +
                         '<p>code : ' + fileContent['features'][0]['properties']['CdEntiteHydrographique'] + '</p>');
                 })
