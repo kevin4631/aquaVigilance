@@ -45,13 +45,15 @@
     // --------------- RECUP TEMPERATURE COURS D'EAUX ---------------
     var tabDeltaCoursEau;
 
+    /** 
+     * lance un appel ajax pour recup les delta des cours d'eau
+     */
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             // Ci-dessous on traite la réponse quand elle arrive
             tabDeltaCoursEau = JSON.parse(this.responseText); // Parsez le JSON en un objet JavaScript
-            //console.log(tabDeltaCoursEau["L5--0180"]);
-            //console.log(tabDeltaCoursEau);
+            // une fois les données recup on lance le chargement des cours d'eau
             load();
         } else if (this.readyState == 4) {
             alert(this.status);
@@ -64,13 +66,16 @@
     // --------------- AJOUT TRACES COURS D'EAUX ---------------
     var tabFileNameTraceCoursEau;
 
+    /**
+     * lance un appel ajax pour recup les noms des cours d'eau
+     */
     function load() {
-
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 // Ci-dessous on traite la réponse quand elle arrive
                 tabFileNameTraceCoursEau = JSON.parse(this.responseText); // Parsez le JSON en un objet JavaScript
+                // un fois les noms recup on affiche les traces
                 ajoutTraceCoursEau();
             } else if (this.readyState == 4) {
                 alert(this.status);
@@ -81,38 +86,40 @@
         xhr.send();
     }
 
+    /** affiche les cours d'eau sur la carte*/
     function ajoutTraceCoursEau() {
+        // pour chaque cours d'eau
         tabFileNameTraceCoursEau.forEach(fileName => {
             fetch('traceCoursEau/' + fileName)
                 .then(response => response.json())
                 .then(fileContent => {
 
+                    // ajout d'un cours d'eau sur la carte
                     var layer = L.geoJSON(fileContent, {
                         style: function(feature) {
+                            var color;
+                            var weight = 2;
 
                             if (tabDeltaCoursEau[fileName.slice(0, -8)] > 0) {
-                                return {
-                                    color: 'red',
-                                    weight: 2
-                                };
-                            }
-                            if (tabDeltaCoursEau[fileName.slice(0, -8)] < 0) {
-                                return {
-                                    color: 'blue',
-                                    weight: 2
-                                };
+                                color = 'red';
+                            } else if (tabDeltaCoursEau[fileName.slice(0, -8)] < 0) {
+                                color = 'blue';
                             } else {
-                                return {
-                                    color: 'black',
-                                    weight: 2
-                                };
+                                color = 'rgba(0,0,0,0.3)';
                             }
+
+                            return {
+                                color: color,
+                                weight: weight
+                            };
 
                         }
-                    }).addTo(map); // ajout pop up
+                    }).addTo(map); 
 
+                    // ajout d'un pop up au clique
                     layer.bindPopup('<h3>' + fileContent['features'][0]['properties']['NomEntiteHydrographique'] + '</h3>' +
-                        '<p>code : ' + fileContent['features'][0]['properties']['CdEntiteHydrographique'] + '</p>');
+                        '<p>code : ' + fileContent['features'][0]['properties']['CdEntiteHydrographique'] + '</p>'
+                        +'<p> delta : '+tabDeltaCoursEau[fileName.slice(0, -8)]+'</p>');
                 })
                 .catch(error => console.error('Erreur lors du chargement du fichier GeoJSON :', error));
         });
