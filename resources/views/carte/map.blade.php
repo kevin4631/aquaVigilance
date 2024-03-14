@@ -26,7 +26,50 @@
         height: 100%;
         width: 60%;
     }
+
+    #choixannee {
+        position: absolute;
+        top: 70px; /* Définir la position à 50px du haut */
+        left: 50%; /* Centre horizontalement */
+        transform: translateX(-50%); /* Centre horizontalement */
+        text-align: center;
+        z-index: 999;
+    }
+
+    .anneeLabel {
+        margin-top: 10px;
+        display: inline-block;
+        width: 50px; /* Ajustez la largeur selon vos besoins */
+    }
 </style>
+
+<div id="choixannee">
+    <form action="#">
+        <input id="size" type="range" min="2006" max="2023" value="2010">
+        <div class="anneeLabel">2010</div>
+        <input id="size2" type="range" min="2011" max="2023" value="2020">
+        <div class="anneeLabel">2020</div>
+    </form>
+</div>
+
+<script>
+var sizeInput = document.getElementById("size");
+var size2Input = document.getElementById("size2");
+
+sizeInput.addEventListener("input", function() {
+    var currentValue = parseInt(sizeInput.value);
+    size2Input.min = currentValue + 1;
+});
+
+document.querySelectorAll('input[type="range"]').forEach(function(input) {
+    input.addEventListener("input", function() {
+        var label = this.nextElementSibling;
+        label.innerText = this.value;
+    });
+});
+
+</script>
+
 
 <div id="map"></div>
 
@@ -114,12 +157,12 @@
                             };
 
                         }
-                    }).addTo(map); 
+                    }).addTo(map);
 
                     // ajout d'un pop up au clique
                     layer.bindPopup('<h3>' + fileContent['features'][0]['properties']['NomEntiteHydrographique'] + '</h3>' +
-                        '<p>code : ' + fileContent['features'][0]['properties']['CdEntiteHydrographique'] + '</p>'
-                        +'<p> delta : '+tabDeltaCoursEau[fileName.slice(0, -8)]+'</p>');
+                        '<p>code : ' + fileContent['features'][0]['properties']['CdEntiteHydrographique'] + '</p>' +
+                        '<p> delta : ' + tabDeltaCoursEau[fileName.slice(0, -8)] + '</p>');
                 })
                 .catch(error => console.error('Erreur lors du chargement du fichier GeoJSON :', error));
         });
