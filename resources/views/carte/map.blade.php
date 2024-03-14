@@ -29,9 +29,12 @@
 
     #choixannee {
         position: absolute;
-        top: 70px; /* Définir la position à 50px du haut */
-        left: 50%; /* Centre horizontalement */
-        transform: translateX(-50%); /* Centre horizontalement */
+        top: 70px;
+        /* Définir la position à 50px du haut */
+        left: 50%;
+        /* Centre horizontalement */
+        transform: translateX(-50%);
+        /* Centre horizontalement */
         text-align: center;
         z-index: 999;
     }
@@ -39,7 +42,8 @@
     .anneeLabel {
         margin-top: 10px;
         display: inline-block;
-        width: 50px; /* Ajustez la largeur selon vos besoins */
+        width: 50px;
+        /* Ajustez la largeur selon vos besoins */
     }
 </style>
 
@@ -53,21 +57,20 @@
 </div>
 
 <script>
-var sizeInput = document.getElementById("size");
-var size2Input = document.getElementById("size2");
+    var sizeInput = document.getElementById("size");
+    var size2Input = document.getElementById("size2");
 
-sizeInput.addEventListener("input", function() {
-    var currentValue = parseInt(sizeInput.value);
-    size2Input.min = currentValue + 1;
-});
-
-document.querySelectorAll('input[type="range"]').forEach(function(input) {
-    input.addEventListener("input", function() {
-        var label = this.nextElementSibling;
-        label.innerText = this.value;
+    sizeInput.addEventListener("input", function() {
+        var currentValue = parseInt(sizeInput.value);
+        size2Input.min = currentValue + 1;
     });
-});
 
+    document.querySelectorAll('input[type="range"]').forEach(function(input) {
+        input.addEventListener("input", function() {
+            var label = this.nextElementSibling;
+            label.innerText = this.value;
+        });
+    });
 </script>
 
 
@@ -78,6 +81,20 @@ document.querySelectorAll('input[type="range"]').forEach(function(input) {
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
 <script>
+    // Fonction pour obtenir une couleur entre le bleu et le rouge en fonction d'une valeur donnée
+    function getColor(value) {
+        // Convertir la valeur en un nombre entre 0 et 1
+        var normalizedValue = (value + 5) / 10;
+
+        // Calculer les composantes RGB en fonction de la valeur normalisée
+        var red = Math.round(255 * normalizedValue);
+        var blue = Math.round(255 * (1 - normalizedValue));
+        var green = 0;
+
+        // Retourner la couleur au format CSS RGB
+        return 'rgb(' + red + ',' + green + ',' + blue + ')';
+    }
+
     const map = L.map("map").setView([46.6031, 1.8883], 6);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -143,10 +160,8 @@ document.querySelectorAll('input[type="range"]').forEach(function(input) {
                             var color;
                             var weight = 2;
 
-                            if (tabDeltaCoursEau[fileName.slice(0, -8)] > 0) {
-                                color = 'red';
-                            } else if (tabDeltaCoursEau[fileName.slice(0, -8)] < 0) {
-                                color = 'blue';
+                            if (tabDeltaCoursEau[fileName.slice(0, -8)] != null) {
+                                color = getColor(tabDeltaCoursEau[fileName.slice(0, -8)]);
                             } else {
                                 color = 'rgba(0,0,0,0.3)';
                             }
