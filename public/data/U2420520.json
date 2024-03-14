@@ -1,0 +1,34 @@
+[
+    {
+        "code_station": "06462950",
+        "libelle_station": "CUSANCIN A BAUME-LES-DAMES 1",
+        "localisation": "500 m amont confluence Doubs - bordure D 21 - 200 m amont du pont de la D 10e",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06462950",
+        "longitude": 6.381962945,
+        "latitude": 47.341247743,
+        "code_commune": "25047",
+        "libelle_commune": "Baume-les-Dames",
+        "code_cours_eau": "U2420520",
+        "libelle_cours_eau": "Le Cusancin",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/U2420520",
+        "date_mesure_temp": "2009-04-21",
+        "heure_mesure_temp": "17:00:00",
+        "resultat": 12.9680004119873
+    },
+    {
+        "code_station": "06462950",
+        "libelle_station": "CUSANCIN A BAUME-LES-DAMES 1",
+        "localisation": "500 m amont confluence Doubs - bordure D 21 - 200 m amont du pont de la D 10e",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06462950",
+        "longitude": 6.381962945,
+        "latitude": 47.341247743,
+        "code_commune": "25047",
+        "libelle_commune": "Baume-les-Dames",
+        "code_cours_eau": "U2420520",
+        "libelle_cours_eau": "Le Cusancin",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/U2420520",
+        "date_mesure_temp": "2009-05-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 11.9770002365112
+    }
+]

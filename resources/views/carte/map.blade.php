@@ -32,7 +32,6 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-<script src="https://unpkg.com/Leaflet.river.js"></script>
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
 <script>
@@ -43,11 +42,29 @@
 
     L.Control.geocoder().addTo(map);
 
-    // --------------- AJOUT TRACES COURS D'EAUX ---------------
+    // --------------- RECUP TEMPERATURE COURS D'EAUX ---------------
+    var tabDeltaCoursEau;
 
     var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Ci-dessous on traite la réponse quand elle arrive
+            tabDeltaCoursEau = JSON.parse(this.responseText); // Parsez le JSON en un objet JavaScript
+            //console.log(tabDeltaCoursEau["L5--0180"]);
+            //console.log(tabDeltaCoursEau);
+        } else if (this.readyState == 4) {
+            alert(this.status);
+        }
+    };
+
+    xhr.open('POST', 'php/getDelta.php', true);
+    xhr.send();
+
+    // --------------- AJOUT TRACES COURS D'EAUX ---------------
+
     var tabFileNameTraceCoursEau;
 
+    var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             // Ci-dessous on traite la réponse quand elle arrive
@@ -66,10 +83,31 @@
             fetch('traceCoursEau/' + fileName)
                 .then(response => response.json())
                 .then(fileContent => {
-                    var layer = L.geoJSON(fileContent).addTo(map);
-                    // ajout pop up
-                    layer.bindPopup('<h1>' + fileContent['features'][0]['properties']['NomEntiteHydrographique'] + '</h1>' +
-                        '<p>code_uri: ' + fileContent['features'][0]['properties']['CdEntiteHydrographique'] + '</p>');
+                    var layer = L.geoJSON(fileContent, {
+                        style: function(feature) {
+
+                            if (tabDeltaCoursEau[fileName.slice(0, -8)] > 0) {
+                                return {
+                                    color: 'red',
+                                    weight: 2
+                                };
+                            }
+                            if (tabDeltaCoursEau[fileName.slice(0, -8)] < 0) {
+                                return {
+                                    color: 'blue',
+                                    weight: 2
+                                };
+                            } else {
+                                return {
+                                    color: 'black',
+                                    weight: 2
+                                };
+                            }
+
+                        }
+                    }).addTo(map); // ajout pop up
+                    layer.bindPopup('<h3>' + fileContent['features'][0]['properties']['NomEntiteHydrographique'] + '</h3>' +
+                        '<p>code : ' + fileContent['features'][0]['properties']['CdEntiteHydrographique'] + '</p>');
                 })
                 .catch(error => console.error('Erreur lors du chargement du fichier GeoJSON :', error));
         });

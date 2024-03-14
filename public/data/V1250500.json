@@ -1,0 +1,34 @@
+[
+    {
+        "code_station": "06070400",
+        "libelle_station": "CHERAN A JARSY 1",
+        "localisation": "Pont de Carlet",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06070400",
+        "longitude": 6.187191492,
+        "latitude": 45.642319529,
+        "code_commune": "73106",
+        "libelle_commune": "\u00c9cole",
+        "code_cours_eau": "V1250500",
+        "libelle_cours_eau": "Le Ch\u00e9ran",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/V1250500",
+        "date_mesure_temp": "2021-07-26",
+        "heure_mesure_temp": "16:00:00",
+        "resultat": 10.6630001068115
+    },
+    {
+        "code_station": "06070400",
+        "libelle_station": "CHERAN A JARSY 1",
+        "localisation": "Pont de Carlet",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06070400",
+        "longitude": 6.187191492,
+        "latitude": 45.642319529,
+        "code_commune": "73106",
+        "libelle_commune": "\u00c9cole",
+        "code_cours_eau": "V1250500",
+        "libelle_cours_eau": "Le Ch\u00e9ran",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/V1250500",
+        "date_mesure_temp": "2021-08-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 10.3690004348755
+    }
+]

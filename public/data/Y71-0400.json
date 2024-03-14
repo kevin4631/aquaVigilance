@@ -1,0 +1,50 @@
+[
+    {
+        "code_station": "06213300",
+        "libelle_station": "ASCO A MOLTIFAO ",
+        "localisation": "Mulindina",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06213300",
+        "longitude": 9.107636785,
+        "latitude": 42.46854641,
+        "code_commune": "2B162",
+        "libelle_commune": "Moltifao",
+        "code_cours_eau": "Y71-0400",
+        "libelle_cours_eau": "L'Asco",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/Y71-0400",
+        "date_mesure_temp": "2023-07-26",
+        "heure_mesure_temp": "14:00:00",
+        "resultat": 25.7439994812012
+    },
+    {
+        "code_station": "06213300",
+        "libelle_station": "ASCO A MOLTIFAO ",
+        "localisation": "Mulindina",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06213300",
+        "longitude": 9.107636785,
+        "latitude": 42.46854641,
+        "code_commune": "2B162",
+        "libelle_commune": "Moltifao",
+        "code_cours_eau": "Y71-0400",
+        "libelle_cours_eau": "L'Asco",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/Y71-0400",
+        "date_mesure_temp": "2023-08-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 25.5249996185303
+    },
+    {
+        "code_station": "06213300",
+        "libelle_station": "ASCO A MOLTIFAO ",
+        "localisation": "Mulindina",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06213300",
+        "longitude": 9.107636785,
+        "latitude": 42.46854641,
+        "code_commune": "2B162",
+        "libelle_commune": "Moltifao",
+        "code_cours_eau": "Y71-0400",
+        "libelle_cours_eau": "L'Asco",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/Y71-0400",
+        "date_mesure_temp": "2023-09-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 18.3659992218018
+    }
+]

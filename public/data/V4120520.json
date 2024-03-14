@@ -1,0 +1,34 @@
+[
+    {
+        "code_station": "06106940",
+        "libelle_station": "DORNE A DORNAS 1",
+        "localisation": "Lieu-dit La Chaise",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06106940",
+        "longitude": 4.360853339,
+        "latitude": 44.86211685,
+        "code_commune": "07082",
+        "libelle_commune": "Dornas",
+        "code_cours_eau": "V4120520",
+        "libelle_cours_eau": "La Dorne",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/V4120520",
+        "date_mesure_temp": "2014-06-06",
+        "heure_mesure_temp": "11:00:00",
+        "resultat": 24.9440002441406
+    },
+    {
+        "code_station": "06106940",
+        "libelle_station": "DORNE A DORNAS 1",
+        "localisation": "Lieu-dit La Chaise",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06106940",
+        "longitude": 4.360853339,
+        "latitude": 44.86211685,
+        "code_commune": "07082",
+        "libelle_commune": "Dornas",
+        "code_cours_eau": "V4120520",
+        "libelle_cours_eau": "La Dorne",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/V4120520",
+        "date_mesure_temp": "2014-07-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 20.6979999542236
+    }
+]

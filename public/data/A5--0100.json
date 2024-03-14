@@ -1,0 +1,50 @@
+[
+    {
+        "code_station": "02057250",
+        "libelle_station": "LE MADON \u00c0 MATTAINCOURT",
+        "localisation": "LE MADON \u00c0 MATTAINCOURT",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/02057250",
+        "longitude": 6.135465782,
+        "latitude": 48.277511562,
+        "code_commune": "88292",
+        "libelle_commune": "Mattaincourt",
+        "code_cours_eau": "A5--0100",
+        "libelle_cours_eau": "Le Madon",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/A5--0100",
+        "date_mesure_temp": "2008-08-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 20.673999786377
+    },
+    {
+        "code_station": "02057250",
+        "libelle_station": "LE MADON \u00c0 MATTAINCOURT",
+        "localisation": "LE MADON \u00c0 MATTAINCOURT",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/02057250",
+        "longitude": 6.135465782,
+        "latitude": 48.277511562,
+        "code_commune": "88292",
+        "libelle_commune": "Mattaincourt",
+        "code_cours_eau": "A5--0100",
+        "libelle_cours_eau": "Le Madon",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/A5--0100",
+        "date_mesure_temp": "2008-09-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 18.056999206543
+    },
+    {
+        "code_station": "02057250",
+        "libelle_station": "LE MADON \u00c0 MATTAINCOURT",
+        "localisation": "LE MADON \u00c0 MATTAINCOURT",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/02057250",
+        "longitude": 6.135465782,
+        "latitude": 48.277511562,
+        "code_commune": "88292",
+        "libelle_commune": "Mattaincourt",
+        "code_cours_eau": "A5--0100",
+        "libelle_cours_eau": "Le Madon",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/A5--0100",
+        "date_mesure_temp": "2008-10-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 10.6870002746582
+    }
+]

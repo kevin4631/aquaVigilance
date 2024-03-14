@@ -1,0 +1,50 @@
+[
+    {
+        "code_station": "06800012",
+        "libelle_station": "SIERROZ A AIX-LES-BAINS 2",
+        "localisation": "Passerelle de la Fin",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06800012",
+        "longitude": 5.905080913,
+        "latitude": 45.706725433,
+        "code_commune": "73008",
+        "libelle_commune": "Aix-les-Bains",
+        "code_cours_eau": "V1320500",
+        "libelle_cours_eau": "Le Sierre",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/V1320500",
+        "date_mesure_temp": "2009-05-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 10.712
+    },
+    {
+        "code_station": "06800012",
+        "libelle_station": "SIERROZ A AIX-LES-BAINS 2",
+        "localisation": "Passerelle de la Fin",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06800012",
+        "longitude": 5.905080913,
+        "latitude": 45.706725433,
+        "code_commune": "73008",
+        "libelle_commune": "Aix-les-Bains",
+        "code_cours_eau": "V1320500",
+        "libelle_cours_eau": "Le Sierre",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/V1320500",
+        "date_mesure_temp": "2009-06-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 15.748
+    },
+    {
+        "code_station": "06800012",
+        "libelle_station": "SIERROZ A AIX-LES-BAINS 2",
+        "localisation": "Passerelle de la Fin",
+        "uri_station": "https:\/\/id.eaufrance.fr\/StationMesureEauxSurface\/06800012",
+        "longitude": 5.905080913,
+        "latitude": 45.706725433,
+        "code_commune": "73008",
+        "libelle_commune": "Aix-les-Bains",
+        "code_cours_eau": "V1320500",
+        "libelle_cours_eau": "Le Sierre",
+        "uri_cours_eau": "https:\/\/id.eaufrance.fr\/CoursEau_Carthage2017\/V1320500",
+        "date_mesure_temp": "2009-07-01",
+        "heure_mesure_temp": "00:00:00",
+        "resultat": 19.555
+    }
+]
