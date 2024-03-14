@@ -62,9 +62,9 @@
     xhr.send();
 
     // --------------- AJOUT TRACES COURS D'EAUX ---------------
+    var tabFileNameTraceCoursEau;
 
     function load() {
-        var tabFileNameTraceCoursEau;
 
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
