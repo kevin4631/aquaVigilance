@@ -26,3 +26,8 @@ Route::post('reset', [AuthController::class, 'reset'])->name('reset');
 Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authentification');
 Route::post('deconnexion', [AuthController::class, 'deconnexion'])->name('deconnexion');
 Route::get('temp', [TempController::class, 'temp'])->name('temp')->middleware('auth');
+Route::get('/formulaire-ajout', [TempController::class, 'ajouterUtilisateur'])->name('afficher_formulaire_ajout');
+
+Route::post('/ajouter-utilisateur', [TempController::class, 'ajouterUtilisateur'])->name('ajouter_utilisateur');
+Route::get('/afficher-utilisateurs', [TempController::class, 'afficherUtilisateurs'])
+    ->name('afficher_utilisateurs');
