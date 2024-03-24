@@ -8,7 +8,6 @@
     <title>Page de saise de température</title>
 </head>
 
-@include('headfoot/header')
 
 
 <style>
@@ -66,6 +65,8 @@ button:active {
 </style>
 
 <body>
+    @include('headfoot/header')
+
     <h2>Bonjour, {{ auth()->user()->name }}, ceci est la page quand on est connecté</h2>
     <form method="post" action="{{ route('deconnexion') }}" style="text-align: center; margin-top: 20px;">
         @csrf
@@ -110,9 +111,9 @@ button:active {
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+@include('headfoot/footer')
 
 </body>
 
-@include('headfoot/footer')
 
 </html>

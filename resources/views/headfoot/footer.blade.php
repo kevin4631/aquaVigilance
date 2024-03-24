@@ -1,16 +1,4 @@
-<style>
-
-footer {
-            background-color: #2368D1;
-            color: white;
-            padding: 15px;
-            justify-content: flex-end;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-</style>
+<link rel="stylesheet" href="css/footer.css" />
 
 <footer>
         &copy; Tous droits réservés - 2024 
