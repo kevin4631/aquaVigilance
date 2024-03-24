@@ -1,32 +1,13 @@
-body, html {
-    margin: 0;
-    padding: 0;
-}
-
 header {
-    background-color: #2368D1;
+    background-color: #0079b8;
     padding: 15px;
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    height: 30px; 
-    width: 100%; 
-    position: fixed; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
 }
 
-.login-btn {
-    padding: 6px 15px;
-    background-color: #fff;
-    color: #0d2a63;
-    text-decoration: none;
-    border-radius: 10px;
-}
-
-.titre{
-    color:rgb(255, 255, 255);
-    font-size: 25px;
-}
-
-.hide-button .login-btn {
-    display: none;
+.titre {
+    color: #ffffff; 
+    font-size: 25px;    
 }

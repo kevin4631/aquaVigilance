@@ -1,0 +1,72 @@
+html,
+body {
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 80px;
+}
+
+.leaflet-container {
+    height: 400px;
+    width: 600px;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+}
+
+#map {
+    height: 83.7%;
+    width: 55%;
+}
+/*box choix annee*/
+#choixannee {
+    position: absolute;
+    top: 115px;
+    left: 55px;
+    transform: translateY(-50%);
+    z-index: 999;
+}
+
+.anneeLabel {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    color: black;
+    text-align: center;
+    margin-bottom: 1px;
+}
+
+/* box d'indication temp */
+#box {
+    position: absolute;
+    left: 5px;
+    bottom: 30px;
+    /*background-color: #2368D1;*/
+    text-align: center;
+    padding: 3px;
+    z-index: 999;
+}
+
+.caree {
+    width: 12px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 3px;
+}
+
+.bleu {
+    background-color: blue;
+}
+.orange {
+    background-color: orange;
+}
+
+.rouge {
+    background-color: red;
+}
+h4,
+span {
+    color: black;
+    font-weight: bold;
+}
+

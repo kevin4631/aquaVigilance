@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccueilController;
-use App\Http\Controllers\TempController;
+use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\SaisieTempController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,16 +16,15 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 Route::get('/', [AccueilController::class, 'accueil'])->name('accueil');
 
-Route::get('connexion', [AuthController::class, 'connexion'])->name('connexion');
-Route::post('inscription_form', [AuthController::class, 'inscription_form'])->name('inscription_form');
-Route::post('inscription', [AuthController::class, 'inscription'])->name('inscription');
-Route::post('reinitialier_form', [AuthController::class, 'reinitialier_form'])->name('reinitialier_form');
-Route::post('reset', [AuthController::class, 'reset'])->name('reset');
-Route::post('authenticate', [AuthController::class, 'authenticate'])->name('authentification');
-Route::post('deconnexion', [AuthController::class, 'deconnexion'])->name('deconnexion');
-Route::get('temp', [TempController::class, 'temp'])->name('temp')->middleware('auth');
-Route::get('/formulaire-ajout', [TempController::class, 'ajouterUtilisateur'])->name('afficher_formulaire_ajout');
-
-Route::post('/ajouter-utilisateur', [TempController::class, 'ajouterUtilisateur'])->name('ajouter_utilisateur');
-Route::get('/afficher-utilisateurs', [TempController::class, 'afficherUtilisateurs'])
-    ->name('afficher_utilisateurs');
+Route::get('connexion', [ConnexionController::class, 'connexion'])->name('connexion');
+Route::post('inscription_form', [ConnexionController::class, 'inscription_form'])->name('inscription_form');
+Route::post('inscription', [ConnexionController::class, 'inscription'])->name('inscription');
+Route::post('reinitialier_form', [ConnexionController::class, 'reinitialier_form'])->name('reinitialier_form');
+Route::post('reset', [ConnexionController::class, 'reset'])->name('reset');
+Route::post('authenticate', [ConnexionController::class, 'authenticate'])->name('authentification');
+Route::get('deconnexion', [ConnexionController::class, 'deconnexion'])->name('deconnexion');
+Route::get('temp_formulaire', [SaisieTempController::class, 'temp_formulaire'])
+->name('temp_formulaire')->middleware('auth');
+Route::post('saisir_temp', [SaisieTempController::class, 'saisir_temp'])->name('saisir_temp');
+Route::get('historique', [SaisieTempController::class, 'historique'])->name('historique')->middleware('auth');
+Route::get('temperature/{id}/supprimer', [SaisieTempController::class, 'supprimer'])->name('temperature.supprimer');

@@ -12,8 +12,8 @@
 
 
  <body>
-    @extends('headfoot/header')
-    @section('header-class', 'hide-button')
+    @include('headfoot/header')
+
     <div class="login_div">
         <form class="login_form" method="post">@csrf
         <h1>Connexion</h1>
@@ -24,10 +24,14 @@
         <button type="submit" formaction="{{route('inscription_form')}}">Créer un compte</button>
         </form>
     </div>
+
     @include('headfoot/footer')
- </body>   
+
+ </body> 
 
 </html>
+
+
 
 
 

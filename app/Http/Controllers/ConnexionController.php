@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
-class AuthController extends Controller
+class ConnexionController extends Controller
 {
     public function connexion()
     {
         // vérifie si l'utilisateur est deja connecté
         if (auth()->check()) {
             // redirigé vers temp
-            return redirect()->route('temp');
+            return redirect()->route('accueil');
         }
 
         // si il est pas connecté redirge page login
-        return view('auth.connexion');
+        return view('connexion.connexion');
     }
 
     // Crée une session de connexion
@@ -33,7 +33,7 @@ class AuthController extends Controller
 
         // Tente de s'authentifier avec les identifiants saissies, si ils sont bon redirge vers la page de saisie de température 
         if (auth()->attempt($request->only('email', 'password'))) {
-            return redirect()->route('temp');
+            return redirect()->route('accueil');
         }
 
         // Redirection avec un message d'erreur si l'authentification échoue
@@ -49,15 +49,15 @@ class AuthController extends Controller
 
     public function inscription_form()
     {
-        return view('auth.inscription_form');
+        return view('connexion.inscription_form');
     }
 
     // Enregistre un nouveau utilisateur
     public function inscription(Request $request)
     {
         // Valide les données du formulaire
-        $form = $request->validate([
-            'name' => ['required'], 
+        $request->validate([
+            'name' => ['required'],
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
@@ -75,14 +75,22 @@ class AuthController extends Controller
 
         // Régénère la session et redirige vers la page temp
         $request->session()->regenerate();
-        return redirect()->route('temp');
+        return redirect()->route('accueil');
     }
 
-    public function reinitialier_form(){
-        return view('auth.reinitialier_form');
+    public function reinitialier_form()
+    {
+        return view('connexion.reinitialier_form');
     }
 
-    public function reset($user){
-        $sql = DB::update("UPDATE `users` SET `password` = 'mosta' WHERE `users`.`id` = $user;");
+    public function reset(Request $request)
+    {
+        $request->input('email');
+        $request->input('password');
+
+        User::where('email', $request->email)
+            ->update([
+                'password' => Hash::make($request->password)
+            ]);
     }
 }

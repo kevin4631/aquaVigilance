@@ -1,0 +1,596 @@
+----0000,la Loire
+----0010,La Seine
+A---0000,Le Rhin
+A---0030,L'Ill
+A---0060,La Moselle
+A02-0200,Ruisseau l'Augraben
+A0260340,Ruisseau le Riedgraben
+A11-0200,La Largue
+A12-0200,La Doller
+A14-0200,La Thur
+A15-0200,La Lauch
+A2--0100,La Fecht
+A2--0110,La Bruche
+A2020300,Ruisseau la Petite Fecht
+A2220660,Ruisseau le Riedbrunnen
+A25-0200,L'Andlau
+A2550630,Ruisseau Schernetz
+A26-0200,Ruisseau l'Ehn
+A29-0200,La Souffel
+A3--0100,La Moder
+A3--0110,La Sauer
+A32-0200,La Zinsel du Nord
+A34-0200,La Zorn
+A36-0210,Ruisseau l'Eberbach
+A38-0200,La Lauter
+A4170300,Ruisseau de la Cleurie
+A4330300,Ruisseau le Neune
+A5--0100,Le Madon
+A54-0200,Le Brenon
+A6--0100,La Meurthe
+A6--0110,La Vezouze
+A6--0120,La Mortagne
+A62-0200,La Plaine
+A68-0200,Le Sanon
+A7--0100,La Seille
+A76-0200,La Petite Seille
+A8--0100,L'Orne
+A8830300,Ruisseau d'Oudrenne
+A8850300,Ruisseau l'Altbach
+A8880300,Ruisseau d'Apach
+A8920300,Ruisseau de Volmerange
+A9--0100,La Sarre
+A9--0120,La Nied
+A91-0200,L'Albe
+A93-0210,La Horn
+A9950300,Ruisseau Remel
+B---0000,La Meuse
+B12-0200,Le Vair
+B2110300,Ruisseau la Meholle
+B4--0100,La Chiers
+B4010300,Ruisseau la Moulaine
+B4110300,Ruisseau la Pienne
+B4120350,Ruisseau de Nanheul
+B4210300,Ruisseau le Dorlon
+B4230430,Le Thon
+B43-0200,L'Othain
+B4620300,Ruisseau la Marche
+B5000300,Ruisseau de la Givonne
+B51-0200,La Bar
+B55-0200,La Sormonne
+B6--0100,La Semoy
+B7050480,Ruisseau d'Alyse
+B71-0200,L'Eau Noire
+B73-0200,La Houille
+D0--022-,La Sambre Canalisée
+D0130700,Helpe Mineure
+D0200600,Solre
+E1280600,Rivière Escaut
+E1560600,Sensée
+E1760600,Rhonelle
+E1820700,Hogneau
+E2--0110,La Scarpe Canalisée
+E3--0120,La Lys
+E3660600,La Lawe
+E4030570,Rivière Aa
+E4100600,Tiret
+E5100570,Slack
+E5400650,Ternoise
+E5500570,Authie
+E6---140,La Somme Rivière
+E6--009-,La Somme Canalisée
+E6380600,Ancre
+E6400600,Avre
+E6420650,Evoissons
+E6450800,Rivière d'Airaines
+E6490830,Maye
+F---0100,La Marne
+F04-0400,L'Ource
+F0406000,La Groeme
+F0520600,La Sarce
+F08-0400,La Barse
+F1--0200,L'Aube
+F11-0400,L'Aujon
+F12-0400,La Voire
+F1230600,La Heronne
+F15-0400,La Superbe
+F1510600,La Barbuise
+F2040600,L'Ardusson
+F24-0400,L'Auxence
+F3--0200,L'Yonne
+F31-0400,La Cure
+F3110600,Le Chalaux
+F32-0400,Le Serein
+F3350600,L'Oze
+F3427000,Ruisseau de Tremagne
+F3531000,Le Vrin
+F4--0210,L'Yerres
+F41-0400,L'Ouanne
+F4280600,La Clery
+F4380600,Le Lunain
+F44-0400,L'Almont
+F4480600,L'Ecole
+F45-0400,L'Essonne
+F46-0400,L'Orge
+F46-0420,L'Yvette
+F48-0400,Le Reveillon
+F5--0200,La Saulx
+F51-0400,Le Rognon
+F53-0400,La Blaise
+F58-0400,La Chee
+F6070600,La Coole
+F6090600,La Somme-Soude
+F61-0400,Le Surmelin
+F65-0400,Le Grand Morin
+F70-0400,La Bievre
+G2--0200,L'Arques
+G7--0200,Rivière de Valmont
+H---0100,L'Oise
+H0010600,Le Gland
+H0030600,Le Ton
+H01-0400,La Serre
+H01-0410,Le Vilpion
+H02-0400,L'Ailette
+H1--0200,L'Aisne
+H11-0400,L'Aire
+H1181001,L'Aire
+H1220600,La Fournelle
+H13-0400,La Vaux
+H13-0410,La Suippe
+H1360600,La Retourne
+H15-0400,La Vesle
+H20-0420,La Breche
+H2020600,Rivière Sainte-Marie
+H21-0400,Le Therain
+H2130600,L'Avelon
+H2258000,L'Esches
+H2269000,Le Sausseron
+H2280600,La Viosne
+H30-0400,La Mauldre
+H31-0400,L'Epte
+H3109000,Ruisseau de Mesangueville
+H32-0400,L'Andelle
+H3239000,Le Heron
+H3249000,Le Crevon
+H4--0200,L'Eure
+H41-0410,La Blaise
+H43-0400,L'Iton
+H5040600,Le Cailly
+H5111000,La Rancon
+H5130600,Rivière du Commerce
+H6--0200,La Risle
+H61-0400,La Charentonne
+H6110600,La Guiel
+I0--0200,La Touques
+I13-0400,La Vie
+I1330600,La Monne
+I14-0400,La Muance
+I2--0200,L'Orne
+I21-0400,L'Ure
+I2129000,L'Houay
+I2239000,La Fontaine au Heron
+I23-0400,La Rouvre
+I24-0400,Le Noireau
+I2529000,Le Vieux Ruisseau
+I4--0200,La Vire
+I42-0400,La Souleuvre
+I4310600,Rivière de Jacre la
+I45-0420,La Drome
+I52-0400,La Taute
+I63-0400,La Saire
+I6607200,Ruisseau de la Grande Vallee
+I7--0200,La Sienne
+I71-0400,L'Airou
+I8--0200,La See
+I8004000,La See Rousse
+I8040600,Le Glanon
+I9--0200,La Selune
+I90-0400,La Cance
+J---0060,la Vilaine
+J0--0150,le Couesnon
+J0--0160,la Rance
+J0144000,la Loisance
+J0216200,la Chênelais
+J1--0170,le Trieux
+J1114000,la Rosette
+J13-0300,gouessant
+J2034000,le Guindy
+J22-0300,le Léguer
+J2314000,le Yar
+J3--0180,l'Aulne
+J34-0300,l'Elorn
+J3514000,la Mignonne
+J3624000,l'Ellez
+J3834900,ruisseau de Kerambellec
+J4--0200,l'Ellé
+J4124000,le Pont l'Abbé
+J4224000,le Jet
+J48-0300,l'Isole
+J5--0210,le Blavet
+J5--0220,le Scorff
+J5524000,la Sarre
+J56-0300,l'Evel
+J7114000,l'Illet
+J7214000,la Flume
+J76-0300,le Semnon
+J78-0300,la Chère
+J7824000,l'Aron
+J79-0300,le Don
+J8--0230,l'Oust
+J8--0240,l'Aff
+J8214000,le Sédon
+J83-0310,l'Yvel
+J84-0300,la Claie
+K---0080,l'Allier
+K---0090,le cher
+K0454000,la Dunières
+K05-0300,l'Ance
+K06-0310,la Mare
+K06-0330,la Coise
+K08-0300,l'Aix
+K0949200,
+K1--0150,l'Acolin
+K1--0180,l'Arroux
+K10-0300,le Sornin
+K12-0310,le Ternin
+K13-0300,la Bourbince
+K14-0300,le Roudon
+K1414000,la Vouzance
+K15-0300,la Besbre
+K16-0300,la Somme
+K17-0310,l'Alène
+K1764000,la Canne
+K19-0300,la Nièvre
+K2--0190,la Dore
+K2036000,le Liauron
+K21-0300,le Chapeauroux
+K22-0300,l'Ance
+K22-0310,la Desges
+K23-0300,la Senouire
+K25-0300,l'Alagnon
+K2514000,l'Allanche
+K2654000,la Couze Pavin
+K2674000,la Couze Chambon
+K27-0300,la Morge
+K27-0310,le Bedat
+K3--0200,la Sioule
+K30-0310,le Sichon
+K3074000,le Jolan
+K32-0300,le Sioulet
+K33-0300,la Bouble
+K3464000,la Queune
+K36-0300,la Bieudre
+K4094000,le Nohain
+K4194000,la bras
+K42-0300,le Bec d'Able
+K43-0310,la Dhuy
+K44-0300,l'Ardoux
+K51-0300,la Tardes
+K53-0300,l'Aumance
+K53-0320,l'œil
+K56-0300,l'Auron
+K6--0240,l'Arnon
+K6--0250,la Sauldre
+K63-0300,la Petite Sauldre
+K65-0310,le Renon
+K65-0320,le Nahon
+K6814000,la Roumer
+K7--0260,l'Indre
+L---0060,la Vienne
+L---0070,la Creuse
+L0--0150,le Taurion
+L00-0300,la Combade
+L01-0300,la Maulde
+L1324000,la Petite Blourde
+L2--0160,le Clain
+L22-0300,la Vonne
+L2404000,la Boivre
+L3024000,l'Ozon de Chenevelles
+L31-0300,l'Envigne
+L4--0170,la Petite Creuse
+L45-0300,la Sédelle
+L46-0300,la Bouzanne
+L5--0180,la Gartempe
+L5--0190,l'Anglin
+L5134000,la Semme
+L56-0300,la Benaize
+L63-0300,l'Esves
+L8--0210,le Thouet
+L82-0300,le Thouaret
+L8334000,la Madoire
+L92-0300,le Couasnon
+M---0060,la Sarthe
+M---0090,la Mayenne
+M0--0150,l'Huisne
+M0124000,la Vaudelle
+M0164900,
+M02-0300,l'Orne Saosnoise
+M0334000,la Corbionne
+M05-0300,la Vègre
+M0574000,le Palais
+M06-0300,l'Erve
+M1--0160,le Loir
+M1--0161,bras du loir
+M10-0300,la Conie
+M1034000,l'Ozanne
+M1144600,le Boulon
+M12-0300,la Braye
+M1215500,le Fresnay
+M1254000,le Tusson
+M14-0300,l'Aune
+M3--0180,l'Oudon
+M31-0300,la Varenne
+M31-0310,l'Egrenne
+M32-0310,l'Aron
+M33-0300,l'Ernée
+M4--0190,la Maine
+M5--0200,le Layon
+M6354000,le Gesvres
+M7--0240,la Sèvre Nantaise
+N---0060,la Sèvre Niortaise
+N---0120,la Vendée
+N2024000,la Ciboule
+N3--0160,le Lay
+N31-0300,le Petit Lay
+O---0000,La Garonne
+O---0100,Le Tarn
+O---0150,Le Lot
+O00-0400,La Pique
+O02-0400,Le Ger
+O03-0400,L'Arac
+O0390690,Le Nert
+O06-0400,Le Volp
+O07-0400,L'Arize
+O0760500,Ruisseau de Montbrun
+O09-0400,La Louge
+O1--0250,L'Ariège
+O1--0290,l'hers
+O1270500,Ruisseau de Roques
+O14-0430,Le Touyre
+O18-0400,La Lèze
+O2--0330,La Gimone
+O2320500,Ruisseau de la Vendinelle
+O2650500,Le Lambon
+O30-0400,Le Tarnon
+O30-0430,La Mimente
+O3050580,Valat de Baumale
+O31-0400,La Jonte
+O33-0400,La Dourbie
+O34-0400,Le Cernon
+O37-0400,Le Rance
+O4--0250,L'Agout
+O43-0400,Le Thoré
+O47-0400,Le Dadou
+O49-0430,Le Tescou
+O5--0250,L'Aveyron
+O5--0290,Le Viaur
+O5670500,La Seye
+O57-0400,La Vère
+O58-0400,Rivière la Lère
+O59-0400,Le Lemboulas
+O6--0250,Le Gers
+O6--0290,La Baïse
+O6000970,Ruisseau de Cameson
+O61-0400,La Barguelonne
+O61-0460,La Séoune
+O6150500,Rivière de l'Auroue
+O6420540,Ruisseau de Bourbon
+O65-0430,La Petite Baïse
+O6720650,Le Rimbez
+O68-0400,L'Osse
+O7--0250,La Truyère
+O71-0400,La Colagne
+O7250500,Boralde Flaujaguèse
+O7630500,Ruisseau de l'Epie
+O7780500,La Selves
+O8--0250,Le Célé
+O80-0400,Le Dourdou de Conques
+O9--0250,Le Dropt
+O9380500,La Vignague
+P---0000,La Dordogne
+P---0100,La Vézère
+P---0150,L'Isle
+P06-0400,La Tarentaine
+P07-0400,La Diège
+P0880500,Le Mars
+P1--0290,La Cère
+P1580500,Ruisseau du Peyret
+P2030500,Le Tolerme
+P3--0250,La Corrèze
+P31-0400,Le Bradascou
+P3330500,La Corrèze de Pradines
+P40-0400,L'Elle
+P4150500,La Laurence
+P4170500,Le Thonac
+P50-0400,La Couze
+P52-0400,Le Caudeau
+P7--0250,La Dronne
+P9010500,Le Gestas
+Q---0000,L'Adour
+Q---0100,Gave de Pau
+Q---0150,Gave d'Oloron
+Q0--0250,L'Arros
+Q02-0400,L'Echez
+Q13-0400,Le Gabas
+Q23-0400,L'Estampon
+Q3--0250,Le Luy
+Q7--0250,Le Saison
+Q8--0250,La Bidouze
+Q90-0400,La Nive d'Arnéguy
+R---0000,La Charente
+R02-0400,L'Argent-Or
+R1--0250,La Bonnieure
+R2330500,La Touvre
+R4--0250,Le Né
+R5--0250,La Seugne
+R5010500,Le Pharaon
+R5220500,Le Bramerit
+R6--0250,La Boutonne
+R71-0402,L'Arnoult
+S01-0400,La Seudre
+S03-0400,La Livenne
+S1140500,Jalle de Castelnau
+S2--0250,La Grande Leyre
+S21-0400,La Petite Leyre
+S32-0400,Ruisseau d'Escource
+S40-0430,Ruisseau d'Onesse
+U---0000,La Saône
+U0040500,L'Apance
+U02-0400,L'Amance
+U0440500,L'Augronne
+U0710500,La Resaigne
+U13-0400,L'Ouche
+U2--0200,Le Doubs
+U2210500,Le Dessoubre
+U2310520,L'Autruche
+U2340500,La Savoureuse
+U2420520,Le Cusancin
+U2560500,La Clauge
+U26-0400,La Loue
+U30-0400,La Dheune
+U3220500,La Guye
+U34-0400,La Seille
+U3450500,La Vallière
+U40-0400,La Reyssouze
+U4000720,Le Pisseur
+U4210500,L'Irance
+U4500500,L'Ardière
+U4501080,Ruisseau de Rochefort
+U4630660,La Turdine
+V---0000,Le Rhône
+V0--0200,L'Arve
+V03-0400,La Dranse
+V1--3022,Dérivation de Bregnier-Cordon
+V1010500,La Valserine
+V1010580,La Semine
+V12-0400,Le Fier
+V1230560,L'Eau Morte
+V1250500,Le Chéran
+V1320500,le sierroz
+V14-0400,Le Séran
+V14-0430,Le Furans
+V15-0400,Le Guiers
+V16-0400,L'Huert
+V1600500,La Bièvre
+V17-0400,La Bourbre
+V2--0200,L'Ain
+V24-0400,La Bienne
+V2510520,L'Ange
+V29-0400,L'Albarine
+V2920540,La Mandorne
+V2940520,La Toison
+V31-0400,Le Gier
+V3300500,La Varèze
+V36-0400,La Galaure
+V37-0400,Le Doux
+V4120520,La Dorne
+V42-0400,La Drôme
+V4250500,La Roanne
+V45-0430,La Berre
+V50-0400,L'Ardèche
+V5000580,Le Lignon
+V5010520,La Volane
+V5030500,La Baume
+V5050540,L'Ibie
+V52-0400,Le lez
+V5310720,Ruisseau d'Establet
+V5410500,Le Luech
+V5410520,Le Rieutort
+V5440580,Valat de Séguissous
+V5480521,
+V6--0200,L'Ouvèze
+V6030500,Le Toulourenc
+V6150500,La Sorgue de Velleron
+V71-0400,Le Gard
+V7110500,Le Gardon de Sainte-Croix
+V7130500,Le Gardon de Saint-Jean
+V7150500,Le Gardon d'Alès
+V7150620,Le Galeizon
+V7180500,L'Alzon
+W---0000,L'Isère
+W1060700,Torrent du Merlet
+W12-0400,Le Bréda
+W1400560,Ruisseau de Laval
+W2--0200,Le Drac
+W2010500,Torrent Drac de Champoléon
+W2210500,La Souloise
+W23-0400,La Bonne
+W25-0400,L'Ebron
+W27-0400,La Romanche
+W2730500,Le Vénéon
+W33-0400,La Bourne
+W3330500,La Vernaisson
+W3420500,La Savasse
+X---0000,La Durance
+X0000500,La Clarée
+X02-0400,Le Guil
+X0240500,Torrent de Chagne
+X04-0400,L'Ubaye
+X0500540,Torrent de Réallon
+X10-0400,Le Buëch
+X1050500,La Méouge
+X1100500,Le Jabron
+X1220500,Le Bès
+X14-0400,L'Asse
+X2--0200,Le Verdon
+X2300500,Le Jabron
+X27-0400,Le Colostre
+X3010560,Le Réal
+X34-0400,le coulon ou le calavon
+Y02-0400,Le Tech
+Y0230560,Le Riuferrer
+Y04-0400,La Têt
+Y06-0400,L'Agly
+Y0610500,La Boulzane
+Y0620520,La Desix
+Y0650500,Le Verdouble
+Y1--0200,L'Aude
+Y1000580,el Galba
+Y1100500,Le Rebenty
+Y1340500,Le Lampy
+Y1410500,L'Orbiel
+Y1410520,Le Rieutort
+Y15-0400,L'Orbieu
+Y2--0200,L'Hérault
+Y2030500,La Vis
+Y2110520,La Buèges
+Y2120500,Le Lamalou
+Y25-0400,L'Orb
+Y2520500,La Mare
+Y2540500,Le Jaur
+Y2560520,Ruisseau d'Ilouvre
+Y32-0400,Le lez
+Y3310500,Le Salaison
+Y34-0400,Le Vidourle
+Y4--0200,L'Arc
+Y4110500,La Luynes
+Y46-0400,Le Gapeau
+Y5--0200,L'Argens
+Y5020500,L'Eau Salée
+Y5100500,Le Caramy
+Y5100600,L'Issole
+Y5530540,La Mourachonne
+Y5600520,La Brague
+Y5610500,Le Loup
+Y6030500,Le Coulomp
+Y64-0400,L'Esteron
+Y6510600,Le Paillon de Contes
+Y6630500,La Bévéra
+Y7--0200,Le Golo
+Y7020560,La Casaluna
+Y71-0400,L'Asco
+Y7110500,Rivière de Tartagine
+Y7410520,Ruisseau de Luri
+Y7610560,Ruisseau de San Clemente
+Y78-0400,Le Fango
+Y7910520,Ruisseau d'Aitone
+Y81-0400,Fleuve u Liamone
+Y8110500,Rivière u Cruzini
+Y83-0400,La Gravona
+Y84-0400,Le Prunelli
+Y86-0400,Le Taravo
+Y9--0200,Le Tavignano
+Y9000540,La Restonica
+Y94-0400,u Fium'Orbu
+Y9500500,L'Abatesco
+Y9510500,Le Travo

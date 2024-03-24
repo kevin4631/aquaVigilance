@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\CoursEau;
+use App\Models\Region;
+use SplFileObject;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +14,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $file = new SplFileObject(database_path('../public/data/BDD/cours_eau.csv' , '../public/data/region2020.csv'));
+        $file->setFlags(SplFileObject::READ_CSV | SplFileObject::DROP_NEW_LINE);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        foreach ($file as $row) {
+            if (!empty($row[0]) && !empty($row[1])) {
+                CoursEau::create([
+                    "code_cours_eau" => $row[0],
+                    "libelle" => $row[1]
+                ]);
+                Region::create([
+                    "code_region" => $row[0],
+                    "libelle" => $row[1]
+                ]);
+            }
+        }
     }
 }

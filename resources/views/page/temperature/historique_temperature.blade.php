@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique Temperature</title>
+    <link rel="stylesheet" href="css/historique.css">
+
+</head>
+<body>
+    @include('headfoot/header')
+
+    <h1>Historique des Températures</h1>
+    
+    <div class="container">
+        
+    @if($temperatures->isEmpty())
+    <p>Aucune donnée de température trouvée.</p>
+@else
+    <table>
+        <thead>
+            <tr>
+                <th>Date de mesure</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Commune</th>
+                <th>Cours d'eau</th>
+                <th>Temperature en C°</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($temperatures as $temperature)
+                <tr>
+                    <td>{{ $temperature->date_mesure_temp }}</td>
+                    <td>{{ $temperature->latitude }}</td>
+                    <td>{{ $temperature->longitude }}</td>
+                    <td>{{ $temperature->libelle_commune }}</td>
+                    <td>{{ $temperature->libelle_cours_eau }}</td>
+                    <td>{{ $temperature->resultat }}</td>
+                    <td>
+                        <a id="Suppression" class="icon" href="{{ route('temperature.supprimer', $temperature->id) }}"> <img src="/img/poubelle.png"></a>
+                    </td>
+                    
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endif
+    </div>
+
+    @include('headfoot/footer')
+</body>
+</html>

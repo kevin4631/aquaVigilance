@@ -1,0 +1,117 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    position: relative;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url("../img/background.jpg"); /* Set background image here */
+    background-size: cover;
+}
+
+h2 {
+    text-align: center;
+    font-size: 25px;
+    color: #070874;
+}
+form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #7ec5e1;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    color: #070874;
+    display: block;
+    margin-bottom: 5px;
+}
+
+select,
+input[type="date"],
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: white;
+    width: 100%;
+    color: #070874;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Use clean and readable font */
+    font-size: 14px; /* Adjust font size */
+    font-weight: 500; /* Medium font weight for a professional look */
+}
+
+button:hover {
+    background-color: #57b4d6;
+}
+
+#info {
+    position: absolute;
+    width: 27%;
+    left: 50px;
+    top: 25%;
+    background-color: #7ec5e1;
+    border-radius: 7px;
+    padding: 12px;
+    color: #020554;
+    text-align: justify;
+}
+h5 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: large;
+    color: #070874;
+    text-align: center;
+}
+
+.deco-btn {
+    padding: 10px 20px; /* Increase padding for better touch area */
+    background-color: white;
+    color: rgb(16, 23, 154);
+    text-decoration: none;
+    border: none; /* Remove border */
+    border-radius: 10px;
+    position: absolute;
+    cursor: pointer; /* Show pointer cursor on hover */
+    top: 11px;
+    right: 10px;
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Use clean and readable font */
+    font-size: 14px; /* Adjust font size */
+    font-weight: 500; /* Medium font weight for a professional look */
+}
+
+
+.historique-btn {
+    padding: 10px 20px; /* Increase padding for better touch area */
+    background-color: white;
+    color: rgb(16, 23, 154);
+    text-decoration: none;
+    border: none; /* Remove border */
+    border-radius: 10px;
+    position: absolute;
+    cursor: pointer; /* Show pointer cursor on hover */
+    top: 11px;
+    right: 150px;
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Use clean and readable font */
+    font-size: 14px; /* Adjust font size */
+    font-weight: 500; /* Medium font weight for a professional look */
+}
+
+
+.historique-btn:hover {
+    background-color: rgb(97, 186, 255); /* Darker blue on hover */
+}
