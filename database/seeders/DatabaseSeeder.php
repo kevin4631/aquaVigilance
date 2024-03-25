@@ -14,17 +14,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $file = new SplFileObject(database_path('../public/data/BDD/cours_eau.csv' , '../public/data/region2020.csv'));
-        $file->setFlags(SplFileObject::READ_CSV | SplFileObject::DROP_NEW_LINE);
+        $regionFile = new SplFileObject(database_path('../public/data/region2020.csv'));
+        $regionFile->setFlags(SplFileObject::READ_CSV | SplFileObject::DROP_NEW_LINE);
 
-        foreach ($file as $row) {
+        foreach ($regionFile as $row) {
+            if (!empty($row[0]) && !empty($row[1])) {
+                Region::create([
+                    "code_region" => $row[0],
+                    "libelle" => $row[1]
+                ]);
+            }
+        }
+
+        $coursEauFile = new SplFileObject(database_path('../public/data/BDD/cours_eau.csv'));
+        $coursEauFile->setFlags(SplFileObject::READ_CSV | SplFileObject::DROP_NEW_LINE);
+
+        foreach ($coursEauFile as $row) {
             if (!empty($row[0]) && !empty($row[1])) {
                 CoursEau::create([
                     "code_cours_eau" => $row[0],
-                    "libelle" => $row[1]
-                ]);
-                Region::create([
-                    "code_region" => $row[0],
                     "libelle" => $row[1]
                 ]);
             }
