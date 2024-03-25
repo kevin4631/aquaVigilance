@@ -17,7 +17,7 @@
             <a href="{{route('deconnexion')}}" class="deco-btn">Déonnexion</a>
         </div>
     @else <!--Si il est pas connecté-->
-    <div>
+    <div class="button-container">
         <a href="{{ route('connexion') }}" class="login-btn">Connexion</a>
     </div>
     @endauth

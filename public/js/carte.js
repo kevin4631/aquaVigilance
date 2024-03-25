@@ -58,7 +58,6 @@ fetch("data/regionFrance/France.geojson")
             style: style,
             onEachFeature: function (feature, layer) {
                 layer.on({
-                    mouseover:coloration_region,
                     click: selection_region,
                 });
             }
