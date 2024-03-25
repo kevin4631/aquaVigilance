@@ -60,6 +60,6 @@ class SaisieTempController extends Controller
 
         $temperature->delete();
 
-        return redirect()->route('accueil')->with('success', 'Temperature record deleted successfully.');
+        return redirect()->route('historique');
     }
 }

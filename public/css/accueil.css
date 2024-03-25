@@ -8,7 +8,7 @@ body {
     font-weight: 300;
     line-height: 1.42em;
     color:#A7A1AE;
-    background-color:#92a7d7;
+    background-color:#1F2739;  
   }
   
   h1 {
@@ -35,67 +35,33 @@ body {
     color: #FB667A;
     text-decoration: none;
   }
-.login-btn {
-    padding: 10px 20px; /* Increase padding for better touch area */
-    background-color: white;
-    color: rgb(16, 23, 154);
-    text-decoration: none;
-    border: none; /* Remove border */
-    border-radius: 10px;
+  .button-container {
     position: absolute;
-    cursor: pointer; /* Show pointer cursor on hover */
     top: 11px;
     right: 10px;
-    transition: background-color 0.3s ease; /* Smooth color transition */
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Use clean and readable font */
-    font-size: 14px; /* Adjust font size */
-    font-weight: 500; /* Medium font weight for a professional look */
-}
-
-.login-btn:hover{
-    background-color: #57b4d6;
-}
-
-.deco-btn {
+  }
+  
+  .button-container a {
+    display:inline-grid;
     padding: 10px 20px; /* Increase padding for better touch area */
-    background-color: white;
-    color: rgb(16, 23, 154);
+    color:  #4DC3FA;
+    background-color: #1F2739;
     text-decoration: none;
     border: none; /* Remove border */
     border-radius: 10px;
-    position: absolute;
     cursor: pointer; /* Show pointer cursor on hover */
-    top: 11px;
-    right: 10px;
-    transition: background-color 0.3s ease; /* Smooth color transition */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transition */
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Use clean and readable font */
     font-size: 14px; /* Adjust font size */
     font-weight: 500; /* Medium font weight for a professional look */
-}
-
-
-.deco-btn:hover {
-    background-color: rgb(97, 186, 255); /* Darker blue on hover */
-}
-
-.temperature-btn {
-    padding: 10px 20px; /* Increase padding for better touch area */
-    background-color: white;
-    color: rgb(16, 23, 154);
-    text-decoration: none;
-    border: none; /* Remove border */
-    border-radius: 10px;
-    position: absolute;
-    cursor: pointer; /* Show pointer cursor on hover */
-    top: 11px;
-    right: 150px;
-    transition: background-color 0.3s ease; /* Smooth color transition */
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Use clean and readable font */
-    font-size: 14px; /* Adjust font size */
-    font-weight: 500; /* Medium font weight for a professional look */
-}
-
-
-.temperature-btn:hover {
-    background-color: rgb(97, 186, 255); /* Darker blue on hover */
-}
+    margin-right: 10px; /* Add margin between buttons */
+  }
+  
+  .button-container a:last-child {
+    margin-right: 0; /* Remove margin from the last button */
+  }
+  
+  .button-container a:hover {
+    background-color: #1F2739; /* Darker blue on hover */
+    color: white; /* Change text color on hover */
+  }

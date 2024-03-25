@@ -11,12 +11,11 @@
 <body>
 
     @auth <!--Si l'utilisateur est connecté-->
-    <div>
-        <a href="{{route('deconnexion')}}" class="deco-btn">Déonnexion</a>
-        <a href="{{route('temp_formulaire')}}" class="temperature-btn">Page Temperature</a>
-
     
-    </div>
+        <div class="button-container">
+            <a href="{{route('temp_formulaire')}}" class="temperature-btn">Page Temperature</a>
+            <a href="{{route('deconnexion')}}" class="deco-btn">Déonnexion</a>
+        </div>
     @else <!--Si il est pas connecté-->
     <div>
         <a href="{{ route('connexion') }}" class="login-btn">Connexion</a>

@@ -11,17 +11,12 @@
 
 <body>
     @include('headfoot/header')
-
-    <h2>Bonjour, {{ auth()->user()->name }}</h2>
-
-    <div>
-        <a href="{{ route('historique') }}" class="historique-btn">Historique</a>
-    </div>
-
-    <div>
-        <a href="{{ route('deconnexion') }}" class="deco-btn">Déconnexion</a>
-    </div>
     
+    <div class="button-container">
+        <a href="{{route('accueil')}}" class="accueil-btn">accueil</a>
+        <a href="{{ route('historique') }}" class="historique-btn">Historique</a>
+        <a href="{{route('deconnexion')}}" class="deco-btn">Déconnexion</a>
+    </div>
     <form action="{{ route('saisir_temp') }}" method="post">
     @csrf
 
@@ -64,7 +59,7 @@
 </form>
 
 <div id="info">
-    <h5>Bienvenue sur notre page de Température</h5>
+    <h5>Bienvenue {{ auth()->user()->name }} sur notre page de Température</h5>
     <p>Cette page vous permet de saisir les données de température pour différents emplacements. Que vous soyez un météorologue, un chercheur en environnement ou simplement curieux des conditions météorologiques locales, notre outil de saisie de température vous offre une solution conviviale pour enregistrer et analyser les données de température.</p>
 </div>
 

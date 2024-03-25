@@ -11,7 +11,12 @@
     @include('headfoot/header')
 
     <h1>Historique des Températures</h1>
-    
+    <div class="button-container">
+        <a href="{{route('accueil')}}" class="accueil-btn">accueil</a>
+        <a href="{{route('temp_formulaire')}}" class="temperature-btn">Page Temperature</a>
+        <a href="{{route('deconnexion')}}" class="deco-btn">Déconnexion</a>
+    </div>
+
     <div class="container">
         
     @if($temperatures->isEmpty())
