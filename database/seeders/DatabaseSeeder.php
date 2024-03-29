@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\CoursEau;
 use App\Models\Region;
+use App\Models\RegionCoursEau;
 use SplFileObject;
 
 class DatabaseSeeder extends Seeder
@@ -37,5 +38,7 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
+
+       
     }
 }

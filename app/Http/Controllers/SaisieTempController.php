@@ -44,13 +44,10 @@ class SaisieTempController extends Controller
     }
 
     function historique() {
-        // Get the authenticated user's ID
         $user_id = Auth::id();
         
-        // Retrieve the user's temperature records
         $temperatures = Temperature::where('id_saisir', $user_id)->get();
         
-        // Pass the temperature records to the view
         return view('page.temperature.historique_temperature', ['temperatures' => $temperatures]);
     }
 
