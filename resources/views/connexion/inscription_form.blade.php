@@ -19,7 +19,7 @@
         <input type="name" name="name" placeholder="nom utilisateur ">
         <input type="email" name="email" placeholder="adresse mail">
         <input type="password" name="password" placeholder="mot de passe">
-        <button type="submit">crée un compte</button>
+        <button type="submit">Créer un compte</button>
     </form>
     </div>
  </body>   

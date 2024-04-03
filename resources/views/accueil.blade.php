@@ -14,7 +14,7 @@
     
         <div class="button-container">
             <a href="{{route('temp_formulaire')}}" class="temperature-btn">Page temperature</a>
-            <a href="{{route('deconnexion')}}" class="deco-btn">Déonnexion</a>
+            <a href="{{route('deconnexion')}}" class="deco-btn">Déconnexion</a>
         </div>
     @else <!--Si il est pas connecté-->
     <div class="button-container">
