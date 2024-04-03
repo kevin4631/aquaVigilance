@@ -13,7 +13,7 @@
     @include('headfoot/header')
     
     <div class="button-container">
-        <a href="{{route('accueil')}}" class="accueil-btn">accueil</a>
+        <a href="{{route('accueil')}}" class="accueil-btn">Accueil</a>
         <a href="{{ route('historique') }}" class="historique-btn">Historique</a>
         <a href="{{route('deconnexion')}}" class="deco-btn">Déconnexion</a>
     </div>
