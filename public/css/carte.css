@@ -20,21 +20,6 @@ h1 {
     height: 83.7%;
     width: 100%;
 }
-/*box choix annee
-#choixannee {
-    position: absolute;
-    top: 115px;
-    left: 55px;
-    transform: translateY(-50%);
-    z-index: 999;
-}
-
-.anneeLabel {
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    color: black;
-    text-align: center;
-    margin-bottom: 1px;
-}*/
 
 /* box d'indication temp */
 #box {
@@ -47,7 +32,6 @@ h1 {
     padding: 8px;
     z-index: 999;
 }
-
 
 .caree {
     width: 12px;
