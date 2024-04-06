@@ -13,6 +13,7 @@
     <style>
         body {
             margin: 0px;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
 
         header {
@@ -23,14 +24,44 @@
             left: 0;
             right: 0;
             margin: auto;
-            /* Centrer horizontalement */
             display: flex;
             align-items: center;
+            justify-content: space-between;
             background-color: rgba(0, 121, 184, 0.9);
             z-index: 999;
             border-radius: 16px;
             border: 0;
             box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
+        }
+
+        .logoTitre {
+            display: flex;
+            align-items: center;
+        }
+
+        .boutonHeader {
+            margin-right: 70px;
+        }
+
+        .logo {
+            height: 50px;
+            margin-left: 70px;
+        }
+
+        .buttonH {
+            margin-left: 15px;
+            padding: 5px 10px 5px 10px;
+            text-decoration: none;
+            border-radius: 16px;
+            border: 0;
+            color: #4DC3FA;
+            background-color: #1F2739;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .buttonH:hover {
+            color: #fff;
         }
 
         footer {
@@ -48,7 +79,6 @@
 
         .titre {
             margin: 0px;
-            margin-left: 40px;
             color: #ffffff;
             font-size: 25px;
         }
@@ -76,21 +106,19 @@
             top: 110px;
             left: 100px;
             z-index: 999;
-            background-color: rgba(250, 250, 250, 0.8);
             border-radius: 16px;
             border: 0;
             box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
             color: #202124;
             padding: 10px;
             background-color: #ffffff;
-
         }
 
         input {
             margin-top: 10px;
         }
 
-        #annee2{
+        #annee2 {
             margin-left: 10px;
         }
 
@@ -142,32 +170,33 @@
             font-size: 40px;
         }
 
-        .leaflet-bar a.leaflet-disabled{
+        .leaflet-bar a.leaflet-disabled {
             background-color: #000;
             color: rgb(120, 120, 120);
         }
 
-        .leaflet-bar a.leaflet-disabled{
+        .leaflet-bar a.leaflet-disabled {
             background-color: #000;
             color: rgb(120, 120, 120);
             font-size: 22px;
         }
 
-        .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
+        .leaflet-touch .leaflet-control-layers,
+        .leaflet-touch .leaflet-bar {
             border: none;
             box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
             border-radius: 8px;
         }
 
-        .leaflet-touch .leaflet-bar a{
+        .leaflet-touch .leaflet-bar a {
             border-radius: 8px 8px 8px 8px;
         }
 
-        .leaflet-touch .leaflet-bar a:first-child{
+        .leaflet-touch .leaflet-bar a:first-child {
             border-radius: 8px 8px 0 0;
         }
 
-        .leaflet-touch .leaflet-bar a:last-child{
+        .leaflet-touch .leaflet-bar a:last-child {
             border-radius: 0 0 8px 8px;
         }
 
@@ -186,22 +215,50 @@
             font-weight: bold;
         }
 
-        .leaflet-container .leaflet-control-attribution{
-            background-color: rgba(0,0,0,0);
+        .leaflet-container .leaflet-control-attribution {
+            background-color: rgba(0, 0, 0, 0);
         }
 
-        .leaflet-container .leaflet-control-attribution a{
+        .leaflet-container .leaflet-control-attribution a {
             color: #fff;
         }
 
-        .leaflet-container .leaflet-control-attribution span{
+        .leaflet-container .leaflet-control-attribution span {
             color: #fff;
         }
 
-        .leaflet-control-attribution, .leaflet-control-scale-line{
+        .leaflet-control-attribution,
+        .leaflet-control-scale-line {
             color: #bfe5ff;
         }
 
+        .legend {
+            position: absolute;
+            bottom: 40px;
+            left: 20px;
+            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 16px;
+            border: 0;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
+            color: #fff;
+            padding: 10px;
+        }
+
+        .bleu {
+            background-color: blue;
+        }
+
+        .rouge {
+            background-color: red;
+        }
+
+        .caree {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            margin-right: 3px;
+        }
     </style>
 
 
@@ -230,8 +287,21 @@
         </div>
     </div>
 
+    <div class="legend">
+        <div class="caree rouge"></div>
+        <span id="max"> > 30°C</span>
+        <br>
+        <div class="caree bleu"></div>
+        <span id="min">
+            < 0°C</span>
+    </div>
+
+
+
+
     <div id="map">
     </div>
+
     @include('headfoot/footer')
 
     <!--------------- Récupération de la carte leaflet--------------->
@@ -260,9 +330,16 @@
 
         map.setView([46.6031, 1.8883], 6);
 
+        /*
         L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
+        */
+        
+        L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'ArcGIS'
+        }).addTo(map);
+
 
         //barre de recherche
         L.Control.geocoder().addTo(map);
@@ -348,7 +425,7 @@
         });
 
         // --------------- GESTION CURSOR ---------------
-        
+
         var annee1 = document.getElementById("annee1");
         var annee2 = document.getElementById("annee2");
 
@@ -373,7 +450,6 @@
         annee2.addEventListener("click", function() {
             showEvolution(parseInt(annee1.value), parseInt(annee2.value), tab_coursEau)
         });
-        
     </script>
 </body>
 

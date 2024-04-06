@@ -24,7 +24,7 @@ function getTabFileNameCoursEau() {
 
 function parametrageCoursEau(coursEau) {
 
-    setColorCoursEau(coursEau, "rgba(0,0,0,0)");
+    setColorCoursEau(coursEau, "rgba(0,0,0,0.4)");
 
     // evenement au survol sur un cours eau
     coursEau.on("mouseover", function (e) {
@@ -88,23 +88,25 @@ function drawCoursEau(tab_fileNameCoursEau) {
         fetch("traceCoursEau/" + fileNameCoursEau)
             .then((response) => response.json())
             .then((fileContent) => {
+
                 // ajoute le cours d'eau sur la carte
                 var coursEau = L.geoJSON(fileContent).addTo(map);
 
                 // parametrage de l'affichage du cours eau
                 parametrageCoursEau(coursEau);
 
-                // ajout du pop up au click sur un cours eau
-                ajoutPopUpCoursEau(coursEau)
-
-                tab_coursEau.push(coursEau);
-
+                // par defaut coloration avec les dernieres temp affiché
                 getLastTemp(getCodeCoursEau(coursEau)).then(function (lastTemp) {
                     //console.log(lastTemp);
                     setColorCoursEau(coursEau, getColor(lastTemp, 0, 30))
                 }).catch(function (error) {
                     console.error(error);
                 });
+
+                // ajout du pop up au click sur un cours eau
+                ajoutPopUpCoursEau(coursEau)
+
+                tab_coursEau.push(coursEau);
             })
             .catch((error) =>
                 console.error(

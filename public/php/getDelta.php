@@ -49,7 +49,6 @@ function getDelta($annee1, $annee2, $code_cours_eau)
     return $moyenne_annee2 - $moyenne_annee1;
 }
 
-$deltas_cours_eau = [];
 //echo '----- Debut du script -----' . "\n";
 
 $annee1 = isset($_POST['annee1']) ? $_POST['annee1'] : null;
@@ -60,7 +59,6 @@ if ($annee1 == null || $annee2 == null || $code_cours_eau == null) {
     echo "error";
 } else {
     $delta = getDelta($annee1, $annee2, $code_cours_eau);
-    $deltas_cours_eau[$code_cours_eau] = $delta;
     echo json_encode($delta);
 }
 
