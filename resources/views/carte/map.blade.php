@@ -8,7 +8,7 @@
 
 </head>
 
-<button onclick="showLastTemp();">last temp</button>
+<button onclick="showLastTemp(tab_coursEau);">last temp</button>
 <div id="choixannee">
     <form action="#">
         <input id="annee1" type="range" min="2006" max="2019" value="2010">
@@ -43,6 +43,12 @@
 
 <!--------------- easybutton plugin pour mon bouton acceuil--------------->
 <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
+
+<script src="js/affichageCoursEau.js"></script>
+<script src="js/colorationCoursEau.js"></script>
+<script src="js/getDelta.js"></script>
+<script src="js/getLastTemp.js"></script>
 
 <script>
     const map = L.map("map", {
@@ -129,213 +135,16 @@
 
     // --------------- AJOUT COURS D'EAUX ---------------
 
-    /**
-     * lance un appel ajax pour recup les noms des cours d'eau
-     */
-    function load() {
-        return new Promise(function(resolve, reject) {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4) {
-                    if (this.status == 200) {
-                        // Ci-dessous on traite la réponse quand elle arrive
-                        resolve(JSON.parse(this.responseText)); // Parsez le JSON en un objet JavaScript et résolvez la promesse avec les données
-                    } else {
-                        reject(new Error('Une erreur s\'est produite. Statut de la requête: ' + this.status));
-                    }
-                }
-            };
-
-            xhr.open('POST', 'php/getFileNameCoursEau.php', true);
-            xhr.send();
-        });
-    }
-
-    function parametrageCoursEau(coursEau) {
-        coursEau.setStyle({
-            color: "rgba(0,0,0,0.7)",
-            weight: 2,
-        });
-
-        // evenement au survol sur un cours eau
-        coursEau.on("mouseover", function(e) {
-            coursEau.setStyle({
-                weight: 8,
-            });
-        });
-
-        // evenement au dé-survol sur un cours eau
-        coursEau.on("mouseout", function(e) {
-            coursEau.setStyle({
-                weight: 2,
-            });
-        });
-
-        // evenement au click sur un cours eau
-        coursEau.on("click", function(e) {
-            // zoom global sur le cours eau
-            map.fitBounds(e.target.getBounds());
-            // zoom de plus en plus sur le cours eau 
-            //map.setView(e.latlng, map.getZoom() + 4);
-        });
-    }
-
-    function ajoutPopUpCoursEau(coursEau) {
-        coursEau.bindPopup(
-            "<h3>" + getNomCoursEau(coursEau) + "</h3>" +
-            "<p>code : " + getIdCoursEau(coursEau) + "</p>"
-            //+ "<p> delta : " + tabDeltaCoursEau[fileName.slice(0, -8)] + "</p>"
-        );
-    }
-
-    function getNomCoursEau(coursEau) {
-        var NomEntiteHydrographique;
-        coursEau.eachLayer(function(layer) {
-            NomEntiteHydrographique = layer.feature.properties.NomEntiteHydrographique;
-        });
-        return NomEntiteHydrographique;
-    }
-
-    function getIdCoursEau(coursEau) {
-        var cdEntiteHydrographique;
-        coursEau.eachLayer(function(layer) {
-            cdEntiteHydrographique = layer.feature.properties.CdEntiteHydrographique;
-        });
-        return cdEntiteHydrographique;
-    }
-
-    function setColorCoursEau(coursEau, color) {
-        coursEau.setStyle({
-            color: color,
-            weight: 2,
-        });
-    };
-
-    function drawCoursEau(tab_fileNameCoursEau) {
-        tab_fileNameCoursEau.forEach(fileNameCoursEau => {
-            //console.log(fileNameCoursEau);
-            fetch("traceCoursEau/" + fileNameCoursEau)
-                .then((response) => response.json())
-                .then((fileContent) => {
-                    // ajoute le cours d'eau sur la carte
-                    var coursEau = L.geoJSON(fileContent).addTo(map);
-
-                    // parametrage de l'affichage du cours eau
-                    parametrageCoursEau(coursEau);
-
-                    // ajout du pop up au click sur un cours eau
-                    ajoutPopUpCoursEau(coursEau)
-
-                    tab_coursEau.push(coursEau);
-                })
-                .catch((error) =>
-                    console.error(
-                        "Erreur lors du chargement du fichier GeoJSON :",
-                        error
-                    )
-                );
-        });
-    }
-
-    var tab_coursEau = [];
+    // tableau qui va contenir tout les cours d'eau afficher sur la map
+    var tab_coursEau;
 
     // on attend que la requette ajax termine
-    load().then(function(tab_fileNameCoursEau) {
+    getTabFileNameCoursEau().then(function(tab_fileNameCoursEau) {
         //console.log(tab_fileNameCoursEau);
-        drawCoursEau(tab_fileNameCoursEau);
+        tab_coursEau = drawCoursEau(tab_fileNameCoursEau);
     }).catch(function(error) {
         console.error(error);
     });
-
-
-    // --------------- COLORATION COURS D'EAUX EVOLUTION ---------------
-
-    function getColor(temp, min, max) {
-        // pour l'evolution
-        if (temp == 999)
-            return "rgba(0,0,0,0.4)";
-
-        // Bleu pour les températures inférieures au min
-        if (temp < min)
-            return 'rgb(0, 0, 255)';
-
-        // Rouge pour les températures supérieures au max
-        if (temp > max)
-            return 'rgb(255, 0, 0)';
-
-        // Calcul de la proportion entre le bleu et le rouge en fonction de la température
-        var ratio = (temp + Math.abs(min)) / (max + Math.abs(min));
-
-        var red = Math.round(255 * ratio);
-        var blue = Math.round(255 * (1 - ratio));
-        return 'rgb(' + red + ', 0, ' + blue + ')';
-    }
-
-    function getDelta(annee1, annee2, code_cours_eau) {
-        return new Promise(function(resolve, reject) {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4) {
-                    if (this.status == 200) {
-                        // Ci-dessous on traite la réponse quand elle arrive
-                        resolve(JSON.parse(this.responseText)); // Parsez le JSON en un objet JavaScript et résolvez la promesse avec les données
-                    } else {
-                        reject(new Error('Une erreur s\'est produite. Statut de la requête: ' + this.status));
-                    }
-                }
-            };
-
-            var params = "annee1=" + annee1 + "&annee2=" + annee2 + "&code_cours_eau=" + code_cours_eau;
-            xhr.open('POST', 'php/getDelta.php', true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.send(params);
-        });
-    }
-
-    function getLastTemp(code_cours_eau) {
-        return new Promise(function(resolve, reject) {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4) {
-                    if (this.status == 200) {
-                        // Ci-dessous on traite la réponse quand elle arrive
-                        resolve(JSON.parse(this.responseText)); // Parsez le JSON en un objet JavaScript et résolvez la promesse avec les données
-                    } else {
-                        reject(new Error('Une erreur s\'est produite. Statut de la requête: ' + this.status));
-                    }
-                }
-            };
-
-            var params = "code_cours_eau=" + code_cours_eau;
-            xhr.open('POST', 'php/getLastTemp.php', true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhr.send(params);
-        });
-    }
-
-    function showEvolution(annee1, annee2) {
-        tab_coursEau.forEach(coursEau => {
-            // on attend que la requette ajax termine
-            getDelta(annee1, annee2, getIdCoursEau(coursEau)).then(function(delta) {
-                //console.log(delta);
-                setColorCoursEau(coursEau, getColor(delta, -5, 5))
-            }).catch(function(error) {
-                console.error(error);
-            });
-        });
-    }
-
-    function showLastTemp() {
-        tab_coursEau.forEach(coursEau => {
-            // on attend que la requette ajax termine
-            getLastTemp(getIdCoursEau(coursEau)).then(function(lastTemp) {
-                //console.log(lastTemp);
-                setColorCoursEau(coursEau, getColor(lastTemp, 0, 30))
-            }).catch(function(error) {
-                console.error(error);
-            });
-        });
-    }
 
     // --------------- GESTION CURSOR ---------------
 
@@ -357,10 +166,10 @@
     });
 
     annee1.addEventListener("click", function() {
-        showEvolution(parseInt(annee1.value), parseInt(annee2.value))
+        showEvolution(parseInt(annee1.value), parseInt(annee2.value), tab_coursEau)
     });
 
     annee2.addEventListener("click", function() {
-        showEvolution(parseInt(annee1.value), parseInt(annee2.value))
+        showEvolution(parseInt(annee1.value), parseInt(annee2.value), tab_coursEau)
     });
 </script>
