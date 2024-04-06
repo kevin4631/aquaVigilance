@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $regionFile = new SplFileObject(database_path('../public/data/region2020.csv'));
+        $regionFile = new SplFileObject(database_path('../public/data/BDD/region2020.csv'));
         $regionFile->setFlags(SplFileObject::READ_CSV | SplFileObject::DROP_NEW_LINE);
 
         foreach ($regionFile as $row) {

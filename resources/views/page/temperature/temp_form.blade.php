@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Page de saisie de température</title>
     <link rel="stylesheet" href="css/page_saisie_temp.css">
+    <link rel="stylesheet" href="css/footer.css"/>
+    <link rel="stylesheet" href="css/header.css" />
 </head>
 
 <body>

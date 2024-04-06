@@ -24,7 +24,7 @@ function getTabFileNameCoursEau() {
 
 function parametrageCoursEau(coursEau) {
 
-    setColorCoursEau(coursEau, "rgba(0,0,0,0.7)");
+    setColorCoursEau(coursEau, "rgba(0,0,0,0)");
 
     // evenement au survol sur un cours eau
     coursEau.on("mouseover", function (e) {
@@ -98,6 +98,13 @@ function drawCoursEau(tab_fileNameCoursEau) {
                 ajoutPopUpCoursEau(coursEau)
 
                 tab_coursEau.push(coursEau);
+
+                getLastTemp(getCodeCoursEau(coursEau)).then(function (lastTemp) {
+                    //console.log(lastTemp);
+                    setColorCoursEau(coursEau, getColor(lastTemp, 0, 30))
+                }).catch(function (error) {
+                    console.error(error);
+                });
             })
             .catch((error) =>
                 console.error(
