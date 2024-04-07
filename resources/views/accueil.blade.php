@@ -407,7 +407,7 @@
 
         function changeBackground() {
             numBackground++;
-            if (numBackground > 3)
+            if (numBackground > 2)
                 numBackground = 0;
 
             switch (numBackground) {
