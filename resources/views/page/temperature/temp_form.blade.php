@@ -14,11 +14,7 @@
 <body>
     @include('headfoot/header')
     
-    <div class="button-container">
-        <a href="{{route('accueil')}}" class="accueil-btn">Accueil</a>
-        <a href="{{ route('historique') }}" class="historique-btn">Historique</a>
-        <a href="{{route('deconnexion')}}" class="deco-btn">Déconnexion</a>
-    </div>
+   
     <form action="{{ route('saisir_temp') }}" method="post">
     @csrf
 
@@ -39,8 +35,11 @@
 
     <div class="form-group">
         <label for="libelle_cours_eau">Cours d'eau:</label>
-        <input type="text" class="form-control" id="libelle_cours_eau" name="libelle_cours_eau" required>
+        <select class="form-control" id="libelle_cours_eau" name="libelle_cours_eau" required>
+            <option value="">Select Cours d'eau</option>
+        </select>
     </div>
+    
 
     <div class="form-group">
         <label for="date_mesure_temp">Date mesure temp:</label>

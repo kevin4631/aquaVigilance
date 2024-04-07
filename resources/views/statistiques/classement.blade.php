@@ -8,16 +8,24 @@
 <body>
 <?php
 
-// Inclure le fichier getDelta.php
-include 'getDelta.php';
-
-$liste_code_cours_eau = [];
-$liste_code_cours_eau = sql::select("SELECT code_cours_eau FROM cours_eau;");
 
 
 
-
-
+ 
 ?>
+
+
+<script src="js/evolution.js"></script>
+<script src="js/getAllCodeCoursEau.js"></script>
+    <script>
+        var tab_codeCoursEau = getAllCodeCoursEau();
+        getTabDelta(2010, 2020, tab_codeCoursEau).then(function(tab_delta) {
+        console.log(tab_delta);
+        }).catch(function(error) {
+            console.error(error);
+        
+        });
+
+        </script>
 </body>
 </html>

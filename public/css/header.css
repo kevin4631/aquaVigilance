@@ -1,1 +1,53 @@
+header {
+    height: 60px;
+    width: 98vw;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 121, 184, 0.9);
+    z-index: 999;
+    border-radius: 16px;
+    border: 0;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
+}
 
+.logoTitre {
+    display: flex;
+    align-items: center;
+}
+
+.boutonHeader {
+    margin-right: 70px;
+}
+
+.logo {
+    height: 50px;
+    margin-left: 70px;
+}
+
+.buttonH {
+    margin-left: 15px;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    border-radius: 16px;
+    border: 0;
+    color: #4dc3fa;
+    background-color: #1f2739;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buttonH:hover {
+    color: #fff;
+}
+
+.titre {
+    margin: 0px;
+    color: #ffffff;
+    font-size: 25px;
+}

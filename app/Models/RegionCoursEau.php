@@ -9,12 +9,11 @@ class RegionCoursEau extends Model
 {
     protected $table = 'association_region_eau';
     public $timestamps = false;
-    protected $primaryKey = null;
-    public $incrementing = false; 
-    protected $fillable = ['code_cours_eau', 'code_region'];
+    protected $primaryKey = ['code_region', 'code_cours_eau'];
+    public $incrementing = false;
+    protected $fillable = ['code_region', 'code_cours_eau'];
 
-    // Définir les relations
-
+    // Définir les relatiions
 
     public function region()
     {
@@ -25,8 +24,4 @@ class RegionCoursEau extends Model
     {
         return $this->belongsTo(CoursEau::class, 'code_cours_eau', 'code_cours_eau');
     }
-
-   
-
-  
 }

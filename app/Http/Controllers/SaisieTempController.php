@@ -27,12 +27,12 @@ class SaisieTempController extends Controller
         $user_id = Auth::id();
         // crée une instance de ton model 
         $temperature = new Temperature();
-
-        $temperature->latitude = $request->input('latitude');
         $temperature->longitude = $request->input('longitude');
+        $temperature->latitude = $request->input('latitude');
         $temperature->libelle_commune = $request->input('libelle_commune');
         $temperature->libelle_cours_eau = $request->input('libelle_cours_eau');
-        $temperature->date_mesure_temp = $request->input('date_mesure_temp');
+        $date_mesure_temp = $request->input('date_mesure_temp') . ' ' . $request->input('heure_mesure_temp');
+        $temperature->date_mesure_temp = $date_mesure_temp;
         $temperature->resultat = $request->input('resultat');
         //associer l'enregistrement avec l'id de l'utilisateur
         $temperature->id_saisir = $user_id;
