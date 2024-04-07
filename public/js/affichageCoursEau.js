@@ -27,11 +27,11 @@ function parametrageCoursEau(coursEau) {
     });
 }
 
-function ajoutPopUpCoursEau(coursEau) {
+function setPopUpCoursEau(coursEau, message) {
     coursEau.bindPopup(
         "<h3>" + getNomCoursEau(coursEau) + "</h3>" +
-        "<p>code : " + getCodeCoursEau(coursEau) + "</p>"
-        //+ "<p> delta : " + tabDeltaCoursEau[fileName.slice(0, -8)] + "</p>"
+        "<p>" + message + "</p>" +
+        "<p>code du cours eau : " + getCodeCoursEau(coursEau) + "</p>"
     );
 }
 
@@ -63,7 +63,7 @@ function drawCoursEau(tab_codeCoursEau) {
 
     tab_codeCoursEau.forEach(codeCoursEau => {
         //console.log(codeCoursEau);
-        fetch("traceCoursEau/" + codeCoursEau +".geojson")
+        fetch("traceCoursEau/" + codeCoursEau + ".geojson")
             .then((response) => response.json())
             .then((fileContent) => {
 
@@ -73,17 +73,18 @@ function drawCoursEau(tab_codeCoursEau) {
                 // parametrage de l'affichage du cours eau
                 parametrageCoursEau(coursEau);
 
-                
                 // par defaut coloration avec les dernieres temp affiché
                 getLastTemp(getCodeCoursEau(coursEau)).then(function (lastTemp) {
                     //console.log(lastTemp);
-                    setColorCoursEau(coursEau, getColor(lastTemp, 0, 30))
+                    setColorCoursEau(coursEau, getColor(lastTemp["resultat"], 0, 30));
+                    setPopUpCoursEau(coursEau, "Derniére température enregistré : " + lastTemp["resultat"].toFixed(2) + "°C"
+                        + "<br>le " + lastTemp["date_mesure_temp"] + " à " + lastTemp["heure_mesure_temp"]);
                 }).catch(function (error) {
                     console.error(error);
                 });
 
                 // ajout du pop up au click sur un cours eau
-                ajoutPopUpCoursEau(coursEau)
+                setPopUpCoursEau(coursEau, "chargement..");
 
                 tab_coursEau.push(coursEau);
             })

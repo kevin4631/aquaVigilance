@@ -317,7 +317,6 @@
     <script src="js/colorationCoursEau.js"></script>
     <script src="js/evolution.js"></script>
     <script src="js/getLastTemp.js"></script>
-    <script src="js/evenementCarte.js"></script>
 
     <script>
         const map = L.map("map", {

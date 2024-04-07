@@ -5,7 +5,11 @@ function getLastTemp($code_cours_eau)
     $content = json_decode(file_get_contents('../data/' . $code_cours_eau . '.json'), true);
 
     $lastData = end($content);
-    $lastTemp = $lastData["resultat"];
+    $lastTemp = [
+        "resultat" => $lastData["resultat"],
+        "date_mesure_temp" => $lastData["date_mesure_temp"],
+        "heure_mesure_temp" => $lastData["heure_mesure_temp"]
+    ];
 
     return $lastTemp;
 }

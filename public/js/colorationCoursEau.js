@@ -18,7 +18,7 @@ function getColor(temp, min, max) {
 
     var red = Math.round(255 * ratio);
     var blue = Math.round(255 * (1 - ratio));
-    
+
     return 'rgb(' + red + ', 0, ' + blue + ')';
 }
 
@@ -31,6 +31,14 @@ function showEvolution(annee1, annee2, tab_coursEau) {
         getDelta(annee1, annee2, getCodeCoursEau(coursEau)).then(function (delta) {
             //console.log(delta);
             setColorCoursEau(coursEau, getColor(delta, -5, 5))
+            if (delta == 999)
+                setPopUpCoursEau(coursEau, "pas de données d'évolution pour ce cours d'eau entre " + annee1 + " et " + annee2);
+            else if (delta > 0)
+                setPopUpCoursEau(coursEau, "Augmentation de +" + delta.toFixed(2) + "°C entre " + annee1 + " et " + annee2);
+            else if (delta < 0)
+                setPopUpCoursEau(coursEau, "Diminution de " + delta.toFixed(2) + "°C entre " + annee1 + " et " + annee2);
+            else if (delta == 0)
+                setPopUpCoursEau(coursEau, " Pas d'évolution entre " + annee1 + " et " + annee2);
         }).catch(function (error) {
             console.error(error);
         });
@@ -45,7 +53,9 @@ function showLastTemp(tab_coursEau) {
         // on attend que la requette ajax termine
         getLastTemp(getCodeCoursEau(coursEau)).then(function (lastTemp) {
             //console.log(lastTemp);
-            setColorCoursEau(coursEau, getColor(lastTemp, 0, 30))
+            setColorCoursEau(coursEau, getColor(lastTemp["resultat"], 0, 30))
+            setPopUpCoursEau(coursEau, "Derniére température enregistré : " + lastTemp["resultat"].toFixed(2) + "°C"
+                + "<br>le " + lastTemp["date_mesure_temp"] + " à " + lastTemp["heure_mesure_temp"]);
         }).catch(function (error) {
             console.error(error);
         });
