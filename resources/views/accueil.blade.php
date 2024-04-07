@@ -417,6 +417,12 @@
         var tab_codeCoursEau = getAllCodeCoursEau();
         var tab_coursEau = drawCoursEau(tab_codeCoursEau); // tableau qui va contenir tout les cours d'eau afficher sur la map
 
+        getTabDelta(2010, 2020, tab_codeCoursEau).then(function(tab_delta) {
+            console.log(tab_delta);
+        }).catch(function(error) {
+            console.error(error);
+        });
+
 
         // --------------- GESTION CURSOR ---------------
 

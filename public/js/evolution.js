@@ -25,18 +25,17 @@ function getDelta(annee1, annee2, code_cours_eau) {
 /*
 * Fontion qui retourn un tableu qui associe les codes cours eau avec leur delta de temp entre 2 années
 */
-
-function getTabDelta(annee1, annee2, tab_coursEau) {
-    var deltas_cours_eau = [];
-
-    tab_coursEau.forEach(cousEau => {
-        codeCoursEau = getCodeCoursEau(cousEau);
-        delta = getDelta(annee1, annee2, cousEau);
-
-        deltas_cours_eau.push({ code_cours_eau, delta });
+async function getTabDelta(annee1, annee2, tab_codeCoursEau) {
+    var promises = tab_codeCoursEau.map(async codeCoursEau => {
+        try {
+            const delta = await getDelta(annee1, annee2, codeCoursEau);
+            return { codeCoursEau, delta };
+        } catch (error) {
+            console.error(error);
+            return { codeCoursEau, delta: null }; // Vous pouvez définir le delta comme null ou une autre valeur par défaut en cas d'erreur
+        }
     });
 
-    return deltas_cours_eau;
+    return Promise.all(promises);
 }
-
 
