@@ -314,6 +314,7 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 
 
+    <script src="js/getAllCodeCoursEau.js"></script>
     <script src="js/affichageCoursEau.js"></script>
     <script src="js/colorationCoursEau.js"></script>
     <script src="js/evolution.js"></script>
@@ -335,7 +336,7 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
         */
-        
+
         L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             attribution: 'ArcGIS'
         }).addTo(map);
@@ -413,16 +414,9 @@
 
         // --------------- AJOUT COURS D'EAUX ---------------
 
-        // tableau qui va contenir tout les cours d'eau afficher sur la map
-        var tab_coursEau;
+        var tab_codeCoursEau = getAllCodeCoursEau();
+        var tab_coursEau = drawCoursEau(tab_codeCoursEau); // tableau qui va contenir tout les cours d'eau afficher sur la map
 
-        // on attend que la requette ajax termine
-        getTabFileNameCoursEau().then(function(tab_fileNameCoursEau) {
-            //console.log(tab_fileNameCoursEau);
-            tab_coursEau = drawCoursEau(tab_fileNameCoursEau);
-        }).catch(function(error) {
-            console.error(error);
-        });
 
         // --------------- GESTION CURSOR ---------------
 

@@ -1,27 +1,5 @@
 // --------------- AJOUT COURS D'EAUX ---------------
 
-/**
- * lance un appel ajax pour recup les noms des cours d'eau
- */
-function getTabFileNameCoursEau() {
-    return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4) {
-                if (this.status == 200) {
-                    // Ci-dessous on traite la réponse quand elle arrive
-                    resolve(JSON.parse(this.responseText)); // Parsez le JSON en un objet JavaScript et résolvez la promesse avec les données
-                } else {
-                    reject(new Error('Une erreur s\'est produite. Statut de la requête: ' + this.status));
-                }
-            }
-        };
-
-        xhr.open('POST', 'php/getFileNameCoursEau.php', true);
-        xhr.send();
-    });
-}
-
 function parametrageCoursEau(coursEau) {
 
     setColorCoursEau(coursEau, "rgba(0,0,0,0.4)");
@@ -80,12 +58,12 @@ function setColorCoursEau(coursEau, color) {
     });
 }
 
-function drawCoursEau(tab_fileNameCoursEau) {
+function drawCoursEau(tab_codeCoursEau) {
     var tab_coursEau = [];
 
-    tab_fileNameCoursEau.forEach(fileNameCoursEau => {
-        //console.log(fileNameCoursEau);
-        fetch("traceCoursEau/" + fileNameCoursEau)
+    tab_codeCoursEau.forEach(codeCoursEau => {
+        //console.log(codeCoursEau);
+        fetch("traceCoursEau/" + codeCoursEau +".geojson")
             .then((response) => response.json())
             .then((fileContent) => {
 
@@ -95,6 +73,7 @@ function drawCoursEau(tab_fileNameCoursEau) {
                 // parametrage de l'affichage du cours eau
                 parametrageCoursEau(coursEau);
 
+                
                 // par defaut coloration avec les dernieres temp affiché
                 getLastTemp(getCodeCoursEau(coursEau)).then(function (lastTemp) {
                     //console.log(lastTemp);
