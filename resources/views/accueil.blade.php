@@ -289,14 +289,12 @@
 
     <div class="legend">
         <div class="caree rouge"></div>
-        <span id="max"> > 30°C</span>
+        <span id="max"> ⩾ 30°C</span>
         <br>
         <div class="caree bleu"></div>
         <span id="min">
-            < 0°C</span>
+            ⩽ 0°C</span>
     </div>
-
-
 
 
     <div id="map">
@@ -319,6 +317,7 @@
     <script src="js/colorationCoursEau.js"></script>
     <script src="js/evolution.js"></script>
     <script src="js/getLastTemp.js"></script>
+    <script src="js/evenementCarte.js"></script>
 
     <script>
         const map = L.map("map", {
@@ -414,7 +413,12 @@
 
         // --------------- AJOUT COURS D'EAUX ---------------
 
+        // récupération des code cours eau
         var tab_codeCoursEau = getAllCodeCoursEau();
+
+        // recuperation des cours d'eau sur la carte
+        var tab_coursEau = drawCoursEau(tab_codeCoursEau);
+
 
         /* exemple utilisation fonction pour juba 
         getTabDelta(2010, 2020, tab_codeCoursEau).then(function(tab_delta) {
@@ -424,7 +428,6 @@
         });
         */
 
-
         /* exemple utilisation fonction pour mohamed 
         getEvolutionCoursEau(2010, 2014, tab_codeCoursEau[1]).then(function(tabEvolutionCoursEau) {
             console.log(tabEvolutionCoursEau);
@@ -433,10 +436,8 @@
         });
         */
 
-        var tab_coursEau = drawCoursEau(tab_codeCoursEau); // tableau qui va contenir tout les cours d'eau afficher sur la map
 
-
-        // --------------- GESTION CURSOR ---------------
+        // --------------- Evenement Bouton carte ---------------
 
         var annee1 = document.getElementById("annee1");
         var annee2 = document.getElementById("annee2");

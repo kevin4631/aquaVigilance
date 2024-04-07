@@ -23,8 +23,8 @@ function getColor(temp, min, max) {
 }
 
 function showEvolution(annee1, annee2, tab_coursEau) {
-    document.querySelector('#max').innerHTML = '> 5°C';
-    document.querySelector('#min').innerHTML = '< -5°C';
+    document.querySelector('#max').innerHTML = '⩾ + 5°C';
+    document.querySelector('#min').innerHTML = '⩽ - 5°C';
 
     tab_coursEau.forEach(coursEau => {
         // on attend que la requette ajax termine
@@ -38,8 +38,8 @@ function showEvolution(annee1, annee2, tab_coursEau) {
 }
 
 function showLastTemp(tab_coursEau) {
-    document.querySelector('#max').innerHTML = '> 30°C';
-    document.querySelector('#min').innerHTML = '< 0°C';
+    document.querySelector('#max').innerHTML = '⩾ 30°C';
+    document.querySelector('#min').innerHTML = '⩽ 0°C';
 
     tab_coursEau.forEach(coursEau => {
         // on attend que la requette ajax termine
