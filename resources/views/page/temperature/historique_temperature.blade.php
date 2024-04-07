@@ -28,8 +28,8 @@
         <thead>
             <tr>
                 <th>Date de mesure</th>
-                <th>Latitude</th>
                 <th>Longitude</th>
+                <th>Latitude</th>
                 <th>Commune</th>
                 <th>Cours d'eau</th>
                 <th>Temperature en C°</th>
@@ -39,8 +39,8 @@
             @foreach($temperatures as $temperature)
                 <tr>
                     <td>{{ $temperature->date_mesure_temp }}</td>
-                    <td>{{ $temperature->latitude }}</td>
                     <td>{{ $temperature->longitude }}</td>
+                    <td>{{ $temperature->latitude }}</td>
                     <td>{{ $temperature->libelle_commune }}</td>
                     <td>{{ $temperature->libelle_cours_eau }}</td>
                     <td>{{ $temperature->resultat }}</td>

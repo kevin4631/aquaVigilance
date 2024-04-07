@@ -4,15 +4,13 @@ body {
     margin: 0;
     position: relative;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url("../img/background.jpg"); /* Set background image here */
-    background-size: cover;
+    background-color: #1f2739;
 }
 h1 {
     color: white;
     font-size: 24px;
     margin-bottom: 20px;
 }
-
 
 .login_div {
     position: absolute;
@@ -21,9 +19,8 @@ h1 {
     transform: translate(-50%, -50%);
 }
 
-
 .login_form {
-    background-color: #7ec5e1;
+    background-color: rgba(0, 121, 184, 0.9);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -31,14 +28,13 @@ h1 {
     width: 330px;
     height: 350px;
     text-align: center;
-    -webkit-box-shadow: 5px 5px 0px 0px #289fed, 10px 10px 0px 0px #5fb8ff,
+    -webkit-box-shadow: 5px 5px 0px 0px #0079ca, 10px 10px 0px 0px #5fb8ff,
         15px 15px 0px 0px #a1d8ff, 20px 20px 0px 0px #cae6ff,
         25px 25px 0px 0px #e1eeff, 12px 14px 23px 7px rgba(59, 179, 255, 0);
     box-shadow: 5px 5px 0px 0px #289fed, 10px 10px 0px 0px #5fb8ff,
         15px 15px 0px 0px #a1d8ff, 20px 20px 0px 0px #cae6ff,
         25px 25px 0px 0px #e1eeff, 12px 14px 23px 7px rgba(59, 179, 255, 0);
 }
-
 
 input {
     width: calc(100% - 20px);
@@ -61,8 +57,9 @@ button {
     margin-top: 20px;
     font-size: 16px;
 }
-button:hover{
-    background-color: #57b4d6;
+button:hover {
+    color: white;
+    background-color: #1f2739;
 }
 .button1 {
     padding: 5px;
@@ -73,9 +70,6 @@ button:hover{
     margin-top: 10px;
     font-size: 13px;
 }
-
-
-
 
 /*** inscription css ***/
 
@@ -88,15 +82,15 @@ button:hover{
 }
 
 .creation_form {
-    background-color: #7ec5e1;
+    background-color: rgba(0, 121, 184, 0.9);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin: 0;
     width: 330px;
-    height: 330px;
+    height: 350px;
     text-align: center;
-    -webkit-box-shadow: 5px 5px 0px 0px #289fed, 10px 10px 0px 0px #5fb8ff,
+    -webkit-box-shadow: 5px 5px 0px 0px #0079ca, 10px 10px 0px 0px #5fb8ff,
         15px 15px 0px 0px #a1d8ff, 20px 20px 0px 0px #cae6ff,
         25px 25px 0px 0px #e1eeff, 12px 14px 23px 7px rgba(59, 179, 255, 0);
     box-shadow: 5px 5px 0px 0px #289fed, 10px 10px 0px 0px #5fb8ff,

@@ -39,6 +39,18 @@ class DatabaseSeeder extends Seeder
             }
         }
 
+        $RegionCoursEau = new SplFileObject(database_path('../public/data/BDD/regions_coursEau.csv'));
+        $RegionCoursEau->setFlags(SplFileObject::READ_CSV | SplFileObject::DROP_NEW_LINE);
+
+        foreach ($RegionCoursEau as $row) {
+            if (!empty($row[0]) && !empty($row[1])) {
+                RegionCoursEau::create([
+                    "code_region" => $row[0],
+                    "code_cours_eau" => $row[1]
+                ]);
+            }
+        }
+
        
     }
 }
