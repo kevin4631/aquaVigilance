@@ -415,13 +415,25 @@
         // --------------- AJOUT COURS D'EAUX ---------------
 
         var tab_codeCoursEau = getAllCodeCoursEau();
-        var tab_coursEau = drawCoursEau(tab_codeCoursEau); // tableau qui va contenir tout les cours d'eau afficher sur la map
 
+        /* exemple utilisation fonction pour juba 
         getTabDelta(2010, 2020, tab_codeCoursEau).then(function(tab_delta) {
             console.log(tab_delta);
         }).catch(function(error) {
             console.error(error);
         });
+        */
+
+
+        /* exemple utilisation fonction pour mohamed 
+        getEvolutionCoursEau(2010, 2014, tab_codeCoursEau[1]).then(function(tabEvolutionCoursEau) {
+            console.log(tabEvolutionCoursEau);
+        }).catch(function(error) {
+            console.error(error);
+        });
+        */
+
+        var tab_coursEau = drawCoursEau(tab_codeCoursEau); // tableau qui va contenir tout les cours d'eau afficher sur la map
 
 
         // --------------- GESTION CURSOR ---------------

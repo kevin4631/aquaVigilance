@@ -39,3 +39,38 @@ async function getTabDelta(annee1, annee2, tab_codeCoursEau) {
     return Promise.all(promises);
 }
 
+async function getEvolutionCoursEau(annee1, annee2, codeCoursEau) {
+    var tempAnnee = [];
+    var anneeTraitement = annee1;
+    var total = 0;
+    var nbValaurs = 0;
+
+    try {
+        const response = await fetch("data/" + codeCoursEau + ".json");
+        const fileContent = await response.json();
+
+        fileContent.forEach(data => {
+            var annee = parseInt(data["date_mesure_temp"].substring(0, 4));
+            var temp = data["resultat"];
+            if (annee >= annee1 && annee <= annee2 + 1) {
+                if (annee > anneeTraitement) {
+                    var moyenne = total / nbValaurs;
+                    tempAnnee.push({ moyenne, anneeTraitement });
+                    total = 0;
+                    nbValaurs = 0;
+                    anneeTraitement = annee;
+                }
+
+                total += temp;
+                nbValaurs++;
+
+            }
+        });
+    } catch (error) {
+        console.error("Erreur lors du chargement du fichier JSON :", error);
+    }
+
+
+    return tempAnnee;
+}
+
