@@ -11,4 +11,8 @@ class AccueilController extends Controller
         return view("accueil");
     }
     //TO DO
+
+    public function classement() {
+        return view("statistiques/classement");
+    }
 }
