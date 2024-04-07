@@ -333,6 +333,10 @@
         L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(map);
+        
+                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
         */
 
         L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -398,6 +402,42 @@
             );
 
         */
+
+        var numBackground = 0;
+
+        function changeBackground() {
+            numBackground++;
+            if (numBackground > 3)
+                numBackground = 0;
+
+            switch (numBackground) {
+                case 0:
+                    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                        attribution: 'ArcGIS'
+                    }).addTo(map);
+                    break;
+                case 1:
+                    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+                    break;
+                case 2:
+                    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    }).addTo(map);
+                    break;
+            }
+        }
+
+        // bouton pour changer le fond de carte
+        L.easyButton(
+            "backgroud",
+            function(btn, map) {
+                changeBackground();
+            },
+            "changer le fond de carte"
+        ).addTo(map);
+
         // bouton accueil carte pour recentrer sur la France
         L.easyButton(
             "accueil",
