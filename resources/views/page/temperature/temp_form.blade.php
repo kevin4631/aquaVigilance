@@ -19,6 +19,7 @@
 <body>
     @include('headfoot/header')
 
+    <a class="buttonHistorique" href="{{route('historique')}}">Historique des Températures</a>
 
     <form action="{{ route('saisir_temp') }}" method="post">
         @csrf

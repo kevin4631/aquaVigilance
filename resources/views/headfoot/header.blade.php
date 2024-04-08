@@ -7,12 +7,12 @@
     <div class="boutonHeader">
         @auth <!--Si l'utilisateur est connecté-->
         <div class="button-container">
-            <a class="buttonH" href="{{route('temp_formulaire')}}" class="temperature-btn">Page temperature</a>
-            <a class="buttonH" href="{{route('deconnexion')}}" class="deco-btn">Déconnexion</a>
+            <a class="buttonH" href="{{route('temp_formulaire')}}">Page temperature</a>
+            <a class="buttonH" href="{{route('deconnexion')}}">Déconnexion</a>
         </div>
         @else <!--Si il est pas connecté-->
         <div class="button-container">
-            <a class="buttonH" href="{{ route('connexion') }}" class="login-btn">Connexion</a>
+            <a class="buttonH" href="{{ route('connexion') }}">Connexion</a>
         </div>
         @endauth
     </div>
