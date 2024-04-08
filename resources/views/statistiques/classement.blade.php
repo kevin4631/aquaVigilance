@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classement des régions</title>
 
+    <link rel="stylesheet" href="css/classement.css" />
+
     <style>
         body {
             margin: 0px;
@@ -15,50 +17,20 @@
         body {
             background-color: black;
         }
-
-        #evo {
-            display: none;
-            height: 600px;
-            width: 400px;
-            position: absolute;
-            top: 110px;
-            right: 100px;
-            z-index: 999;
-            border-radius: 16px;
-            border: 0;
-            box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
-            color: #202124;
-            background-color: #ffffff;
-            padding: 30px 10px 30px 10px;
-        }
-
-        #myChart {
-            height: 400px;
-        }
-
-        #checkboxEvo {
-            position: absolute;
-            top: 60px;
-            right: 100px;
-            z-index: 999;
-            border-radius: 16px;
-            border: 0;
-            box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
-            color: #202124;
-            padding: 2px 10px 2px 10px;
-            background-color: #ffffff;
-        }
     </style>
 </head>
 
 <body>
     <div id="checkboxEvo">
-        <label for="checkbox">Evolution région</label>
-        <input type="checkbox" id="checkbox" onchange="afficheEvo()">
+        <label class="pointer" for="checkbox">Classement régions</label>
+        <input class="pointer" type="checkbox" id="checkbox" onchange="afficheEvo()">
     </div>
 
     <div id="evo">
         <canvas id="myChart"></canvas>
+        <div class="center">
+            <a id="BoutonEvo" href="">Voir les évolutions</a>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -94,14 +66,14 @@
         var tab_Region = [];
 
         getDeltaRegion(annee1, annee2).then(function(tab_deltaRegion) {
-            console.log(tab_deltaRegion);
+            //console.log(tab_deltaRegion);
 
             tab_deltaRegion.forEach(deltaRegion => {
                 tab_Region.push(regions[deltaRegion[0]]);
                 tab_delta.push(deltaRegion[1]);
             });
-            console.log(tab_delta);
-            console.log(tab_Region);
+            //console.log(tab_delta);
+            //console.log(tab_Region);
 
             drawGraphique();
         }).catch(function(error) {
@@ -116,8 +88,8 @@
                 labels: tab_Region,
                 datasets: [{
                     data: tab_delta,
-                    borderColor: 'rgba(255,0,0,1)',
-                    backgroundColor: 'rgba(255,0,0,0.5)',
+                    borderColor: 'rgba(0, 153, 255, 1)',
+                    backgroundColor: 'rgba(0, 153, 255, 0.5)',
                 }]
             };
 
