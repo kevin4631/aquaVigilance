@@ -21,9 +21,9 @@ function parametrageCoursEau(coursEau) {
     // evenement au click sur un cours eau
     coursEau.on("click", function (e) {
         // zoom global sur le cours eau
-        map.fitBounds(e.target.getBounds());
+        //map.fitBounds(e.target.getBounds());
         // zoom de plus en plus sur le cours eau 
-        //map.setView(e.latlng, map.getZoom() + 4);
+        map.setView(e.latlng, map.getZoom() + 1);
     });
 }
 

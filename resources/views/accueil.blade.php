@@ -283,9 +283,6 @@
             height: 22px;
         }
     </style>
-
-
-
 </head>
 
 <body>
@@ -338,96 +335,26 @@
     <script src="js/carte.js"></script>
     <script src="js/getAllCodeCoursEau.js"></script>
     <script src="js/affichageCoursEau.js"></script>
+    <script src="js/affichageRegion.js"></script>
     <script src="js/colorationCoursEau.js"></script>
     <script src="js/evolution.js"></script>
     <script src="js/getLastTemp.js"></script>
 
     <script>
-        // --------------- AJOUT REGION ---------------
-        //coloration toutes les régions
-        function style(feature) {
-            return {
-                color: "#9a6ce6", // couleur de bordure
-                weight: 1.8,
-                fillOpacity: 0
-            };
-        }
+        /* --------------- AJOUT COURS D'EAUX --------------- */
 
-        // Fonctions pour colorer les régions sélectionné
-        let regioncoloree = null;
-
-        function coloration_region(e) {
-            let layer = e.target;
-            layer.setStyle({
-                weight: 1.5,
-                fillColor: "red",
-                weight: 1.5,
-                fillOpacity: 0.2
-            });
-            layer.bringToFront();
-
-            if (regioncoloree && regioncoloree !== layer) {
-                geojson.resetStyle(regioncoloree);
-            }
-            regioncoloree = layer;
-        }
-
-        // pour zoomer lorsque on sélectionne une région
-        function selection_region(e) {
-            map.fitBounds(e.target.getBounds());
-        }
-
-        /*
-        // Chargement des données GeoJSON des régions de France
-        fetch("data/regionFrance/France.geojson")
-            .then((response) => response.json())
-            .then((data) => {
-                // Création couche pr afficher les régions de France
-                geojson = L.geoJson(data, {
-                    style: style,
-                    onEachFeature: function(feature, layer) {
-                        layer.on({
-                            click: selection_region,
-                        });
-                    }
-                }).addTo(map);
-
-            })
-            .catch((error) =>
-                console.error("Erreur du chargement du fichier GeoJSON :", error)
-            );
-
-        */
-
-
-        // --------------- AJOUT COURS D'EAUX ---------------
-
-        // récupération des code cours eau
+        // recup les codes cours eau
         var tab_codeCoursEau = getAllCodeCoursEau();
-
-        // recuperation des cours d'eau sur la carte
+        // recup et trace les cours d'eau sur la carte
         var tab_coursEau = drawCoursEau(tab_codeCoursEau);
 
+        /* --------------- AJOUT REGION --------------- */
 
-        /* exemple utilisation fonction pour juba 
-        getTabDelta(2010, 2020, tab_codeCoursEau).then(function(tab_delta) {
-            console.log(tab_delta);
-        }).catch(function(error) {
-            console.error(error);
-        });
-        */
+        var region_disable = null;
+        // recup et trace les region sur la carte
+        var tab_region = drawRegions();;
 
-        //exemple utilisation fonction pour mohamed 
-        /*
-         getEvolutionCoursEau(2010, 2020, "----0000").then(function(tabEvolutionCoursEau) {
-            console.log(tabEvolutionCoursEau);
-        }).catch(function(error) {
-            console.error(error);
-        });
-        */
-
-
-        // --------------- Evenement Heat Map carte ---------------
+        /* --------------- EVENEMENT HEAT MAP CARTE --------------- */
 
         var annee1 = document.getElementById("annee1");
         var annee2 = document.getElementById("annee2");

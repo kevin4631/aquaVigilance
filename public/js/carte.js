@@ -69,6 +69,13 @@ L.easyButton(
     "accueil",
     function (btn, map) {
         map.setView([46.6031, 1.8883], 6);
+
+        // rajout de la region seclectioné
+        if (region_disable != null) {
+            region_disable.addTo(map);
+            setStyleRegion(region_disable);
+            region_disable = null;
+        }
     },
     "Zoom France"
 ).addTo(map);
@@ -78,3 +85,27 @@ var imageElement2 = document.createElement('img');
 imageElement2.src = 'img/deZoom.png';
 imageElement2.className = 'imgButton';
 document.querySelector('.accueil').appendChild(imageElement2);
+
+
+//écouteur sur l'événement de changement de zoom de la carte
+map.on('zoomend', function () {
+    var currentZoom = map.getZoom();
+    console.log("Niveau de zoom actuel :", currentZoom);
+
+    if (currentZoom >= 9) {
+        tab_region.forEach(region => {
+            region.remove();
+        });
+    }
+
+    if (currentZoom < 9) {
+        tab_region.forEach(region => {
+            region.addTo(map);
+        });
+
+        if (region_disable != null) {
+            region_disable.remove();
+        }
+    }
+
+});
