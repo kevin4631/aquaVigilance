@@ -335,6 +335,7 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 
 
+    <script src="js/carte.js"></script>
     <script src="js/getAllCodeCoursEau.js"></script>
     <script src="js/affichageCoursEau.js"></script>
     <script src="js/colorationCoursEau.js"></script>
@@ -342,34 +343,7 @@
     <script src="js/getLastTemp.js"></script>
 
     <script>
-        const map = L.map("map", {
-            maxBounds: [
-                [41.3, -5], // Coin sud-ouest de la France (ajustement légèrement à gauche)
-                [51.1, 9.8], // Coin nord-est de la France (ajustement légèrement à droite)
-            ],
-            minZoom: 6,
-        });
-
-        map.setView([46.6031, 1.8883], 6);
-
-        /*
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        }).addTo(map);
-        
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-        */
-
-        L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'ArcGIS'
-        }).addTo(map);
-
-        //barre de recherche
-        L.Control.geocoder().addTo(map);
-
-
+        // --------------- AJOUT REGION ---------------
         //coloration toutes les régions
         function style(feature) {
             return {
@@ -425,78 +399,6 @@
 
         */
 
-        var numBackground = 0;
-
-        function changeBackground() {
-            numBackground++;
-            if (numBackground > 4)
-                numBackground = 0;
-
-            switch (numBackground) {
-                case 0:
-                    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                        attribution: 'ArcGIS'
-                    }).addTo(map);
-                    break;
-                case 1:
-                    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                        attribution: '<a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(map);
-                    break;
-                case 2:
-                    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-                        attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                    }).addTo(map);
-                    break;
-                case 3:
-                    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-                        attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                        subdomains: 'abcd',
-                        maxZoom: 20
-                    }).addTo(map);
-                    break;
-                case 4:
-                    L.tileLayer('https://{s}.tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey={apikey}', {
-                        attribution: '<a href="http://www.thunderforest.com/">Thunderforest</a>',
-                        apikey: '0b17287f3b5d470ba67c163c0c26246e',
-                    }).addTo(map);
-                    break;
-            }
-        }
-
-        // bouton pour changer le fond de carte
-        L.easyButton(
-            "backgroud",
-            function(btn, map) {
-                changeBackground();
-            },
-            "changer le fond de carte"
-        ).addTo(map);
-
-        // ajout iconne au button
-        var imageElement = document.createElement('img');
-        imageElement.src = 'img/changeCarte.svg';
-        imageElement.className = 'imgButton';
-        document.querySelector('.backgroud').appendChild(imageElement);
-
-
-        // bouton accueil carte pour recentrer sur la France
-        L.easyButton(
-            "accueil",
-            function(btn, map) {
-                map.setView([46.6031, 1.8883], 6);
-            },
-            "Zoom France"
-        ).addTo(map);
-
-        // ajout iconne au button
-        var imageElement2 = document.createElement('img');
-        imageElement2.src = 'img/deZoom.png';
-        imageElement2.className = 'imgButton';
-        document.querySelector('.accueil').appendChild(imageElement2);
-
-
-
 
         // --------------- AJOUT COURS D'EAUX ---------------
 
@@ -525,7 +427,7 @@
         */
 
 
-        // --------------- Evenement Bouton carte ---------------
+        // --------------- Evenement Heat Map carte ---------------
 
         var annee1 = document.getElementById("annee1");
         var annee2 = document.getElementById("annee2");

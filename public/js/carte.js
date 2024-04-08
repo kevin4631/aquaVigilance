@@ -1,0 +1,80 @@
+//ajout de la map
+const map = L.map("map", {
+    maxBounds: [
+        [41.3, -5], // Coin sud-ouest de la France (ajustement légèrement à gauche)
+        [51.1, 9.8], // Coin nord-est de la France (ajustement légèrement à droite)
+    ],
+    minZoom: 6,
+});
+
+// zoom par defaut
+map.setView([46.6031, 1.8883], 6);
+
+// fond de carte au chargement
+var numBackground = 0;
+var selectedTile = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'ArcGIS'
+}).addTo(map);
+
+/*
+ * fonction qui soccupe du changement de fond de carte
+ */
+function changeBackground() {
+    // on suprime l'ancien fond de carte avant de le changer
+    map.removeLayer(selectedTile);
+
+    numBackground = (numBackground + 1) % 5;
+
+    const tileLayers = [
+        'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        'https://{s}.tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey=0b17287f3b5d470ba67c163c0c26246e'
+    ];
+
+    const attributions = [
+        'ArcGIS',
+        '<a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        '<a href="http://www.thunderforest.com/">Thunderforest</a>'
+    ];
+
+    selectedTile = L.tileLayer(tileLayers[numBackground], {
+        attribution: attributions[numBackground]
+    }).addTo(map);
+}
+
+// ajout de la barre de recherche
+L.Control.geocoder().addTo(map);
+
+// ajout du bouton pour changer le fond de carte
+L.easyButton(
+    "backgroud",
+    function (btn, map) {
+        changeBackground();
+    },
+    "changer le fond de carte"
+).addTo(map);
+
+// ajout icone au button
+var imageElement = document.createElement('img');
+imageElement.src = 'img/changeCarte.svg';
+imageElement.className = 'imgButton';
+document.querySelector('.backgroud').appendChild(imageElement);
+
+// ajout du bouton accueil carte pour recentrer sur la France
+L.easyButton(
+    "accueil",
+    function (btn, map) {
+        map.setView([46.6031, 1.8883], 6);
+    },
+    "Zoom France"
+).addTo(map);
+
+// ajout icone au button
+var imageElement2 = document.createElement('img');
+imageElement2.src = 'img/deZoom.png';
+imageElement2.className = 'imgButton';
+document.querySelector('.accueil').appendChild(imageElement2);
