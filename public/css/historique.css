@@ -2,18 +2,21 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 
 body {
-    margin: 0;
-  padding: 0;   
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  padding-top: 100px;  
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.42em;
   color:#A7A1AE;
   background-color:#1F2739;
 }
 
+.weight{
+  font-weight: 300;
+}
+
 h1 {
   font-size:3em; 
-  font-weight: 300;
   line-height:1em;
   text-align: center;
   color: #4DC3FA;
@@ -154,35 +157,4 @@ h2 a {
     padding: 5px 10px;
     border-radius: 5px;
     z-index: 1;
-}
-
-.button-container {
-  position: absolute;
-  top: 11px;
-  right: 5px;
-}
-
-.button-container a {
-  display:inline-grid;
-  padding: 10px 20px; /* Increase padding for better touch area */
-  color:  #4DC3FA;
-  background-color: #1F2739;
-  text-decoration: none;
-  border: none; /* Remove border */
-  border-radius: 10px;
-  cursor: pointer; /* Show pointer cursor on hover */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transition */
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Use clean and readable font */
-  font-size: 14px; /* Adjust font size */
-  font-weight: 500; /* Medium font weight for a professional look */
-  margin-right: 10px; /* Add margin between buttons */
-}
-
-.button-container a:last-child {
-  margin-right: 0; /* Remove margin from the last button */
-}
-
-.button-container a:hover {
-  background-color: #1F2739; /* Darker blue on hover */
-  color: white; /* Change text color on hover */
 }

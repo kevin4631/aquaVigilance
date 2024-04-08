@@ -23,7 +23,6 @@
         console.log(tab_delta);
         }).catch(function(error) {
             console.error(error);
-        
         });
 
         </script>

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
+
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/footer.css"/>
     <link rel="stylesheet" href="css/header.css" />

@@ -6,263 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaVigilance</title>
 
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/carte.css" />
 
     <style>
         body {
             margin: 0px;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        header {
-            height: 60px;
-            width: 98vw;
-            position: absolute;
-            top: 15px;
-            left: 0;
-            right: 0;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: rgba(0, 121, 184, 0.9);
-            z-index: 999;
-            border-radius: 16px;
-            border: 0;
-            box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
-        }
-
-        .logoTitre {
-            display: flex;
-            align-items: center;
-        }
-
-        .boutonHeader {
-            margin-right: 70px;
-        }
-
-        .logo {
-            height: 50px;
-            margin-left: 70px;
-        }
-
-        .buttonH {
-            margin-left: 15px;
-            padding: 5px 10px 5px 10px;
-            text-decoration: none;
-            border-radius: 16px;
-            border: 0;
-            color: #4DC3FA;
-            background-color: #1F2739;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .buttonH:hover {
-            color: #fff;
-        }
-
-        footer {
-            width: 100vw;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            display: flex;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            font-size: 10px;
-            z-index: 999;
-        }
-
-        .titre {
-            margin: 0px;
-            color: #ffffff;
-            font-size: 25px;
-        }
-
-        .leaflet-top {
-            top: 100px;
-        }
-
-        .leaflet-left {
-            left: 10px;
-        }
-
-        .leaflet-right {
-            right: 10px;
-        }
-
-        #map {
-            height: 100vh;
-            width: 100vw;
-
-        }
-
-        #param {
-            position: absolute;
-            top: 110px;
-            left: 100px;
-            z-index: 999;
-            border-radius: 16px;
-            border: 0;
-            box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
-            color: #202124;
-            padding: 10px;
-            background-color: #ffffff;
-        }
-
-        input {
-            margin-top: 10px;
-        }
-
-        #annee2 {
-            margin-left: 10px;
-        }
-
-        #annee1label {
-            margin-top: 10px;
-        }
-
-        #annee2label {
-            margin-top: 10px;
-        }
-
-        .button {
-            position: absolute;
-            top: 200px;
-            left: 100px;
-            z-index: 999;
-            height: 30px;
-            background-color: #ffffff;
-            border: 0;
-            box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
-            color: #202124;
-            cursor: pointer;
-            border-radius: 16px;
-            padding: 5px 10px 5px 10px;
-            font-weight: bold;
-        }
-
-        .button:hover {
-            background-color: rgb(240, 240, 240);
-        }
-
-        p {
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .flex {
-            display: flex;
-        }
-
-        .leaflet-bar a {
-            background-color: #000;
-            color: rgb(220, 220, 220);
-        }
-
-        .leaflet-bar a:hover {
-            background-color: #000;
-            color: #fff;
-            font-size: 40px;
-        }
-
-        .leaflet-bar a.leaflet-disabled {
-            background-color: #000;
-            color: rgb(120, 120, 120);
-        }
-
-        .leaflet-bar a.leaflet-disabled {
-            background-color: #000;
-            color: rgb(120, 120, 120);
-            font-size: 22px;
-        }
-
-        .leaflet-touch .leaflet-control-layers,
-        .leaflet-touch .leaflet-bar {
-            border: none;
-            box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
-            border-radius: 8px;
-        }
-
-        .leaflet-touch .leaflet-bar a {
-            border-radius: 8px 8px 8px 8px;
-        }
-
-        .leaflet-touch .leaflet-bar a:first-child {
-            border-radius: 8px 8px 0 0;
-        }
-
-        .leaflet-touch .leaflet-bar a:last-child {
-            border-radius: 0 0 8px 8px;
-        }
-
-        button[title='Zoom France'] {
-            background-color: #000;
-            color: #fff;
-            font-weight: bold;
-            font-size: 20px;
-
-        }
-
-        button[title='Zoom France']:hover {
-            background-color: #000;
-            color: #fff;
-            font-size: 30px;
-            font-weight: bold;
-        }
-
-        .leaflet-container .leaflet-control-attribution {
-            background-color: rgba(0, 0, 0, 0);
-        }
-
-        .leaflet-container .leaflet-control-attribution a {
-            color: #fff;
-        }
-
-        .leaflet-container .leaflet-control-attribution span {
-            color: #fff;
-        }
-
-        .leaflet-control-attribution,
-        .leaflet-control-scale-line {
-            color: #bfe5ff;
-        }
-
-        .legend {
-            position: absolute;
-            bottom: 40px;
-            left: 20px;
-            z-index: 999;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 16px;
-            border: 0;
-            box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
-            color: #fff;
-            padding: 10px;
-        }
-
-        .bleu {
-            background-color: blue;
-        }
-
-        .rouge {
-            background-color: red;
-        }
-
-        .caree {
-            width: 16px;
-            height: 16px;
-            display: inline-block;
-            margin-right: 3px;
-        }
     </style>
-
-
-
 </head>
 
 <body>
@@ -312,171 +71,38 @@
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 
 
+    <!--------------- Script qui gere la carte --------------->
+    <script src="js/carte.js"></script>
+    <!--------------- recupere tous les codes cours eau --------------->
     <script src="js/getAllCodeCoursEau.js"></script>
+    <!--------------- gere le traçage des cours eau --------------->
     <script src="js/affichageCoursEau.js"></script>
+    <!--------------- gere le traçage des regions --------------->
+    <script src="js/affichageRegion.js"></script>
+    <!--------------- gere la heat map (coloration des traces) --------------->
     <script src="js/colorationCoursEau.js"></script>
+    <!--------------- fonctions pour l'évolution des temperatures --------------->
     <script src="js/evolution.js"></script>
+    <!--------------- recupere les temperatures les plus recentes --------------->
     <script src="js/getLastTemp.js"></script>
 
     <script>
-        const map = L.map("map", {
-            maxBounds: [
-                [41.3, -5], // Coin sud-ouest de la France (ajustement légèrement à gauche)
-                [51.1, 9.8], // Coin nord-est de la France (ajustement légèrement à droite)
-            ],
-            minZoom: 6,
-        });
+        /* --------------- AJOUT COURS D'EAUX --------------- */
 
-        map.setView([46.6031, 1.8883], 6);
-
-        /*
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        }).addTo(map);
-        
-                L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-        */
-
-        L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: 'ArcGIS'
-        }).addTo(map);
-
-
-        //barre de recherche
-        L.Control.geocoder().addTo(map);
-
-
-        //coloration toutes les régions
-        function style(feature) {
-            return {
-                color: "#9a6ce6", // couleur de bordure
-                weight: 1.8,
-                fillOpacity: 0
-            };
-        }
-
-        // Fonctions pour colorer les régions sélectionné
-        let regioncoloree = null;
-
-        function coloration_region(e) {
-            let layer = e.target;
-            layer.setStyle({
-                weight: 1.5,
-                fillColor: "red",
-                weight: 1.5,
-                fillOpacity: 0.2
-            });
-            layer.bringToFront();
-
-            if (regioncoloree && regioncoloree !== layer) {
-                geojson.resetStyle(regioncoloree);
-            }
-            regioncoloree = layer;
-        }
-
-        // pour zoomer lorsque on sélectionne une région
-        function selection_region(e) {
-            map.fitBounds(e.target.getBounds());
-        }
-
-        /*
-        // Chargement des données GeoJSON des régions de France
-        fetch("data/regionFrance/France.geojson")
-            .then((response) => response.json())
-            .then((data) => {
-                // Création couche pr afficher les régions de France
-                geojson = L.geoJson(data, {
-                    style: style,
-                    onEachFeature: function(feature, layer) {
-                        layer.on({
-                            click: selection_region,
-                        });
-                    }
-                }).addTo(map);
-
-            })
-            .catch((error) =>
-                console.error("Erreur du chargement du fichier GeoJSON :", error)
-            );
-
-        */
-
-        var numBackground = 0;
-
-        function changeBackground() {
-            numBackground++;
-            if (numBackground > 2)
-                numBackground = 0;
-
-            switch (numBackground) {
-                case 0:
-                    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                        attribution: 'ArcGIS'
-                    }).addTo(map);
-                    break;
-                case 1:
-                    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(map);
-                    break;
-                case 2:
-                    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                    }).addTo(map);
-                    break;
-            }
-        }
-
-        // bouton pour changer le fond de carte
-        L.easyButton(
-            "backgroud",
-            function(btn, map) {
-                changeBackground();
-            },
-            "changer le fond de carte"
-        ).addTo(map);
-
-        // bouton accueil carte pour recentrer sur la France
-        L.easyButton(
-            "accueil",
-            function(btn, map) {
-                map.setView([46.6031, 1.8883], 6);
-            },
-            "Zoom France"
-        ).addTo(map);
-
-        document.querySelector('.accueil').innerHTML = '□';
-
-
-        // --------------- AJOUT COURS D'EAUX ---------------
-
-        // récupération des code cours eau
+        //recup la largeur des cours eau
+        var weightCoursEau = getDefaultWeightCoursEau();
+        // recup les codes cours eau
         var tab_codeCoursEau = getAllCodeCoursEau();
-
-        // recuperation des cours d'eau sur la carte
+        // recup et trace les cours d'eau sur la carte
         var tab_coursEau = drawCoursEau(tab_codeCoursEau);
 
+        /* --------------- AJOUT REGION --------------- */
 
-        /* exemple utilisation fonction pour juba 
-        getTabDelta(2010, 2020, tab_codeCoursEau).then(function(tab_delta) {
-            console.log(tab_delta);
-        }).catch(function(error) {
-            console.error(error);
-        });
-        */
+        var region_disable = null;
+        // recup et trace les region sur la carte
+        var tab_region = drawRegions();;
 
-        /* exemple utilisation fonction pour mohamed 
-        getEvolutionCoursEau(2010, 2014, tab_codeCoursEau[1]).then(function(tabEvolutionCoursEau) {
-            console.log(tabEvolutionCoursEau);
-        }).catch(function(error) {
-            console.error(error);
-        });
-        */
-
-
-        // --------------- Evenement Bouton carte ---------------
+        /* --------------- EVENEMENT HEAT MAP CARTE --------------- */
 
         var annee1 = document.getElementById("annee1");
         var annee2 = document.getElementById("annee2");

@@ -1,4 +1,7 @@
 // --------------- AJOUT COURS D'EAUX ---------------
+function getDefaultWeightCoursEau() {
+    return 2;
+}
 
 function parametrageCoursEau(coursEau) {
 
@@ -13,17 +16,15 @@ function parametrageCoursEau(coursEau) {
 
     // evenement au dé-survol sur un cours eau
     coursEau.on("mouseout", function (e) {
-        coursEau.setStyle({
-            weight: 2,
-        });
+        setWeightCoursEau(coursEau, weightCoursEau);
     });
 
     // evenement au click sur un cours eau
     coursEau.on("click", function (e) {
         // zoom global sur le cours eau
-        map.fitBounds(e.target.getBounds());
+        //map.fitBounds(e.target.getBounds());
         // zoom de plus en plus sur le cours eau 
-        //map.setView(e.latlng, map.getZoom() + 4);
+        map.setView(e.latlng, map.getZoom() + 1);
     });
 }
 
@@ -51,10 +52,18 @@ function getCodeCoursEau(coursEau) {
     return cdEntiteHydrographique;
 }
 
+function setWeightCoursEau(coursEau, weight) {
+    // mets à jour la var global 
+    weightCoursEau = weight;
+    coursEau.setStyle({
+        weight: weight,
+    });
+}
+
 function setColorCoursEau(coursEau, color) {
     coursEau.setStyle({
         color: color,
-        weight: 2,
+        weight: weightCoursEau,
     });
 }
 
