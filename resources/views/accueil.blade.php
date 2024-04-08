@@ -343,6 +343,8 @@
     <script>
         /* --------------- AJOUT COURS D'EAUX --------------- */
 
+        //recup la largeur des cours eau
+        var weightCoursEau = getDefaultWeightCoursEau();
         // recup les codes cours eau
         var tab_codeCoursEau = getAllCodeCoursEau();
         // recup et trace les cours d'eau sur la carte

@@ -92,13 +92,15 @@ map.on('zoomend', function () {
     var currentZoom = map.getZoom();
     console.log("Niveau de zoom actuel :", currentZoom);
 
-    if (currentZoom >= 9) {
+
+
+    if (currentZoom <= 18) {
         tab_region.forEach(region => {
             region.remove();
         });
     }
 
-    if (currentZoom < 9) {
+    if (currentZoom <= 9) {
         tab_region.forEach(region => {
             region.addTo(map);
         });
@@ -106,6 +108,37 @@ map.on('zoomend', function () {
         if (region_disable != null) {
             region_disable.remove();
         }
+    }
+
+
+    if (currentZoom <= 18) {
+        tab_coursEau.forEach(coursEau => {
+            setWeightCoursEau(coursEau, 7);
+        })
+    }
+
+    if (currentZoom <= 14) {
+        tab_coursEau.forEach(coursEau => {
+            setWeightCoursEau(coursEau, 5);
+        })
+    }
+
+    if (currentZoom <= 9) {
+        tab_coursEau.forEach(coursEau => {
+            setWeightCoursEau(coursEau, 4);
+        })
+    }
+
+    if (currentZoom <= 7) {
+        tab_coursEau.forEach(coursEau => {
+            setWeightCoursEau(coursEau, 3);
+        })
+    }
+
+    if (currentZoom <= 6) {
+        tab_coursEau.forEach(coursEau => {
+            setWeightCoursEau(coursEau, 2);
+        })
     }
 
 });
