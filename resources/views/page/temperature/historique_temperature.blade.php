@@ -8,16 +8,17 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
 
-    <link rel="stylesheet" href="css/historique.css">
-    <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/historique.css">
+
 
 </head>
 
 <body>
     @include('headfoot/header')
 
-    <h1>Historique des Températures</h1>
+    <h1 class="weight">Historique des Températures</h1>
 
     <div class="container">
 

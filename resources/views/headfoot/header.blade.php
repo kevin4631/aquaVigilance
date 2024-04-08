@@ -1,8 +1,10 @@
 <header>
-    <div class="logoTitre">
-        <img class="logo" src="img/logo.png" alt="logo">
-        <h1 class="titre">AquaVigilance</h1>
-    </div>
+    <a href="{{ route('accueil') }}">
+        <div class="logoTitre">
+            <img class="logo" src="img/logo.png" alt="logo">
+            <h1 class="titre">AquaVigilance</h1>
+        </div>
+    </a>
 
     <div class="boutonHeader">
         @auth <!--Si l'utilisateur est connecté-->
