@@ -15,4 +15,7 @@ class AccueilController extends Controller
     public function classement() {
         return view("statistiques/classement");
     }
+    public function evolution() {
+        return view("statistiques/evolution");
+    }
 }
