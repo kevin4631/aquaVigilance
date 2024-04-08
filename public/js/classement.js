@@ -3,8 +3,14 @@ function afficheEvo() {
     elem.style.display = document.getElementById('checkbox').checked ? 'inline' : 'none';
 }
 
-function drawGraphique() {
+function drawGraphique(annee1, annee2, tab_Region, tab_delta) {
     const ctx = document.getElementById('myChart');
+
+    // Vérifier si un graphique existe déjà
+    if (myChart) {
+        // Si oui, le détruire avant d'en créer un nouveau
+        myChart.destroy();
+    }
 
     const data = {
         labels: tab_Region,
@@ -15,7 +21,7 @@ function drawGraphique() {
         }]
     };
 
-    new Chart(ctx, {
+    myChart = new Chart(ctx, {
         type: 'bar',
         data: data,
         options: {
@@ -34,7 +40,7 @@ function drawGraphique() {
                 },
                 title: {
                     display: true,
-                    text: 'evolution'
+                    text: 'evolution entre ' + annee1 + " et " + annee2
                 }
             },
             scales: {
@@ -45,6 +51,27 @@ function drawGraphique() {
             },
             maintainAspectRatio: false,
         },
+    });
+}
+
+function loadGraphique(annee1, annee2) {
+    var tab_delta = [];
+    var tab_Region = [];
+
+    getDeltaRegion(annee1, annee2).then(function (tab_deltaRegion) {
+        //console.log(tab_deltaRegion);
+
+        tab_deltaRegion.forEach(deltaRegion => {
+            tab_Region.push(regions[deltaRegion[0]]);
+            tab_delta.push(deltaRegion[1]);
+        });
+
+        //console.log(tab_delta);
+        //console.log(tab_Region);
+
+        drawGraphique(annee1, annee2, tab_Region, tab_delta);
+    }).catch(function (error) {
+        console.error(error);
     });
 }
 
