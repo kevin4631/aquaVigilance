@@ -3,7 +3,7 @@
     height: 650px;
     width: 400px;
     position: absolute;
-    top: 110px;
+    top: 140px;
     right: 100px;
     z-index: 999;
     border-radius: 16px;
@@ -20,7 +20,7 @@
 
 #checkboxEvo {
     position: absolute;
-    top: 60px;
+    top: 100px;
     right: 100px;
     z-index: 999;
     border-radius: 16px;

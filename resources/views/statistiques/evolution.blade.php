@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <!-- Inclure Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-         body {
+        body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -34,7 +35,8 @@
             margin-top: 20px;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: center;
             border: 1px solid #ddd;
@@ -49,8 +51,13 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Evolution des températures des cours d'eau</h1>
+
+    <!-- Partie pour le graphique -->
+    <h2>Graphique de l'évolution des températures par année</h2>
+    <canvas id="myChart" width="800" height="400"></canvas>
 
     <!-- Partie pour le tableau -->
     <h2>Tableau des moyennes de température par année</h2>
@@ -65,11 +72,7 @@
             <!-- Les données seront ajoutées ici dynamiquement -->
         </tbody>
     </table>
-
-    <!-- Partie pour le graphique -->
-    <h2>Graphique de l'évolution des températures par année</h2>
-    <canvas id="myChart" width="800" height="400"></canvas>
-
+    
     <script>
         async function getEvolutionCoursEau(annee1, annee2, codeCoursEau) {
             var moyennesParAnnee = {};
@@ -103,21 +106,21 @@
             return moyennesParAnnee;
         }
 
-       
+
 
         async function afficherEvolution(tab_codeCoursEau) {
             const codeCoursEau = ['----0010', 'F---0100', 'F24-0400', 'F4--0210', 'F4380600', 'F44-0400', 'F4480600', 'F45-0400', 'F46-0400', 'F46-0420', 'F48-0400', 'F65-0400', 'F70-0400', 'H---0100', 'H2269000', 'H2280600', 'H30-0400'];
             const annee1 = 2010;
             const annee2 = 2020;
-            
+
 
             const moyennesParAnnee = {};
             for (const code of codeCoursEau) {
-                
+
                 const moyennes = await getEvolutionCoursEau(annee1, annee2, code);
                 console.log(moyennes);
                 for (const annee in moyennes) {
-               
+
                     if (!moyennesParAnnee[annee]) {
                         moyennesParAnnee[annee] = [];
                     }
@@ -166,4 +169,5 @@
         afficherEvolution();
     </script>
 </body>
+
 </html>

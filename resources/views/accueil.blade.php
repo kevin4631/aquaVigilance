@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/carte.css" />
+    <link rel="stylesheet" href="css/classement.css" />
 
     <style>
         body {
@@ -55,6 +56,18 @@
             ⩽ 0°C</span>
     </div>
 
+    <div id="checkboxEvo">
+        <label class="pointer" for="checkbox">Classement régions</label>
+        <input class="pointer" type="checkbox" id="checkbox" onchange="afficheEvo()">
+    </div>
+
+    <div id="evo">
+        <canvas id="myChart"></canvas>
+        <div class="center">
+            <a id="BoutonEvo" href="{{route('evolution')}}" target="_blank">Voir les évolutions</a>
+        </div>
+    </div>
+
 
     <div id="map">
     </div>
@@ -85,6 +98,12 @@
     <script src="js/evolution.js"></script>
     <!--------------- recupere les temperatures les plus recentes --------------->
     <script src="js/getLastTemp.js"></script>
+    <!--------------- gere le classement des regions --------------->
+    <script src="js/classement.js"></script>
+    <!--------------- api graphique --------------->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 
     <script>
         /* --------------- AJOUT COURS D'EAUX --------------- */
@@ -127,6 +146,27 @@
 
         annee2.addEventListener("click", function() {
             showEvolution(parseInt(annee1.value), parseInt(annee2.value), tab_coursEau)
+        });
+
+
+        /* --------------- CLASSEMENT --------------- */
+
+        var tab_delta = [];
+        var tab_Region = [];
+
+        getDeltaRegion(2010, 2020).then(function(tab_deltaRegion) {
+            //console.log(tab_deltaRegion);
+
+            tab_deltaRegion.forEach(deltaRegion => {
+                tab_Region.push(regions[deltaRegion[0]]);
+                tab_delta.push(deltaRegion[1]);
+            });
+            //console.log(tab_delta);
+            //console.log(tab_Region);
+
+            drawGraphique();
+        }).catch(function(error) {
+            console.error(error);
         });
     </script>
 </body>
