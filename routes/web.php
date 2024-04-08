@@ -30,4 +30,4 @@ Route::get('historique', [SaisieTempController::class, 'historique'])->name('his
 Route::get('temperature/{id}/supprimer', [SaisieTempController::class, 'supprimer'])->name('temperature.supprimer');
 
 Route::get('classement', [AccueilController::class, 'classement']);
-Route::get('evolution', [AccueilController::class, 'evolution']);
+Route::get('evolution', [AccueilController::class, 'evolution'])->name('evolution');

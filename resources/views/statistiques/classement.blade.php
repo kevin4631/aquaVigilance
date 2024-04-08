@@ -29,7 +29,7 @@
     <div id="evo">
         <canvas id="myChart"></canvas>
         <div class="center">
-            <a id="BoutonEvo" href="">Voir les évolutions</a>
+            <a id="BoutonEvo" href="{{route('evolution')}}">Voir les évolutions</a>
         </div>
     </div>
 
@@ -57,7 +57,6 @@
             93: "Provence-Alpes-Côte d'Azur",
             94: "Corse"
         };
-
 
         var annee1 = 2010;
         var annee2 = 2020;
