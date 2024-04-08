@@ -8,21 +8,26 @@
 
     <style>
         body {
+            margin: 0px;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
             background-color: black;
         }
 
         #evo {
+            display: none;
             height: 600px;
             width: 400px;
             position: absolute;
             top: 110px;
-            left: 100px;
+            right: 100px;
             z-index: 999;
             border-radius: 16px;
             border: 0;
             box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
             color: #202124;
-            padding: 10px;
             background-color: #ffffff;
             padding: 30px 10px 30px 10px;
         }
@@ -30,10 +35,28 @@
         #myChart {
             height: 400px;
         }
+
+        #checkboxEvo {
+            position: absolute;
+            top: 60px;
+            right: 100px;
+            z-index: 999;
+            border-radius: 16px;
+            border: 0;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
+            color: #202124;
+            padding: 2px 10px 2px 10px;
+            background-color: #ffffff;
+        }
     </style>
 </head>
 
 <body>
+    <div id="checkboxEvo">
+        <label for="checkbox">Evolution région</label>
+        <input type="checkbox" id="checkbox" onchange="afficheEvo()">
+    </div>
+
     <div id="evo">
         <canvas id="myChart"></canvas>
     </div>
@@ -42,6 +65,11 @@
     <script src="js/evolution.js"></script>
 
     <script>
+        function afficheEvo() {
+            var elem = document.querySelector('#evo');
+            elem.style.display = document.getElementById('checkbox').checked ? 'inline' : 'none';
+        }
+
         const regions = {
             11: "Île-de-France",
             24: "Centre-Val de Loire",
@@ -123,7 +151,7 @@
                     },
                     maintainAspectRatio: false,
                 },
-            }); 
+            });
         }
     </script>
 </body>
