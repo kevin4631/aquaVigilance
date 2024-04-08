@@ -143,33 +143,20 @@
         });
 
         annee1.addEventListener("click", function() {
+            loadGraphique(parseInt(annee1.value), parseInt(annee2.value));
             showEvolution(parseInt(annee1.value), parseInt(annee2.value), tab_coursEau)
         });
 
         annee2.addEventListener("click", function() {
+            loadGraphique(parseInt(annee1.value), parseInt(annee2.value));
             showEvolution(parseInt(annee1.value), parseInt(annee2.value), tab_coursEau)
         });
 
 
         /* --------------- CLASSEMENT --------------- */
 
-        var tab_delta = [];
-        var tab_Region = [];
-
-        getDeltaRegion(2010, 2020).then(function(tab_deltaRegion) {
-            //console.log(tab_deltaRegion);
-
-            tab_deltaRegion.forEach(deltaRegion => {
-                tab_Region.push(regions[deltaRegion[0]]);
-                tab_delta.push(deltaRegion[1]);
-            });
-            //console.log(tab_delta);
-            //console.log(tab_Region);
-
-            drawGraphique();
-        }).catch(function(error) {
-            console.error(error);
-        });
+        var myChart = null;
+        loadGraphique(2010, 2020);
     </script>
 
     <script>
