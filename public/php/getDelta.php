@@ -4,49 +4,61 @@ function getDelta($annee1, $annee2, $code_cours_eau)
 {
     $content = json_decode(file_get_contents('../data/' . $code_cours_eau . '.json'), true);
 
-    $nb_mesures_annee1 = 0;
-    $nb_mesures_annee2 = 0;
+    $delta = 0;
 
-    $total_annee1 = 0;
-    $total_annee2 = 0;
+    $tabMesuresAnnee1 = array();
+    $tabMesuresAnnee2 = array();
 
-    //$tab1 = array();
-    //$tab2 = array();
+    $tabMoyenne = array();
 
+    // ajout des valeurs dans des tableau pour les trier ensuite
     foreach ($content as $data) {
         if (substr($data["date_mesure_temp"], 0, -6) == $annee1) {
-            $nb_mesures_annee1++;
-            $total_annee1 += $data["resultat"];
-            //$tab1[] = $data["resultat"] . " " . $data["date_mesure_temp"];
+            $tabMesuresAnnee1[] = [
+                "resultat" => $data["resultat"],
+                "mois" => intval(explode("-", $data["date_mesure_temp"])[1])
+            ];
         }
 
         if (substr($data["date_mesure_temp"], 0, -6) == $annee2) {
-            $nb_mesures_annee2++;
-            $total_annee2 += $data["resultat"];
-            //$tab2[] = $data["resultat"] . " " . $data["date_mesure_temp"];
+            $tabMesuresAnnee2[] = [
+                "resultat" => $data["resultat"],
+                "mois" => intval(explode("-", $data["date_mesure_temp"])[1])
+            ];
         }
     }
 
-    $calcul_imposible = 0;
+    $lenghtMin = min(sizeof($tabMesuresAnnee1), sizeof($tabMesuresAnnee2));
+    $iTab1 = 0;
+    $iTab2 = 0;
 
-    $moyenne_annee1 = null;
-    if ($nb_mesures_annee1 != 0) {
-        $moyenne_annee1 = $total_annee1 / $nb_mesures_annee1;
-    } else {
-        $calcul_imposible = 1;
+    // boucle pour récuperer les valeurs uniquement des même mois pour avoir des valeurs cohérente
+    while ($iTab1 < $lenghtMin - 1 && $iTab2 < $lenghtMin - 1) {
+        if ($tabMesuresAnnee1[$iTab1]["mois"] == $tabMesuresAnnee2[$iTab2]["mois"]) {
+            $tabMoyenne[] = ($tabMesuresAnnee2[$iTab2]["resultat"] - $tabMesuresAnnee1[$iTab1]["resultat"]);
+            $iTab1++;
+            $iTab2++;
+        }
+
+        if ($tabMesuresAnnee1[$iTab1]["mois"] < $tabMesuresAnnee2[$iTab2]["mois"]) {
+            $iTab1++;
+        }
+
+        if ($tabMesuresAnnee1[$iTab1]["mois"] > $tabMesuresAnnee2[$iTab2]["mois"]) {
+            $iTab2++;
+        }
     }
 
-    $moyenne_annee2 = null;
-    if ($nb_mesures_annee2 != 0) {
-        $moyenne_annee2 = $total_annee2 / $nb_mesures_annee2;
-    } else {
-        $calcul_imposible = 1;
+    foreach ($tabMoyenne as $key => $value) {
+        $delta += $value;
     }
 
-    if ($calcul_imposible == 1)
+    $nbValeurs = sizeof($tabMoyenne);
+
+    if ($nbValeurs == 0)
         return 999;
 
-    return $moyenne_annee2 - $moyenne_annee1;
+    return $delta /= $nbValeurs;
 }
 
 //echo '----- Debut du script -----' . "\n";

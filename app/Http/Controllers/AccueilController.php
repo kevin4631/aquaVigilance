@@ -55,6 +55,4 @@ class AccueilController extends Controller
 
         return view("statistiques/classement", ['cours_eau' => $cours_eau]);
     }
-
-
 }
