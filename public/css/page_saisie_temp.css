@@ -88,34 +88,3 @@ h5 {
     margin-top: 20px; /* Add some top margin for spacing */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle text shadow */
 }
-
-.button-container {
-    position: absolute;
-    top: 11px;
-    right: 10px;
-  }
-  
-  .button-container a {
-    display:inline-grid;
-    padding: 10px 20px; /* Increase padding for better touch area */
-    color:  #4DC3FA;
-    background-color: #1F2739;
-    text-decoration: none;
-    border: none; /* Remove border */
-    border-radius: 10px;
-    cursor: pointer; /* Show pointer cursor on hover */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transition */
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Use clean and readable font */
-    font-size: 14px; /* Adjust font size */
-    font-weight: 500; /* Medium font weight for a professional look */
-    margin-right: 10px; /* Add margin between buttons */
-  }
-  
-  .button-container a:last-child {
-    margin-right: 0; /* Remove margin from the last button */
-  }
-  
-  .button-container a:hover {
-    background-color: #1F2739; /* Darker blue on hover */
-    color: white; /* Change text color on hover */
-  }
