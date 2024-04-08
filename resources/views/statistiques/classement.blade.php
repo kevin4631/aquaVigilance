@@ -5,10 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classement des régions</title>
+
+    <style>
+        body {
+            background-color: black;
+        }
+
+        #evo {
+            height: 600px;
+            width: 400px;
+            position: absolute;
+            top: 110px;
+            left: 100px;
+            z-index: 999;
+            border-radius: 16px;
+            border: 0;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 20%), 0 -1px 0px rgb(0 0 0 / 2%);
+            color: #202124;
+            padding: 10px;
+            background-color: #ffffff;
+            padding: 30px 10px 30px 10px;
+        }
+
+        #myChart {
+            height: 400px;
+        }
+    </style>
 </head>
 
 <body>
-    <div>
+    <div id="evo">
         <canvas id="myChart"></canvas>
     </div>
 
@@ -61,7 +87,6 @@
             const data = {
                 labels: tab_Region,
                 datasets: [{
-                    label: 'delta',
                     data: tab_delta,
                     borderColor: 'rgba(255,0,0,1)',
                     backgroundColor: 'rgba(255,0,0,0.5)',
@@ -83,7 +108,7 @@
                     responsive: true,
                     plugins: {
                         legend: {
-                            position: 'right',
+                            display: false,
                         },
                         title: {
                             display: true,
@@ -95,9 +120,10 @@
                             min: -5,
                             max: 5
                         }
-                    }
+                    },
+                    maintainAspectRatio: false,
                 },
-            });
+            }); 
         }
     </script>
 </body>
