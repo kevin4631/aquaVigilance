@@ -29,7 +29,7 @@
     <div id="evo">
         <canvas id="myChart"></canvas>
         <div class="center">
-            <a id="BoutonEvo" href="{{route('evolution')}}">Voir les évolutions</a>
+            <a id="BoutonEvo" href="{{route('evolution')}}" target="_blank">Voir les évolutions</a>
         </div>
     </div>
 
