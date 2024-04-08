@@ -57,23 +57,13 @@ class DatabaseSeeder extends Seeder
         $Conseils->setFlags(SplFileObject::READ_CSV | SplFileObject::DROP_NEW_LINE);
 
         foreach ($Conseils as $row) {
-            if (!empty($row[0])) {
+            if (!empty($row[0]) && !empty($row[1])) {
                 Conseil::create([
-                    "description"=> $row[0]
+                    "code_cours_eau" => $row[0],
+                    "description" => $row[1]
                 ]);
             }
         }
-
-        /*$ConseilCoursEau = new SplFileObject(database_path('../public/data/BDD/asso_conseils_eau.csv'));
-        $ConseilCoursEau->setFlags(SplFileObject::READ_CSV | SplFileObject::DROP_NEW_LINE);
-
-        foreach ($ConseilCoursEau as $row) {
-            if (!empty($row[0])) {
-                ConseilCourEau::create([
-                    "code_cours_eau" => $row[0],
-                ]);
-            }*/
         
-       
     }
 }

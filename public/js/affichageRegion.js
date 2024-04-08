@@ -20,7 +20,7 @@ function parametrageRegion(region) {
     // evenement au survol sur une region
     region.on("mouseover", function (e) {
         region.setStyle({
-            fillColor: "rgb(250,0,0)",
+            fillColor: "#FFFF00",
             weight: 2,
             fillOpacity: 0.2
         });
