@@ -204,15 +204,28 @@
             background-color: #000;
             color: #fff;
             font-weight: bold;
-            font-size: 20px;
-
         }
 
         button[title='Zoom France']:hover {
             background-color: #000;
             color: #fff;
-            font-size: 30px;
             font-weight: bold;
+        }
+
+        button[title='changer le fond de carte'] {
+            background-color: #000;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        button[title='changer le fond de carte']:hover {
+            background-color: #000;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        button[title='changer le fond de carte'] span span img:hover{
+            margin-left: -1px;
         }
 
         .leaflet-container .leaflet-control-attribution {
@@ -258,6 +271,16 @@
             height: 16px;
             display: inline-block;
             margin-right: 3px;
+        }
+
+        .imgButton {
+            margin-top: 6px;
+            height: 17px;
+        }
+
+        .imgButton:hover {
+            margin-top: 3px;
+            height: 22px;
         }
     </style>
 
@@ -438,6 +461,13 @@
             "changer le fond de carte"
         ).addTo(map);
 
+        // ajout iconne au button
+        var imageElement = document.createElement('img');
+        imageElement.src = 'img/changeCarte.svg';
+        imageElement.className = 'imgButton';
+        document.querySelector('.backgroud').appendChild(imageElement);
+
+
         // bouton accueil carte pour recentrer sur la France
         L.easyButton(
             "accueil",
@@ -447,7 +477,13 @@
             "Zoom France"
         ).addTo(map);
 
-        document.querySelector('.accueil').innerHTML = '□';
+        // ajout iconne au button
+        var imageElement2 = document.createElement('img');
+        imageElement2.src = 'img/deZoom.png';
+        imageElement2.className = 'imgButton';
+        document.querySelector('.accueil').appendChild(imageElement2);
+
+
 
 
         // --------------- AJOUT COURS D'EAUX ---------------
@@ -467,8 +503,9 @@
         });
         */
 
-        /* exemple utilisation fonction pour mohamed 
-        getEvolutionCoursEau(2010, 2014, tab_codeCoursEau[1]).then(function(tabEvolutionCoursEau) {
+        //exemple utilisation fonction pour mohamed 
+        /*
+         getEvolutionCoursEau(2010, 2020, "----0000").then(function(tabEvolutionCoursEau) {
             console.log(tabEvolutionCoursEau);
         }).catch(function(error) {
             console.error(error);
