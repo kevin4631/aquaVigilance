@@ -19,28 +19,50 @@
         // recup les codes cours eau
         var tab_codeCoursEau = getAllCodeCoursEau();
 
-        // Supposons que coursEau[11] soit le sous-tableau dont vous voulez extraire les valeurs
-        var sousTableau = coursEau[11];
+      // Initialisation d'un objet pour stocker les sommes des deltas par région
+var sommes_deltas_par_region = {};
 
-        // Utilisation de la méthode map pour extraire les valeurs de chaque objet
-        var ce_ileFrance = sousTableau.map(function(objet) {
+// Boucle à travers chaque région
+for (var region in coursEau) {
+    if (coursEau.hasOwnProperty(region)) {
+        var sousTableau = coursEau[region];
+        var ce_region = sousTableau.map(function(objet) {
             return objet.code_cours_eau; // Extraction de la valeur de la clé "code_cours_eau"
         });
 
-        console.log(ce_ileFrance);
+        // Initialisation de la somme des deltas et du compteur de cours d'eau pour la région actuelle
+        var somme_delta_region = 0;
+        var nombre_cours_eau_region = 0;
 
-        var somme_delta_ile_france = 0;
-        getTabDelta(2010, 2020, ce_ileFrance).then(function(tab_delta) {
-                console.log(tab_delta[0]);
-                for (var i = 0; i < tab_delta.length; i++) {
-                    if (tab_delta[i].delta != 999) {
-                        somme_delta_ile_france += parseInt(tab_delta[i].delta,10);
-                    }
+        // Calcul de la somme des deltas pour la région actuelle
+        getTabDelta(2010, 2020, ce_region).then(function(tab_delta) {
+            for (var i = 0; i < tab_delta.length; i++) {
+                if (tab_delta[i].delta != 999) {
+                    somme_delta_region += parseInt(tab_delta[i].delta, 10);
+                    nombre_cours_eau_region++; // Incrémentation du compteur de cours d'eau
                 }
-                console.log(somme_delta_ile_france);
-            }).catch(function(error) {
-                console.error(error);
-            });
+            }
+            // Calcul de la moyenne des deltas pour la région et stockage dans l'objet
+            sommes_deltas_par_region[region] = somme_delta_region / nombre_cours_eau_region;
+
+            console.log("Moyenne des deltas pour la région : " + sommes_deltas_par_region[region]);
+        }).catch(function(error) {
+            console.error(error);
+        });
+    }
+}
+
+
+// Calcul de la moyenne des deltas pour chaque région
+for (var region in sommes_deltas_par_region) {
+    if (sommes_deltas_par_region.hasOwnProperty(region)) {
+        var somme_delta_region = sommes_deltas_par_region[region];
+        var nombre_cours_eau = coursEau[region].length;
+        var moyenne_delta_region = somme_delta_region / nombre_cours_eau;
+        console.log("Moyenne des deltas pour la région: " + moyenne_delta_region);
+    }
+}
+
 
 
     </script>
