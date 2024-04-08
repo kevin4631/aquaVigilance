@@ -8,7 +8,8 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
 
@@ -64,7 +65,7 @@
     <div id="evo">
         <canvas id="myChart"></canvas>
         <div class="center">
-            <a id="BoutonEvo" href="{{route('evolution')}}" target="_blank">Voir les évolutions</a>
+            <a id="BoutonEvo" href="{{ route('evolution') }}" target="_blank">Voir les évolutions</a>
         </div>
     </div>
 
@@ -75,7 +76,8 @@
     @include('headfoot/footer')
 
     <!--------------- Récupération de la carte leaflet--------------->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <!--------------- Barre de recherche--------------->
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -155,6 +157,21 @@
 
         var myChart = null;
         loadGraphique(2010, 2020);
+    </script>
+
+    <script>
+        var myconseils = @json($conseils);
+        console.log(myconseils);
+
+        show_conseils = (code) => {
+            if (document.querySelector("#" + code).style.display == 'block') {
+                document.querySelector("#btn_" + code).textContent = "Afficher les conseils",
+                    document.querySelector("#" + code).style.display = 'none';
+            } else {
+                document.querySelector("#btn_" + code).textContent = "Masquer les conseils",
+                    document.querySelector("#" + code).style.display = 'block';
+            }
+        }
     </script>
 </body>
 

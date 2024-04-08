@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
                     "description" => $row[1]
                 ]);
             }
-        }
+        } 
         
     }
 }
