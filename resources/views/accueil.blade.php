@@ -224,7 +224,7 @@
             font-weight: bold;
         }
 
-        button[title='changer le fond de carte'] span span img:hover{
+        button[title='changer le fond de carte'] span span img:hover {
             margin-left: -1px;
         }
 
@@ -366,7 +366,6 @@
             attribution: 'ArcGIS'
         }).addTo(map);
 
-
         //barre de recherche
         L.Control.geocoder().addTo(map);
 
@@ -430,7 +429,7 @@
 
         function changeBackground() {
             numBackground++;
-            if (numBackground > 2)
+            if (numBackground > 4)
                 numBackground = 0;
 
             switch (numBackground) {
@@ -441,12 +440,25 @@
                     break;
                 case 1:
                     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        attribution: '<a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(map);
                     break;
                 case 2:
                     L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                        attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    }).addTo(map);
+                    break;
+                case 3:
+                    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                        attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                        subdomains: 'abcd',
+                        maxZoom: 20
+                    }).addTo(map);
+                    break;
+                case 4:
+                    L.tileLayer('https://{s}.tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey={apikey}', {
+                        attribution: '<a href="http://www.thunderforest.com/">Thunderforest</a>',
+                        apikey: '0b17287f3b5d470ba67c163c0c26246e',
                     }).addTo(map);
                     break;
             }
