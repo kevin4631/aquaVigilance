@@ -36,11 +36,14 @@
     <div class="form-group">
         <label for="libelle_cours_eau">Cours d'eau:</label>
         <select class="form-control" id="libelle_cours_eau" name="libelle_cours_eau" required>
-            <option value="">Select Cours d'eau</option>
+            <option value="">Sélectionner un cours d'eau</option>
+            @foreach ($cours_eaux as $id => $libelle)
+                <option value="{{ $id }}">{{ $libelle }}</option>
+            @endforeach
         </select>
     </div>
     
-
+    
     <div class="form-group">
         <label for="date_mesure_temp">Date mesure temp:</label>
         <input type="date" class="form-control" id="date_mesure_temp" name="date_mesure_temp" required min="{{ date('Y-m-d') }}">

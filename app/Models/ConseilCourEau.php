@@ -4,26 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-
-//association_conseil_eau
-
 class ConseilCourEau extends Model
 {
-
     protected $table = 'association_conseil_eau';
-    public $timestamps = false;
-    protected $primaryKey = null;
-    public $incrementing = false;
-    protected $fillable = ['code_cours_eau', 'id'];
+    protected $primaryKey = ['code_cours_eau', 'conseil_id'];
+    protected $foreignKey = 'conseil_id';
+    public $incrementing = true; 
+    public $timestamps = false; 
 
-    // définir les relations
-    public function coursEau()
-    {
-        return $this->belongsTo(CoursEau::class, 'code_cours_eau', 'code_cours_eau');
-    }
+    protected $fillable = ['code_cours_eau', 'conseil_id'];
 
-    public function conseil()
-    {
-        return $this->belongsTo(Conseil::class, 'id', 'id');
-    }
+   
 }
