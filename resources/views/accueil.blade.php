@@ -160,7 +160,7 @@
     </script>
 
     <script>
-        var myconseils = @json($conseils);
+        var myconseils = json($conseils);
         console.log(myconseils);
 
         show_conseils = (code) => {
