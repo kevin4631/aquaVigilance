@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AccueilController extends Controller
 {
@@ -14,8 +15,5 @@ class AccueilController extends Controller
 
     public function classement() {
         return view("statistiques/classement");
-    }
-    public function evolution() {
-        return view("statistiques/evolution");
     }
 }
