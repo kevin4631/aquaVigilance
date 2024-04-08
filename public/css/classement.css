@@ -1,10 +1,10 @@
 #evo {
     display: none;
-    height: 650px;
+    height: 600px;
     width: 400px;
     position: absolute;
-    top: 140px;
-    right: 100px;
+    top: 170px;
+    right: 40px;
     z-index: 999;
     border-radius: 16px;
     border: 0;
@@ -15,13 +15,15 @@
 }
 
 #myChart {
-    max-height: 600px;
+    max-height: 550px;
 }
 
 #checkboxEvo {
+    display: flex;
+    align-items: center;
     position: absolute;
-    top: 100px;
-    right: 100px;
+    top: 130px;
+    right: 40px;
     z-index: 999;
     border-radius: 16px;
     border: 0;
@@ -54,4 +56,8 @@
 .center{
     display: flex;
     justify-content: center;
+}
+
+#checkbox{
+    margin: 5px;
 }
