@@ -21,8 +21,8 @@
     <div class="creation_div">
         <form class="creation_form"  action="{{route('reset')}}" method="post">@csrf
         <h1>Changement de mot de passe</h1>
-        <input type="email" name="email" placeholder="adresse mail">
-        <input type="password" name="password" placeholder=" nouveau mot de passe">
+        <input type="email" name="email" placeholder="adresse mail" required>
+        <input type="password" name="password" placeholder=" nouveau mot de passe" required>
         <button type="submit">Changer le mot de passe</button>
     </form>
     </div>

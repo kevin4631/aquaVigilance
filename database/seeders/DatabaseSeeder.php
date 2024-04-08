@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use App\Models\CoursEau;
 use App\Models\Region;
 use App\Models\RegionCoursEau;
+use App\Models\Conseil;
+use App\Models\ConseilCourEau;
 use SplFileObject;
 
 class DatabaseSeeder extends Seeder
@@ -51,6 +53,17 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-       
+        $Conseils = new SplFileObject(database_path('../public/data/BDD/fichier_conseils_eau.csv'));
+        $Conseils->setFlags(SplFileObject::READ_CSV | SplFileObject::DROP_NEW_LINE);
+
+        foreach ($Conseils as $row) {
+            if (!empty($row[0]) && !empty($row[1])) {
+                Conseil::create([
+                    "code_cours_eau" => $row[0],
+                    "description" => $row[1]
+                ]);
+            }
+        }
+        
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conseil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,11 +10,13 @@ class AccueilController extends Controller
 {
     public function accueil()
     {
-        return view("accueil");
+        $conseils = Conseil::all()->groupBy('code_cours_eau');
+        return view("accueil", compact('conseils'));
     }
     //TO DO
 
-    public function classement() {
+    public function classement()
+    {
 
         // Tableau associatif des codes de région
         $regions = [
@@ -42,14 +45,17 @@ class AccueilController extends Controller
 
         // Boucle pour récupérer les cours d'eau pour chaque région
         foreach ($regions as $region => $code_region) {
-            $cours_eau[$code_region] = DB::select("SELECT code_cours_eau 
-                                            FROM association_region_eau
-                                            WHERE code_region = $code_region;");
+            $cours_eau[$region] = DB::select("SELECT code_cours_eau
+                                       FROM association_region_eau
+                                       WHERE code_region = $code_region;");
         }
 
 
-            return view("statistiques/classement", ['cours_eau' => $cours_eau]);
-            }
 
 
+        return view("statistiques/classement", ['cours_eau' => $cours_eau]);
+    }
+    public function evolution() {
+        return view("statistiques/evolution");
+    }
 }

@@ -1,18 +1,15 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Conseil extends Model
 {
-
-    protected $table = 'conseil'; // nom table
-    protected $primaryKey = 'id'; // clé primaire de la table
-    public $incrementing = true; // incrémentation
-    protected $keyType = 'string';
-    public $timestamps = false; // pour éviter le created at et update ..
-
-    protected $fillable = [
-        'id', 'description'
-    ];
+    protected $table = 'conseil';
+    protected $foreignKey = 'code_cours_eau';
+    public $timestamps = false;
+    protected $fillable = ['code_cours_eau', 'description'];
 }
+
+

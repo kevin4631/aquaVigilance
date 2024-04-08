@@ -4,27 +4,32 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateConseilTable extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('association_conseil_eau', function (Blueprint $table) {
+        Schema::create('conseil', function (Blueprint $table) {
             $table->string('code_cours_eau', 50);
-            $table->unsignedBigInteger('id');
-            $table->primary(['code_cours_eau', 'id']);
             $table->foreign('code_cours_eau')->references('code_cours_eau')->on('cours_eau');
-            $table->foreign('id')->references('id')->on('conseil');
+            $table->string('description', 8000);
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('association_conseil_eau');
+        Schema::dropIfExists('conseil');
     }
-};
+}
+
+
+

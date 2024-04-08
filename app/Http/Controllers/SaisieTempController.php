@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Conseil;
+use App\Models\CoursEau;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Temperature;
@@ -43,7 +44,12 @@ class SaisieTempController extends Controller
         return redirect()->route("accueil");
     }
 
-    function historique() {
+    public function listecours (){
+        $cours_eaux = CoursEau::pluck('libelle', 'id'); 
+        return view('page.temperature.temp_form', ['cours_eaux' => $cours_eaux]);
+    }
+
+    public function historique() {
         $user_id = Auth::id();
         
         $temperatures = Temperature::where('id_saisir', $user_id)->get();

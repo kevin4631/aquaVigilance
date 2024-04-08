@@ -21,9 +21,9 @@
     <div class="creation_div">
         <form class="creation_form"  action="{{route('inscription')}}" method="post">@csrf
         <h1>Création de compte</h1>
-        <input type="name" name="name" placeholder="nom utilisateur ">
-        <input type="email" name="email" placeholder="adresse mail">
-        <input type="password" name="password" placeholder="mot de passe">
+        <input type="name" name="name" placeholder="nom utilisateur " required>
+        <input type="email" name="email" placeholder="adresse mail" required>
+        <input type="password" name="password" placeholder="mot de passe" required>
         <button type="submit">Créer un compte</button>
     </form>
     </div>

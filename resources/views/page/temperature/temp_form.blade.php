@@ -39,18 +39,18 @@
             <input type="text" class="form-control" id="libelle_commune" name="libelle_commune" required>
         </div>
 
-        <div class="form-group">
-            <label for="libelle_cours_eau">Cours d'eau:</label>
-            <select class="form-control" id="libelle_cours_eau" name="libelle_cours_eau" required>
-                <option value="">Select Cours d'eau</option>
-            </select>
-        </div>
+    <div class="form-group">
+        <label for="libelle_cours_eau">Cours d'eau:</label>
+        <select class="form-control" id="libelle_cours_eau" name="libelle_cours_eau" required>
+            <option value="">Select Cours d'eau</option>
+        </select>
+    </div>
+    
 
-
-        <div class="form-group">
-            <label for="date_mesure_temp">Date mesure temp:</label>
-            <input type="date" class="form-control" id="date_mesure_temp" name="date_mesure_temp" required min="{{ date('Y-m-d') }}">
-        </div>
+    <div class="form-group">
+        <label for="date_mesure_temp">Date mesure temp:</label>
+        <input type="date" class="form-control" id="date_mesure_temp" name="date_mesure_temp" required min="{{ date('Y-m-d') }}">
+    </div>
 
         <div class="form-group">
             <label for="heure_mesure_temp">Heure mesure temp:</label>
