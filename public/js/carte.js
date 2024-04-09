@@ -100,7 +100,7 @@ map.on('zoomend', function () {
         });
     }
 
-    if (currentZoom <= 10) {
+    if (currentZoom <= 8) {
         tab_region.forEach(region => {
             region.addTo(map);
         });
