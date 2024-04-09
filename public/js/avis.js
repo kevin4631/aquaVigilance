@@ -1,31 +1,33 @@
-<<<<<<< HEAD
-function envoyerAvis() {
-    // Créer une instance de l'objet XMLHttpRequest
+function envoyerAvis(avis) {
     var xhr = new XMLHttpRequest();
-
-    // Spécifier la méthode HTTP et l'URL de la route à laquelle vous souhaitez envoyer la requête
-    xhr.open("GET", "/votre-route", true);
 
     // Définir la fonction de rappel à exécuter lorsque la réponse est reçue
     xhr.onreadystatechange = function () {
-        // Vérifier si la requête est terminée et que la réponse est prête
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            // La réponse a été reçue avec succès
-            console.log("votre avis à bien etait envoyé");
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                // Ci-dessous on traite la réponse quand elle arrive
+                console.log("Réponse du serveur : " + JSON.parse(xhr.responseText));
+            } else {
+                console.log("Réponse du serveur : " + this.status);
+            }
         }
     };
 
-    // Envoyer la requête
-    xhr.send();
+    var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    var params = "reponse=" + avis;
+    
+    xhr.open("POST", "/laisser_avis", true);
+    xhr.setRequestHeader("X-CSRF-TOKEN", csrfToken);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.send(params);
 }
 
-
-=======
->>>>>>> 2846a9b8ab115529b0c5bb60351c9a48e19c51a5
 document.querySelector("#oui").addEventListener("click", function () {
-    document.querySelector('#avis').style.display = 'none'
+    document.querySelector('#avis').style.display = 'none';
+    envoyerAvis('oui');
 });
 
 document.querySelector("#non").addEventListener("click", function () {
-    document.querySelector('#avis').style.display = 'none'
+    document.querySelector('#avis').style.display = 'none';
+    envoyerAvis('non');
 });

@@ -70,6 +70,8 @@
     </div>
 
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <div id="avis">
         Trouver vous ce site utile ?
         <img id="oui" src="img/oui.png" alt="oui">
