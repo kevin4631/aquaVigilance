@@ -4,6 +4,7 @@ use Symfony\Component\VarDumper\VarDumper;
 
 function getDelta($annee1, $annee2, $code_cours_eau)
 {
+    echo "------------- " . $code_cours_eau . "------------- " . "\n";
     $content = json_decode(file_get_contents('../data/' . $code_cours_eau . '.json'), true);
 
     $delta = 0;
@@ -13,35 +14,49 @@ function getDelta($annee1, $annee2, $code_cours_eau)
 
     $tabMoyenne = array();
 
+    $bool = 0;
+
     // ajout des valeurs dans des tableau pour les trier ensuite
     foreach ($content as $data) {
         if (substr($data["date_mesure_temp"], 0, -6) == $annee1) {
+            echo $data["date_mesure_temp"] . "   " . $data["resultat"] . "\n";
             $tabMesuresAnnee1[] = [
-                "resultat" => $data["resultat"],
-                "mois" => intval(explode("-", $data["date_mesure_temp"])[1])
+                intval(explode("-", $data["date_mesure_temp"])[1]),
+                $data["resultat"]
             ];
         }
 
         if (substr($data["date_mesure_temp"], 0, -6) == $annee2) {
+            if ($bool == 0) {
+                echo "       ---      " . "\n";
+                $bool = 1;
+            }
+            echo $data["date_mesure_temp"] . "   " . $data["resultat"] . "\n";
             $tabMesuresAnnee2[] = [
-                "resultat" => $data["resultat"],
-                "mois" => intval(explode("-", $data["date_mesure_temp"])[1])
+                intval(explode("-", $data["date_mesure_temp"])[1]),
+                $data["resultat"]
             ];
         }
     }
+
+    //var_dump( $tabMesuresAnnee1);
+    //var_dump( $tabMesuresAnnee2);
+    echo "lololo\n";
+    //var_dump( $tabMesuresAnnee2[0][0]);
 
     $iTab1 = 0;
     $iTab2 = 0;
 
     // boucle pour récuperer les valeurs uniquement des même mois pour avoir des valeurs cohérente
     while ($iTab1 < sizeof($tabMesuresAnnee1) && $iTab2 < sizeof($tabMesuresAnnee2)) {
-        if ($tabMesuresAnnee1[$iTab1]["mois"] == $tabMesuresAnnee2[$iTab2]["mois"]) {
-            $tabMoyenne[] = ($tabMesuresAnnee2[$iTab2]["resultat"] - $tabMesuresAnnee1[$iTab1]["resultat"]);
+        echo "mois 1 : " . $tabMesuresAnnee1[$iTab1][0] . " mois 2 : " . $tabMesuresAnnee2[$iTab2][0] . "\n";
+        if ($tabMesuresAnnee1[$iTab1][0] == $tabMesuresAnnee2[$iTab2][0]) {
+            $tabMoyenne[] = ($tabMesuresAnnee2[$iTab2][1] - $tabMesuresAnnee1[$iTab1][1]);
             $iTab1++;
             $iTab2++;
-        } else if ($tabMesuresAnnee1[$iTab1]["mois"] < $tabMesuresAnnee2[$iTab2]["mois"]) {
+        } else if ($tabMesuresAnnee1[$iTab1][0] < $tabMesuresAnnee2[$iTab2][0]) {
             $iTab1++;
-        } else if ($tabMesuresAnnee1[$iTab1]["mois"] > $tabMesuresAnnee2[$iTab2]["mois"]) {
+        } else if ($tabMesuresAnnee1[$iTab1][0] > $tabMesuresAnnee2[$iTab2][0]) {
             $iTab2++;
         }
     }
@@ -55,7 +70,11 @@ function getDelta($annee1, $annee2, $code_cours_eau)
     if ($nbValeurs == 0)
         return 999;
 
-    return $delta /= $nbValeurs;
+    $delta = $delta / $nbValeurs;
+
+    echo "DELTA : " . $delta . "\n";
+
+    return $delta;
 }
 
 $tab11 = [
@@ -438,40 +457,27 @@ $tabNom = [
 ];
 
 
-$annee1 = isset($_POST['annee1']) ? $_POST['annee1'] : null;
-$annee2 = isset($_POST['annee2']) ? $_POST['annee2'] : null;
+$annee1 = 2012;
+$annee2 = 2021;
 
-if ($annee1 == null || $annee2 == null) {
-    echo "error";
-} else {
-    $tabDelta = array();
 
-    //echo "Evolution de " . $annee1 . " à " . $annee2 . "\n";;
-
-    foreach ($tabNom as $key => $nom) {
-        $deltaMoyen = 0;
-        $nb = 0;
-        foreach ($$nom as $key => $code_cours_eau) {
-            $delta = getDelta($annee1, $annee2, $code_cours_eau);
-            //echo "code_cours_eau : " . $code_cours_eau . "delta : " . $delta . "\n";
-            if ($delta != 999) {
-                $nb++;
-                $deltaMoyen += $delta;
-            }
-        }
-
-        $delta = $deltaMoyen / $nb;
-
-        $tabDelta[] = [
-            substr($nom, 3),
-            $delta
-        ];
-
-        //echo "region " . substr($nom, 3) . " -> delta moyen : " . $delta . "\n";
+echo "Evolution de " . $annee1 . " à " . $annee2 . "\n";
+$deltaMoyen = 0;
+$nb = 0;
+foreach ($tab44 as $key => $code_cours_eau) {
+    $delta = getDelta($annee1, $annee2, $code_cours_eau);
+    echo "code_cours_eau : " . $code_cours_eau . "delta : " . $delta . "\n";
+    if ($delta != 999) {
+        $nb++;
+        $deltaMoyen += $delta;
     }
-
-    echo json_encode($tabDelta);
-    //var_dump($tabDelta);
-
-    //echo '----- Fin du script -----' . "\n";
 }
+
+$delta = $deltaMoyen / $nb;
+
+
+echo "region " . 44 . " -> delta moyen : " . $delta . "\n";
+
+//var_dump($tabDelta);
+
+echo '----- Fin du script -----' . "\n";

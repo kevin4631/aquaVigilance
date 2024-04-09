@@ -24,7 +24,7 @@ function parametrageCoursEau(coursEau) {
         // zoom global sur le cours eau
         //map.fitBounds(e.target.getBounds());
         // zoom de plus en plus sur le cours eau 
-        map.setView(e.latlng, map.getZoom() + 1);
+        //map.setView(e.latlng, map.getZoom() + 1);
     });
 }
 
