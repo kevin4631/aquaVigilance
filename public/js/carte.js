@@ -1,8 +1,8 @@
 //ajout de la map
 const map = L.map("map", {
     maxBounds: [
-        [41.3, -5], // Coin sud-ouest de la France (ajustement légèrement à gauche)
-        [51.1, 9.8], // Coin nord-est de la France (ajustement légèrement à droite)
+        [40, -20], // Coin sud-ouest de la France (ajustement légèrement à gauche)
+        [52, 20], // Coin nord-est de la France (ajustement légèrement à droite)
     ],
     minZoom: 6,
 });

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function envoyerAvis() {
     // Créer une instance de l'objet XMLHttpRequest
     var xhr = new XMLHttpRequest();
@@ -19,6 +20,8 @@ function envoyerAvis() {
 }
 
 
+=======
+>>>>>>> 2846a9b8ab115529b0c5bb60351c9a48e19c51a5
 document.querySelector("#oui").addEventListener("click", function () {
     document.querySelector('#avis').style.display = 'none'
 });
