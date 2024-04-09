@@ -14,19 +14,23 @@ class AccueilController extends Controller
         return view("accueil", ['conseils' => $conseils]);
     }
 
-
     public function evolution()
     {
         return view("statistiques/evolution");
     }
 
     public function laisser_avis(Request $request)
-    {   
-        $avis = new Avis();
-        $avis->oui = $request->input('reponse') == 'oui' ? 1 : 0; 
-        $avis->non = $request->input('reponse') == 'non' ? 1 : 0; 
+    {
+        // Recherche ou crée un enregistrement avec l'id 0
+        $avis = Avis::firstOrNew(['id' => 0]);
+
+        // Met à jour les valeurs en fonction de la réponse
+        $avis->oui = $avis->oui + ($request->input('reponse') == 'oui' ? 1 : 0);
+        $avis->non = $avis->non + ($request->input('reponse') == 'non' ? 1 : 0);
+
+        // Sauvegarde les changements
         $avis->save();
-        
+
         return response()->json(['Votre avis a bien été enregistré.']);
     }
 }

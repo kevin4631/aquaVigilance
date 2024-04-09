@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evolution des températures des cours d'eau</title>
+    <link rel="stylesheet" href="css/header.css" />
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
     
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 100px;
             background-color: #f4f4f4;
         }
 
