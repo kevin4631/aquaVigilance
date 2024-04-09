@@ -20,7 +20,7 @@
         <form  action="{{route('gestion')}}" method="post">@csrf
 
             <div class="form-group">
-                <label for="name">Nom</label>
+                <label for="name">Nom utilisateur</label>
                 <input type="text" id="name" name="name" value="{{ auth()->user()->name }}" required>
             </div>
 

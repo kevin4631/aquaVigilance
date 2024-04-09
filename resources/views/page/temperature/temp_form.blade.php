@@ -11,12 +11,15 @@
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/page_saisie_temp.css">
+    <link rel="stylesheet" href="css/page_saisie_temp.css">
+
 
 </head>
 
 <body>
     @include('headfoot/header')
 
+    <a class="buttonHistorique" href="{{route('historique')}}">Historique des Temperatures</a>
 
     <form action="{{ route('saisir_temp') }}" method="post">
         @csrf

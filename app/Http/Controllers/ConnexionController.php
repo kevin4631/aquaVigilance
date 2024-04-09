@@ -92,7 +92,7 @@ class ConnexionController extends Controller
             ->update([
                 'password' => Hash::make($request->password)
             ]);
-        return view ('connexion.connexion');
+        return redirect()->route('connexion');
     }
 
     public function gestion_form(){
