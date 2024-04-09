@@ -72,73 +72,83 @@
             <!-- Les données seront ajoutées ici dynamiquement -->
         </tbody>
     </table>
-    
+
     <script>
-        async function getEvolutionCoursEau(annee1, annee2, codeCoursEau) {
-            var moyennesParAnnee = {};
-            var nbMesuresParAnnee = {};
+       async function getEvolutionCoursEauParRegion(annee1, annee2, codeRegion) {
+    var tempAnnee = [];
+    var anneeTraitement = annee1;
+    var total = 0;
+    var nbValeurs = 0;
 
-            try {
-                const response = await fetch("data/" + codeCoursEau + ".json");
-                const fileContent = await response.json();
+    try {
+        // Charger le fichier JSON contenant les codes de cours d'eau par région
+        const response = await fetch("data/csvjson.json");
+        const data = await response.json();
 
-                fileContent.forEach(data => {
-                    var annee = parseInt(data["date_mesure_temp"].substring(0, 4));
-                    var temp = data["resultat"];
-                    if (annee >= annee1 && annee <= annee2) {
-                        if (!moyennesParAnnee[annee]) {
-                            moyennesParAnnee[annee] = 0;
-                            nbMesuresParAnnee[annee] = 0;
-                        }
-                        moyennesParAnnee[annee] += temp;
-                        nbMesuresParAnnee[annee]++;
-                    }
-                });
-            } catch (error) {
-                console.error("Erreur lors du chargement du fichier JSON :", error);
-            }
+        // Récupérer les codes de cours d'eau pour la région spécifiée
+        const coursEau = data[codeRegion];
 
-            // Calculer les moyennes de chaque année
-            for (const annee in moyennesParAnnee) {
-                moyennesParAnnee[annee] /= nbMesuresParAnnee[annee];
-            }
-
-            return moyennesParAnnee;
+        if (!coursEau) {
+            console.log("Aucun cours d'eau trouvé pour le code de région " + codeRegion + ".");
+            return tempAnnee;
         }
 
+        // Pour chaque code de cours d'eau de la région spécifiée
+        for (const codeCoursEau of coursEau) {
+            // Charger le fichier JSON du cours d'eau
+            const responseCoursEau = await fetch("data/" + codeCoursEau + ".json");
+            const fileContent = await responseCoursEau.json();
+            
+            // Parcourir les données du fichier JSON
+            fileContent.forEach(data => {
+                var annee = parseInt(data["date_mesure_temp"].substring(0, 4));
+                var temp = data["resultat"];
+                // Vérifier si l'année est dans la plage spécifiée
+                if (annee >= annee1 && annee <= annee2) {
+                    // Si l'année change, calculer la moyenne et réinitialiser les valeurs
+                    if (annee > anneeTraitement) {
+                        var moyenne = total / nbValeurs;
+                        tempAnnee.push({ moyenne, anneeTraitement });
+                        total = 0;
+                        nbValeurs = 0;
+                        anneeTraitement = annee;
+                    }
+                    // Ajouter la température à la somme et incrémenter le nombre de valeurs
+                    total += temp;
+                    nbValeurs++;
+                }
+            });
+        }
+    } catch (error) {
+        console.error("Erreur lors du chargement du fichier JSON :", error);
+    }
+
+    // Retourner les moyennes de température par année
+    return tempAnnee;
+}
 
 
-        async function afficherEvolution(tab_codeCoursEau) {
-            const codeCoursEau = ['----0010', 'F---0100', 'F24-0400', 'F4--0210', 'F4380600', 'F44-0400', 'F4480600', 'F45-0400', 'F46-0400', 'F46-0420', 'F48-0400', 'F65-0400', 'F70-0400', 'H---0100', 'H2269000', 'H2280600', 'H30-0400'];
+
+        async function afficherEvolutionPourRegion() {
+            const codeRegion = prompt("Veuillez entrer le code de région :");
+            
+
             const annee1 = 2010;
             const annee2 = 2020;
 
-
-            const moyennesParAnnee = {};
-            for (const code of codeCoursEau) {
-
-                const moyennes = await getEvolutionCoursEau(annee1, annee2, code);
-                console.log(moyennes);
-                for (const annee in moyennes) {
-
-                    if (!moyennesParAnnee[annee]) {
-                        moyennesParAnnee[annee] = [];
-                    }
-                    moyennesParAnnee[annee].push(moyennes[annee]);
-                }
-            }
+            const moyennesParAnnee = await getEvolutionCoursEauParRegion(annee1, annee2, codeRegion);
 
             // Afficher les données dans le tableau
             const tableBody = document.getElementById('evolutionTable');
-            for (const annee in moyennesParAnnee) {
-                const moyenneAnnee = moyennesParAnnee[annee].reduce((acc, curr) => acc + curr, 0) / moyennesParAnnee[annee].length;
-                const row = `<tr><td>${annee}</td><td>${moyenneAnnee}</td></tr>`;
+            moyennesParAnnee.forEach(annee => {
+                const { moyenne, anneeTraitement } = annee;
+                const row = `<tr><td>${anneeTraitement}</td><td>${moyenne}</td></tr>`;
                 tableBody.innerHTML += row;
-            }
+            });
 
             // Préparation des données pour Chart.js
-            const labels = Object.keys(moyennesParAnnee);
-            const data = labels.map(annee => moyennesParAnnee[annee].reduce((acc, curr) => acc + curr, 0) / moyennesParAnnee[annee].length);
+            const labels = moyennesParAnnee.map(annee => annee.anneeTraitement);
+            const data = moyennesParAnnee.map(annee => annee.moyenne);
 
             // Création du graphique
             var ctx = document.getElementById('myChart').getContext('2d');
@@ -166,7 +176,8 @@
             });
         }
 
-        afficherEvolution();
+        afficherEvolutionPourRegion();
+
     </script>
 </body>
 
