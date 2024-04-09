@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evolution des températures des cours d'eau</title>
-    <!-- Inclure Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     
     <style>
         body {
@@ -100,7 +99,7 @@
 
     <!-- Partie pour le graphique -->
     <h1>Evolution des températures des cours d'eau</h1>
-    <canvas id="temperatureChart" width="800" height="400"></canvas>
+    <svg id="temperatureChart" width="800" height="400"></svg>
 
     <!-- Partie pour le tableau -->
     <h2>Tableau des moyennes de température par année</h2>
@@ -171,27 +170,59 @@
             const labels = Object.keys(moyennesParAnnee);
             const data = Object.values(moyennesParAnnee).map(moyennes => moyennes.reduce((acc, curr) => acc + curr, 0) / moyennes.length);
 
-            const ctx = document.getElementById('temperatureChart').getContext('2d');
-            const temperatureChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Évolution des températures des cours d\'eau',
-                        data: data,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
+            // Supprimer le graphique existant s'il y en a un
+            d3.select("#temperatureChart").selectAll("*").remove();
+
+            // Configuration du graphique à lignes avec D3.js
+            const margin = { top: 20, right: 30, bottom: 30, left: 60 };
+            const width = 1600 - margin.left - margin.right;
+            const height = 600 - margin.top - margin.bottom;
+
+            const svg = d3.select("#temperatureChart")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            const x = d3.scaleLinear()
+                .domain([d3.min(labels), d3.max(labels)])
+                .range([0, width]);
+
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(data)])
+                .range([height, 0]);
+
+            const line = d3.line()
+                .x((d, i) => x(labels[i]))
+                .y(d => y(d))
+                .curve(d3.curveMonotoneX);
+
+            svg.append("path")
+                .datum(data)
+                .attr("fill", "none")
+                .attr("stroke", "steelblue")
+                .attr("stroke-width", 1.5)
+                .attr("d", line);
+
+            svg.append("g")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x));
+
+            svg.append("g")
+                .call(d3.axisLeft(y));
+
+            svg.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 0 - margin.left)
+                .attr("x", 0 - (height / 2))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text("Température (°C)");
+
+            svg.append("text")
+                .attr("transform", `translate(${width / 2}, ${height + margin.top + 20})`)
+                .style("text-anchor", "middle")
+                .text("Année");
         }
 
         // Écouter les clics sur les éléments de la liste des régions
