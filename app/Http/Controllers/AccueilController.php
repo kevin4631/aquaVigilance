@@ -22,7 +22,7 @@ class AccueilController extends Controller
     public function laisser_avis(Request $request)
     {
         // Recherche ou crée un enregistrement avec l'id 0
-        $avis = Avis::firstOrNew(['id' => 0]);
+        $avis = Avis::firstOrNew(['id' => 1]);
 
         // Met à jour les valeurs en fonction de la réponse
         $avis->oui = $avis->oui + ($request->input('reponse') == 'oui' ? 1 : 0);
