@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/footer.css" />
     <link rel="stylesheet" href="css/carte.css" />
     <link rel="stylesheet" href="css/classement.css" />
+    <link rel="stylesheet" href="css/avis.css" />
 
     <style>
         body {
@@ -70,10 +71,17 @@
     </div>
 
 
+    <div id="avis">
+        Trouver vous ce site utile ?
+        <img src="img/oui.png" alt="oui">
+        <img src="img/non.png" alt="non">
+    </div>
+
     <div id="map">
     </div>
 
     @include('headfoot/footer')
+
 
     <!--------------- Récupération de la carte leaflet--------------->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
