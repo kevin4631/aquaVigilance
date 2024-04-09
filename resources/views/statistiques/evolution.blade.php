@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evolution des températures des cours d'eau</title>
     <!-- Inclure Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,15 +49,58 @@
         canvas {
             margin-top: 20px;
         }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #333; /* Couleur de fond */
+            padding: 10px 0; /* Ajout de padding en haut et en bas */
+        }
+
+        li {
+            margin: 0 10px; /* Marge entre les éléments */
+        }
+
+        li a {
+            text-decoration: none;
+            color: #fff; /* Couleur du texte */
+            font-weight: bold;
+            padding: 5px 10px; /* Padding à l'intérieur des liens */
+            border-radius: 5px; /* Coins arrondis */
+            transition: background-color 0.3s ease; /* Transition fluide */
+        }
+
+        li a:hover {
+            background-color: #555; /* Couleur de fond au survol */
+        }
+
     </style>
 </head>
-
 <body>
-    <h1>Evolution des températures des cours d'eau</h1>
+@include('headfoot/header')
+    <!-- Liste des régions -->
+    <ul id="regionsList">
+        <li><a href="#" data-code="11">Île-de-France</a></li>
+        <li><a href="#" data-code="24">Centre-Val de Loire</a></li>
+        <li><a href="#" data-code="27">Bourgogne-Franche-Comté</a></li>
+        <li><a href="#" data-code="28">Normandie</a></li>
+        <li><a href="#" data-code="32">Hauts-de-France</a></li>
+        <li><a href="#" data-code="44">Grand Est</a></li>
+        <li><a href="#" data-code="52">Pays de la Loire</a></li>
+        <li><a href="#" data-code="53">Bretagne</a></li>
+        <li><a href="#" data-code="75">Nouvelle-Aquitaine</a></li>
+        <li><a href="#" data-code="76">Occitanie</a></li>
+        <li><a href="#" data-code="84">Auvergne-Rhône-Alpes</a></li>
+        <li><a href="#" data-code="93">Provence-Alpes-Côte d'Azur</a></li>
+        <li><a href="#" data-code="94">Corse</a></li>
+    </ul>
 
     <!-- Partie pour le graphique -->
-    <h2>Graphique de l'évolution des températures par année</h2>
-    <canvas id="myChart" width="800" height="400"></canvas>
+    <h1>Evolution des températures des cours d'eau</h1>
+    <canvas id="temperatureChart" width="800" height="400"></canvas>
 
     <!-- Partie pour le tableau -->
     <h2>Tableau des moyennes de température par année</h2>
@@ -72,113 +115,96 @@
             <!-- Les données seront ajoutées ici dynamiquement -->
         </tbody>
     </table>
+    @include('headfoot/footer')
 
     <script>
-       async function getEvolutionCoursEauParRegion(annee1, annee2, codeRegion) {
-    var tempAnnee = [];
-    var anneeTraitement = annee1;
-    var total = 0;
-    var nbValeurs = 0;
-
-    try {
-        // Charger le fichier JSON contenant les codes de cours d'eau par région
-        const response = await fetch("data/csvjson.json");
-        const data = await response.json();
-
-        // Récupérer les codes de cours d'eau pour la région spécifiée
-        const coursEau = data[codeRegion];
-
-        if (!coursEau) {
-            console.log("Aucun cours d'eau trouvé pour le code de région " + codeRegion + ".");
-            return tempAnnee;
-        }
-
-        // Pour chaque code de cours d'eau de la région spécifiée
-        for (const codeCoursEau of coursEau) {
-            // Charger le fichier JSON du cours d'eau
-            const responseCoursEau = await fetch("data/" + codeCoursEau + ".json");
-            const fileContent = await responseCoursEau.json();
-            
-            // Parcourir les données du fichier JSON
-            fileContent.forEach(data => {
-                var annee = parseInt(data["date_mesure_temp"].substring(0, 4));
-                var temp = data["resultat"];
-                // Vérifier si l'année est dans la plage spécifiée
-                if (annee >= annee1 && annee <= annee2) {
-                    // Si l'année change, calculer la moyenne et réinitialiser les valeurs
-                    if (annee > anneeTraitement) {
-                        var moyenne = total / nbValeurs;
-                        tempAnnee.push({ moyenne, anneeTraitement });
-                        total = 0;
-                        nbValeurs = 0;
-                        anneeTraitement = annee;
-                    }
-                    // Ajouter la température à la somme et incrémenter le nombre de valeurs
-                    total += temp;
-                    nbValeurs++;
-                }
-            });
-        }
-    } catch (error) {
-        console.error("Erreur lors du chargement du fichier JSON :", error);
-    }
-
-    // Retourner les moyennes de température par année
-    return tempAnnee;
-}
-
-
-
-        async function afficherEvolutionPourRegion() {
-            const codeRegion = prompt("Veuillez entrer le code de région :");
-            
-
+        // Fonction pour afficher l'évolution des températures pour une région donnée
+        async function afficherEvolutionPourRegion(codeRegion) {
             const annee1 = 2010;
             const annee2 = 2020;
+            const moyennesParAnnee = {};
 
-            const moyennesParAnnee = await getEvolutionCoursEauParRegion(annee1, annee2, codeRegion);
+            try {
+                const response = await fetch("data/csvjson.json");
+                const data = await response.json();
+                const coursEau = data[codeRegion];
+
+                if (!coursEau) {
+                    console.log("Aucun cours d'eau trouvé pour le code de région " + codeRegion + ".");
+                    return;
+                }
+
+                for (const codeCoursEau of coursEau) {
+                    const responseCoursEau = await fetch("data/" + codeCoursEau + ".json");
+                    const fileContent = await responseCoursEau.json();
+
+                    fileContent.forEach(data => {
+                        var annee = parseInt(data["date_mesure_temp"].substring(0, 4));
+                        var temp = data["resultat"];
+                        if (annee >= annee1 && annee <= annee2 + 1) {
+                            if (!moyennesParAnnee[annee]) {
+                                moyennesParAnnee[annee] = [];
+                            }
+                            moyennesParAnnee[annee].push(temp);
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error("Erreur lors du chargement du fichier JSON :", error);
+            }
 
             // Afficher les données dans le tableau
             const tableBody = document.getElementById('evolutionTable');
-            moyennesParAnnee.forEach(annee => {
-                const { moyenne, anneeTraitement } = annee;
-                const row = `<tr><td>${anneeTraitement}</td><td>${moyenne}</td></tr>`;
+            tableBody.innerHTML = ''; // Réinitialiser le contenu
+            for (const annee in moyennesParAnnee) {
+                const moyenneAnnee = moyennesParAnnee[annee].reduce((acc, curr) => acc + curr, 0) / moyennesParAnnee[annee].length;
+                const row = `<tr><td>${annee}</td><td>${moyenneAnnee.toFixed(2)} °C</td></tr>`;
                 tableBody.innerHTML += row;
-            });
+            }
 
-            // Préparation des données pour Chart.js
-            const labels = moyennesParAnnee.map(annee => annee.anneeTraitement);
-            const data = moyennesParAnnee.map(annee => annee.moyenne);
+            // Dessiner le graphique
+            dessinerGraphique(moyennesParAnnee);
+        }
 
-            // Création du graphique
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
+        // Fonction pour dessiner le graphique
+        function dessinerGraphique(moyennesParAnnee) {
+            const labels = Object.keys(moyennesParAnnee);
+            const data = Object.values(moyennesParAnnee).map(moyennes => moyennes.reduce((acc, curr) => acc + curr, 0) / moyennes.length);
+
+            const ctx = document.getElementById('temperatureChart').getContext('2d');
+            const temperatureChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Moyenne de température',
+                        label: 'Évolution des températures des cours d\'eau',
                         data: data,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
                     }]
                 },
                 options: {
                     scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
             });
         }
 
-        afficherEvolutionPourRegion();
+        // Écouter les clics sur les éléments de la liste des régions
+        const regionsList = document.getElementById('regionsList');
+        regionsList.addEventListener('click', function (event) {
+            if (event.target.tagName === 'A') {
+                const codeRegion = event.target.getAttribute('data-code');
+                afficherEvolutionPourRegion(codeRegion);
+            }
+        });
 
+        // Par défaut, afficher l'évolution pour la première région de la liste
+        afficherEvolutionPourRegion('11');
     </script>
 </body>
-
 </html>
