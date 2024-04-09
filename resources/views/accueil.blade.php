@@ -8,8 +8,7 @@
 
     <link rel="shortcut icon" type="image/x-icon" href="img/logo.png" />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
 
@@ -73,8 +72,8 @@
 
     <div id="avis">
         Trouver vous ce site utile ?
-        <img src="img/oui.png" alt="oui">
-        <img src="img/non.png" alt="non">
+        <img id="oui" src="img/oui.png" alt="oui">
+        <img id="non" src="img/non.png" alt="non">
     </div>
 
     <div id="map">
@@ -84,8 +83,7 @@
 
 
     <!--------------- Récupération de la carte leaflet--------------->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <!--------------- Barre de recherche--------------->
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -112,7 +110,8 @@
     <script src="js/classement.js"></script>
     <!--------------- api graphique --------------->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <!--------------- gere le pop up avis --------------->
+    <script src="js/avis.js"></script>
 
 
     <script>
@@ -168,8 +167,7 @@
     </script>
 
     <script>
-        
-        var myconseils = <?php echo json_encode($conseils);?>;
+        var myconseils = <?php echo json_encode($conseils); ?>;
         //console.log(myconseils);
 
         show_conseils = (code) => {
@@ -181,7 +179,6 @@
                     document.querySelector("#" + code).style.display = 'block';
             }
         }
-        
     </script>
 </body>
 
