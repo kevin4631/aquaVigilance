@@ -29,5 +29,4 @@ Route::post('saisir_temp', [SaisieTempController::class, 'saisir_temp'])->name('
 Route::get('historique', [SaisieTempController::class, 'historique'])->name('historique')->middleware('auth');
 Route::get('temperature/{id}/supprimer', [SaisieTempController::class, 'supprimer'])->name('temperature.supprimer');
 
-Route::get('classement', [AccueilController::class, 'classement']);
 Route::get('evolution', [AccueilController::class, 'evolution'])->name('evolution');

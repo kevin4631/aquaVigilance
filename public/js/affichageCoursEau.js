@@ -32,36 +32,39 @@ function setPopUpCoursEau(coursEau, message) {
     let code = getCodeCoursEau(coursEau);
     let current_conseils = myconseils[code];
 
-    let conseils_data =
-        "<ul style='list-style-type: none; margin: 0; padding: 0;'><hr>";
-    current_conseils.forEach((conse) => {
+    let conseils_data = "";
+    if (current_conseils != null) {
+        console.log(current_conseils);
+
+        conseils_data = "<ul style='list-style-type: none; margin: 0; padding: 0;'><hr>";
+
         conseils_data +=
             "<li style='margin: 0; padding: 0; text-align: justify;'>" +
-            conse.description +
+            current_conseils[0]["description"] +
             "</li><hr>";
-    });
-    conseils_data += "</ul>";
 
+        conseils_data += "</ul>";
+    }
     coursEau.bindPopup(
         "<h3>" +
-            getNomCoursEau(coursEau) +
-            "</h3>" +
-            "<p>" +
-            message +
-            "</p>" +
-            "<p>code du cours eau : " +
-            getCodeCoursEau(coursEau) +
-            "</p>" +
-            `<button id="btn_conseils_` +
-            code +
-            `" onclick='show_conseils("conseils_` +
-            code +
-            `")' style='display: block; margin: 0 auto; background-color: #4DC3FA; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-style: bold; font-size: 12px; cursor: pointer;'>Conseils</button>` +
-            "<div id='conseils_" +
-            code +
-            "' style='display: none; height: 150px; overflow-x: hidden; margin: 0; padding: 10px 0;'>" +
-            conseils_data +
-            "</div>"
+        getNomCoursEau(coursEau) +
+        "</h3>" +
+        "<p>" +
+        message +
+        "</p>" +
+        "<p>code du cours eau : " +
+        getCodeCoursEau(coursEau) +
+        "</p>" +
+        `<button id="btn_conseils_` +
+        code +
+        `" onclick='show_conseils("conseils_` +
+        code +
+        `")' style='display: block; margin: 0 auto; background-color: #4DC3FA; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-style: bold; font-size: 12px; cursor: pointer;'>Conseils</button>` +
+        "<div id='conseils_" +
+        code +
+        "' style='display: none; height: 150px; overflow-x: hidden; margin: 0; padding: 10px 0;'>" +
+        conseils_data +
+        "</div>"
     );
 }
 

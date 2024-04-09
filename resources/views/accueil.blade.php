@@ -160,7 +160,8 @@
     </script>
 
     <script>
-        var myconseils = json($conseils);
+        
+        var myconseils = <?php echo json_encode($conseils);?>;
         console.log(myconseils);
 
         show_conseils = (code) => {
@@ -172,6 +173,7 @@
                     document.querySelector("#" + code).style.display = 'block';
             }
         }
+        
     </script>
 </body>
 
