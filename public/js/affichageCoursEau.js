@@ -34,7 +34,7 @@ function setPopUpCoursEau(coursEau, message) {
 
     let conseils_data = "";
     if (current_conseils != null) {
-        console.log(current_conseils);
+        //console.log(current_conseils);
 
         conseils_data = "<ul style='list-style-type: none; margin: 0; padding: 0;'><hr>";
 

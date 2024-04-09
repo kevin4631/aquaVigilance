@@ -162,7 +162,7 @@
     <script>
         
         var myconseils = <?php echo json_encode($conseils);?>;
-        console.log(myconseils);
+        //console.log(myconseils);
 
         show_conseils = (code) => {
             if (document.querySelector("#" + code).style.display == 'block') {
