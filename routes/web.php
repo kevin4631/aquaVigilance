@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('deconnexion', [ConnexionController::class, 'deconnexion'])->name('deconnexion');
     Route::get('gestion_form', [ConnexionController::class, 'gestion_form'])->name('gestion_form');
     Route::post('gestion', [ConnexionController::class, 'gestion'])->name('gestion');
+    
 });
 
 Route::middleware('guest')->group(function () {

@@ -37,7 +37,7 @@ class ConnexionController extends Controller
         }
 
         // Redirection avec un message d'erreur si l'authentification échoue
-        return redirect()->back()->withErrors('Les identifiants sont incorrects');
+        return redirect()->back()->withErrors('Les identifiants sont incorrects veuillez réssayer');
     }
 
     // Déconnexion
@@ -92,6 +92,7 @@ class ConnexionController extends Controller
             ->update([
                 'password' => Hash::make($request->password)
             ]);
+        return view ('connexion.connexion');
     }
 
     public function gestion_form(){
