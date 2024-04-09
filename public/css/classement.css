@@ -1,6 +1,6 @@
 #evo {
     display: none;
-    height: 600px;
+    height: 60vh;
     width: 400px;
     position: absolute;
     top: 165px;
@@ -15,7 +15,7 @@
 }
 
 #myChart {
-    max-height: 550px;
+    max-height: 52vh;
 }
 
 #checkboxEvo {
