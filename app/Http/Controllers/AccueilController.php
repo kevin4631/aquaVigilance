@@ -15,17 +15,18 @@ class AccueilController extends Controller
     }
 
 
-    public function evolution() {
+    public function evolution()
+    {
         return view("statistiques/evolution");
     }
 
     public function laisser_avis(Request $request)
-    {
+    {   
         $avis = new Avis();
-        $avis->oui = $request->input('reponse') === 'oui' ? 1 : 0; 
-        $avis->non = $request->input('reponse') === 'non' ? 1 : 0; 
+        $avis->oui = $request->input('reponse') == 'oui' ? 1 : 0; 
+        $avis->non = $request->input('reponse') == 'non' ? 1 : 0; 
         $avis->save();
-
-        return redirect()->route('accueil');
+        
+        return response()->json(['Votre avis a bien été enregistré.']);
     }
 }
