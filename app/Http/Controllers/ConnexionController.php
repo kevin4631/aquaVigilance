@@ -93,4 +93,32 @@ class ConnexionController extends Controller
                 'password' => Hash::make($request->password)
             ]);
     }
+
+    public function gestion_form(){
+        return view('connexion.gestion_form');
+    }
+
+    public function gestion(Request $request)
+    {
+         // Valider le formulaire
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|confirmed',
+    ]);
+
+    $user = User::where('email', $request->email)->first();
+
+   
+    if ($user) {
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Account updated successfully!');
+    } else {
+        return redirect()->back()->withErrors('User not found.');
+    }
+}
 }

@@ -1,0 +1,109 @@
+html,
+body {
+    margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.42em;
+  color:#A7A1AE;
+  background-color:#1F2739;
+}
+
+h2 {
+    text-align: center;
+    font-size: 25px;
+    color: #070874;
+}
+
+form {
+  width: 300px; 
+  margin: auto; 
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevent overflow content from causing scroll bars */
+}
+
+
+label {
+    color: #1F2739;
+    display: block;
+    margin-bottom: 5px;
+}
+
+select,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="password_confirmation"] {
+    width: calc(100% - 16px); /* Adjust width for borders and padding */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #1F2739;
+    width: calc(100% - 16px); /* Adjust width for borders and padding */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Use clean and readable font */
+    font-size: 14px; /* Adjust font size */
+    font-weight: 500; /* Medium font weight for a professional look */
+}
+
+button:hover {
+    background-color: #57b4d6;
+}
+
+#info {
+    position: absolute;
+    width: 27%;
+    left: 50px;
+    top: 40%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    color: #020554;
+    text-align: justify;
+}
+
+h5 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    text-align: center;
+    color: #4DC3FA;
+    text-transform: uppercase; /* Convert text to uppercase */
+    letter-spacing: 2px; /* Increase letter spacing for emphasis */
+    margin-top: 20px; /* Add some top margin for spacing */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle text shadow */
+}
+
+.buttonHistorique {
+  position: absolute;
+  top: 100px;
+  right: 100px;
+  margin-left: 15px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+  border-radius: 16px;
+  border: 0;
+  color: #0e0e0e;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buttonHistorique:hover {
+  background-color: #c2c2c2;
+}

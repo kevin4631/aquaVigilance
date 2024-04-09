@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Conseil;
 use App\Models\CoursEau;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Temperature;
+
 
 class SaisieTempController extends Controller
 {
@@ -20,7 +20,8 @@ class SaisieTempController extends Controller
 
     public function temp_formulaire()
     {
-        return view("page/temperature.temp_form");
+        $cours_eaux = CoursEau::orderBy('libelle', 'asc')->get(['libelle']);
+        return view('page.temperature.temp_form', ['cours_eaux' => $cours_eaux]);
     }
     public function saisir_temp(Request $request)
     {
@@ -40,15 +41,10 @@ class SaisieTempController extends Controller
         // enregistrer dans la bdd
         $temperature->save();
 
-
         return redirect()->route("accueil");
     }
 
-    public function listecours (){
-        $cours_eaux = CoursEau::pluck('libelle', 'id'); 
-        return view('page.temperature.temp_form', ['cours_eaux' => $cours_eaux]);
-    }
-
+    
     public function historique() {
         $user_id = Auth::id();
         
