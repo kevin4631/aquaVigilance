@@ -1,4 +1,3 @@
-
 document.querySelector("#oui").addEventListener("click", function () {
     document.querySelector('#avis').style.display = 'none'
 });

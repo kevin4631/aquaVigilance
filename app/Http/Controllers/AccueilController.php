@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Conseil;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Avis;
 
 class AccueilController extends Controller
 {
@@ -17,5 +17,15 @@ class AccueilController extends Controller
 
     public function evolution() {
         return view("statistiques/evolution");
+    }
+
+    public function laisser_avis(Request $request)
+    {
+        $avis = new Avis();
+        $avis->oui = $request->input('reponse') === 'oui' ? 1 : 0; 
+        $avis->non = $request->input('reponse') === 'non' ? 1 : 0; 
+        $avis->save();
+
+        return redirect()->route('accueil');
     }
 }
